@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="404">
+  <div class="notfound">
+    <h1>404</h1>
+
+    <section lang="el">
+      <h2>Δεν βρέθηκε</h2>
+      <p>Η σελίδα που ζητήσατε δεν υπάρχει ή έχει μετακινηθεί.</p>
+      <p>
+        <a href="/">Επιστροφή στην αρχική</a> ·
+        <a href="/search/">Αναζήτηση</a>
+      </p>
+    </section>
+
+    <hr />
+
+    <section lang="en">
+      <h2>Not found</h2>
+      <p>The page you requested does not exist or has been moved.</p>
+      <p>
+        <a href="/en/">Back to home</a> ·
+        <a href="/en/search/">Search</a>
+      </p>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .notfound h1 {
+    font-size: 5rem;
+    color: var(--color-accent);
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .notfound section {
+    text-align: center;
+    margin: 2rem 0;
+  }
+  .notfound h2 {
+    font-size: 1.5rem;
+  }
+</style>

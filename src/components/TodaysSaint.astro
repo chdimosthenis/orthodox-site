@@ -1,0 +1,69 @@
+---
+import { getCollection } from 'astro:content';
+import { getLangFromUrl, useTranslations, getLocalizedPath } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const today = new Date();
+const todayKey =
+  String(today.getMonth() + 1).padStart(2, '0') + '-' +
+  String(today.getDate()).padStart(2, '0');
+
+const todays = (await getCollection('saints'))
+  .filter(s => s.data.language === lang && s.data.feastDay === todayKey);
+---
+
+<section class="todays-saint">
+  <h2>{t('today.saint')}</h2>
+  {todays.length === 0 ? (
+    <p class="muted">{t('today.none')}</p>
+  ) : (
+    <ul class="todays-list">
+      {todays.map(s => (
+        <li>
+          <h3>
+            <a href={getLocalizedPath(`/saints/${s.id}`, lang)} lang={s.data.language}>{s.data.name}</a>
+          </h3>
+          <p class="muted" lang={s.data.language}>{s.data.life}</p>
+        </li>
+      ))}
+    </ul>
+  )}
+</section>
+
+<style>
+  .todays-saint {
+    margin-top: 2rem;
+    padding: 1.5rem 1.75rem;
+    border: 1px solid var(--color-border);
+    border-left: 3px solid var(--color-gold);
+    border-radius: 0 4px 4px 0;
+    background: var(--color-attribution-bg);
+  }
+  .todays-saint h2 {
+    margin-top: 0;
+    font-size: 1.4rem;
+  }
+  .todays-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 1.25rem;
+  }
+  .todays-list h3 {
+    margin: 0 0 0.35rem;
+    font-size: 1.2rem;
+  }
+  .todays-list h3 a {
+    color: var(--color-text);
+    border-bottom: none;
+  }
+  .todays-list h3 a:hover {
+    color: var(--color-accent);
+  }
+  .todays-list p {
+    margin: 0;
+  }
+</style>

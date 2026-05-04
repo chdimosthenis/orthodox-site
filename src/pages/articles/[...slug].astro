@@ -18,9 +18,21 @@ const { Content } = await render(entry);
 const dateStr = entry.data.pubDate.toLocaleDateString('el-GR', {
   year: 'numeric', month: 'long', day: 'numeric',
 });
+
+const jsonld = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: entry.data.title,
+  description: entry.data.description,
+  datePublished: entry.data.pubDate.toISOString(),
+  author: { '@type': 'Person', name: entry.data.author },
+  inLanguage: entry.data.language,
+  ...(entry.data.sourceUrl && { isBasedOn: entry.data.sourceUrl }),
+  ...(entry.data.license && { license: entry.data.license }),
+};
 ---
 
-<BaseLayout title={entry.data.title} description={entry.data.description}>
+<BaseLayout title={entry.data.title} description={entry.data.description} jsonld={jsonld}>
   <article>
     <header class="article-header">
       <h1 lang={entry.data.language}>{entry.data.title}</h1>

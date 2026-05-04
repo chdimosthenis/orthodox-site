@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# AI crawlers — let them index the public-domain content, that's the point
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+Sitemap: https://orthodox-site.pages.dev/sitemap-index.xml

@@ -19,9 +19,18 @@ const { Content } = await render(entry);
 const [month, day] = entry.data.feastDay.split('-');
 const dt = new Date(2024, Number(month) - 1, Number(day));
 const dateStr = dt.toLocaleDateString('el-GR', { day: 'numeric', month: 'long' });
+
+const jsonld = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: entry.data.name,
+  description: entry.data.life,
+  honorificPrefix: 'Άγιος',
+  inLanguage: entry.data.language,
+};
 ---
 
-<BaseLayout title={entry.data.name}>
+<BaseLayout title={entry.data.name} description={entry.data.life} jsonld={jsonld}>
   <article>
     <header class="saint-header">
       <h1 lang={entry.data.language}>{entry.data.name}</h1>

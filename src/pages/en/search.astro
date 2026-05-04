@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<BaseLayout title={t('search.title')} wide={true}>
+  <h1>{t('search.title')}</h1>
+  <p class="muted">{t('search.help')}</p>
+  <div id="search"></div>
+  <noscript>
+    <p>{t('search.noscript')}</p>
+  </noscript>
+  <link rel="stylesheet" href="/pagefind/pagefind-ui.css" />
+</BaseLayout>
+
+<script is:inline src="/pagefind/pagefind-ui.js"></script>
+<script is:inline>
+  function initSearch() {
+    const target = document.getElementById('search');
+    if (typeof PagefindUI === 'undefined') {
+      target.innerHTML = '<p class="muted" style="padding:2rem 0">Search index not available in dev mode. Run npm run build.</p>';
+      return;
+    }
+    const ui = new PagefindUI({
+      element: '#search',
+      showSubResults: true,
+      showImages: false,
+    });
+    const q = new URLSearchParams(location.search).get('q');
+    if (q) {
+      const input = document.querySelector('#search input.pagefind-ui__search-input');
+      if (input) {
+        input.value = q;
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+      }
+    }
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSearch);
+  } else {
+    initSearch();
+  }
+</script>
+
+<style is:global>
+  :root {
+    --pagefind-ui-scale: 0.85;
+    --pagefind-ui-primary: var(--color-burgundy);
+    --pagefind-ui-text: var(--color-text);
+    --pagefind-ui-background: var(--color-bg);
+    --pagefind-ui-border: var(--color-border);
+    --pagefind-ui-tag: var(--color-attribution-bg);
+    --pagefind-ui-border-width: 1px;
+    --pagefind-ui-border-radius: 4px;
+    --pagefind-ui-font: var(--font-sans);
+  }
+  #search { margin-top: 1.5rem; }
+</style>

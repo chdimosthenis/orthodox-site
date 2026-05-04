@@ -11,7 +11,7 @@ const todayKey =
   String(today.getDate()).padStart(2, '0');
 
 const todays = (await getCollection('saints'))
-  .filter(s => s.data.language === lang && s.data.feastDay === todayKey);
+  .filter(s => s.data.language === lang && s.data.feastDay === todayKey && !s.data.draft);
 ---
 
 <section class="todays-saint">

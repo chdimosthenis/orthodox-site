@@ -46,6 +46,16 @@ const saints = defineCollection({
     iconAttribution: z.string().optional(),
     /** Wikipedia article slug used by scripts/fetch_icon.py to refresh iconUrl. */
     wikipediaTitle: z.string().optional(),
+    /** External source URL — set by daily_seed.py for auto-seeded entries. */
+    sourceUrl: z.string().url().optional(),
+    /** License of imported content (CC-BY-SA for Wikipedia/OrthodoxWiki). */
+    license: z.enum(['public-domain', 'CC-BY', 'CC-BY-SA', 'original']).optional(),
+    /**
+     * `true` for auto-seeded entries that need human review before being
+     * published. They get a static page at their direct URL but are excluded
+     * from listings, the today widget, and the RSS feed.
+     */
+    draft: z.boolean().optional().default(false),
   }),
 });
 

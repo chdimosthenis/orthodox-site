@@ -8,7 +8,7 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const saints = (await getCollection('saints'))
-  .filter(s => s.data.language === lang)
+  .filter(s => s.data.language === lang && !s.data.draft)
   .sort((a, b) => a.data.feastDay.localeCompare(b.data.feastDay));
 ---
 

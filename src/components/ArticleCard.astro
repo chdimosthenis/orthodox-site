@@ -1,0 +1,55 @@
+---
+import { getLangFromUrl, useTranslations, getLocalizedPath } from '../i18n/utils';
+import { languages } from '../i18n/ui';
+
+interface Props {
+  slug: string;
+  title: string;
+  description: string;
+  pubDate: Date;
+  language: 'el' | 'en';
+}
+
+const { slug, title, description, pubDate, language } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const dateStr = pubDate.toLocaleDateString(language === 'el' ? 'el-GR' : 'en-GB', {
+  year: 'numeric', month: 'long', day: 'numeric',
+});
+---
+
+<article class="card">
+  <h3>
+    <a href={getLocalizedPath(`/articles/${slug}`, lang)} lang={language}>{title}</a>
+  </h3>
+  <p class="description" lang={language}>{description}</p>
+  <p class="metadata">
+    <time datetime={pubDate.toISOString()}>{dateStr}</time>
+    · <span>{languages[language]}</span>
+  </p>
+</article>
+
+<style>
+  .card {
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .card:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  .card h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.3rem;
+  }
+  .card h3 a {
+    color: var(--color-text);
+    border-bottom: none;
+  }
+  .card h3 a:hover {
+    color: var(--color-accent);
+  }
+  .description {
+    margin: 0 0 0.5rem;
+    color: var(--color-muted);
+  }
+</style>

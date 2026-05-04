@@ -1,0 +1,56 @@
+import { defineCollection, z } from 'astro:content';
+import { glob } from 'astro/loaders';
+
+const feastDayPattern = /^(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/;
+
+const articles = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/articles' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    pubDate: z.coerce.date(),
+    author: z.string(),
+    language: z.enum(['el', 'en']),
+    sourceUrl: z.string().url().optional(),
+    license: z.enum(['public-domain', 'CC-BY', 'CC-BY-SA', 'original']).optional(),
+    tags: z.array(z.string()).optional(),
+    draft: z.boolean().optional().default(false),
+  }),
+});
+
+const fathers = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/fathers' }),
+  schema: z.object({
+    name: z.string(),
+    fullName: z.string(),
+    century: z.number().int(),
+    feastDay: z.string().regex(feastDayPattern).optional(),
+    summary: z.string(),
+    language: z.enum(['el', 'en']),
+  }),
+});
+
+const saints = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/saints' }),
+  schema: z.object({
+    name: z.string(),
+    feastDay: z.string().regex(feastDayPattern),
+    category: z.enum(['martyr', 'monastic', 'hierarch', 'apostle', 'other']),
+    tropar: z.string().optional(),
+    kontak: z.string().optional(),
+    life: z.string(),
+    language: z.enum(['el', 'en']),
+  }),
+});
+
+const liturgical = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/liturgical' }),
+  schema: z.object({
+    title: z.string(),
+    type: z.enum(['ode', 'tropar', 'kontak', 'prayer', 'hymn']),
+    source: z.string(),
+    language: z.enum(['el', 'en']),
+  }),
+});
+
+export const collections = { articles, fathers, saints, liturgical };

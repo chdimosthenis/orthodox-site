@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+import { getLangFromUrl, useTranslations } from '../../../i18n/utils';
+import type { UIKey } from '../../../i18n/ui';
+
+export async function getStaticPaths() {
+  const saints = await getCollection('saints');
+  return saints
+    .filter(s => s.data.language === 'en')
+    .map(s => ({ params: { slug: s.id }, props: { entry: s } }));
+}
+
+const { entry } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const { Content } = await render(entry);
+
+const [month, day] = entry.data.feastDay.split('-');
+const dt = new Date(2024, Number(month) - 1, Number(day));
+const dateStr = dt.toLocaleDateString('en-GB', { day: 'numeric', month: 'long' });
+---
+
+<BaseLayout title={entry.data.name}>
+  <article>
+    <header class="saint-header">
+      <h1 lang={entry.data.language}>{entry.data.name}</h1>
+      <p class="metadata">
+        {t('feastDay')}: {dateStr} · {t(`category.${entry.data.category}` as UIKey)}
+      </p>
+    </header>
+
+    {entry.data.tropar && (
+      <section class="hymn">
+        <h4>{t('tropar')}</h4>
+        <blockquote lang={entry.data.language}>{entry.data.tropar}</blockquote>
+      </section>
+    )}
+
+    {entry.data.kontak && (
+      <section class="hymn">
+        <h4>{t('kontak')}</h4>
+        <blockquote lang={entry.data.language}>{entry.data.kontak}</blockquote>
+      </section>
+    )}
+
+    <section class="hymn">
+      <h4>{t('life')}</h4>
+      <div lang={entry.data.language}>
+        <Content />
+      </div>
+    </section>
+  </article>
+</BaseLayout>
+
+<style>
+  .saint-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .saint-header h1 { margin-top: 0; }
+  .hymn { margin-top: 2rem; }
+  .hymn h4 { margin-bottom: 0.5rem; }
+</style>

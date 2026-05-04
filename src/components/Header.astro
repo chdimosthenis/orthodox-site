@@ -1,0 +1,108 @@
+---
+import { getLangFromUrl, useTranslations, getLocalizedPath, getAlternateUrl } from '../i18n/utils';
+import { languages } from '../i18n/ui';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const navItems = [
+  { label: t('nav.articles'), path: '/articles' },
+  { label: t('nav.fathers'), path: '/fathers' },
+  { label: t('nav.saints'), path: '/saints' },
+  { label: t('nav.liturgical'), path: '/liturgical' },
+  { label: t('nav.about'), path: '/about' },
+];
+
+const altLang = lang === 'el' ? 'en' : 'el';
+const altUrl = getAlternateUrl(Astro.url, altLang);
+---
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href={getLocalizedPath('/', lang)} class="brand" aria-label={t('site.title')}>
+      <span class="brand-mark" aria-hidden="true">☧</span>
+      <span class="brand-text">{t('site.title')}</span>
+    </a>
+    <nav aria-label="primary">
+      <ul>
+        {navItems.map(item => (
+          <li>
+            <a href={getLocalizedPath(item.path, lang)}>{item.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+    <a class="lang-switch" href={altUrl} aria-label={t('language.switch')} hreflang={altLang}>
+      {languages[altLang]}
+    </a>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-bg);
+  }
+  .header-inner {
+    max-width: var(--max-width-wide);
+    margin: 0 auto;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .brand {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    color: var(--color-text);
+    text-decoration: none;
+    border-bottom: none;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    letter-spacing: 0.005em;
+  }
+  .brand-mark {
+    color: var(--color-accent);
+    font-size: 1.5rem;
+  }
+  nav {
+    flex: 1;
+  }
+  nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+  }
+  nav a {
+    font-size: 0.95rem;
+    color: var(--color-muted);
+    text-decoration: none;
+    border-bottom: none;
+    padding: 0.25rem 0;
+  }
+  nav a:hover {
+    color: var(--color-accent);
+  }
+  .lang-switch {
+    font-size: 0.85rem;
+    padding: 0.35rem 0.85rem;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    color: var(--color-muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .lang-switch:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+  @media (max-width: 720px) {
+    nav { width: 100%; order: 3; }
+    nav ul { gap: 1rem; }
+  }
+</style>

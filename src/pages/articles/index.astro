@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import { getCollection } from 'astro:content';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const articles = (await getCollection('articles'))
+  .filter(a => a.data.language === lang && !a.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<BaseLayout title={t('all.articles')}>
+  <h1>{t('all.articles')}</h1>
+  <ul class="card-list">
+    {articles.length === 0 ? (
+      <li class="muted">{t('no.entries')}</li>
+    ) : articles.map(a => (
+      <li>
+        <ArticleCard
+          slug={a.id}
+          title={a.data.title}
+          description={a.data.description}
+          pubDate={a.data.pubDate}
+          language={a.data.language}
+        />
+      </li>
+    ))}
+  </ul>
+</BaseLayout>

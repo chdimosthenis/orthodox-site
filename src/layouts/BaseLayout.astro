@@ -1,0 +1,56 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { getLangFromUrl, useTranslations, getAlternateUrl } from '../i18n/utils';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+  wide?: boolean;
+}
+
+const { title, description, ogImage = '/og-default.svg', wide = false } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const siteTitle = t('site.title');
+const fullTitle = title === siteTitle ? title : `${title} — ${siteTitle}`;
+const desc = description ?? t('site.tagline');
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogUrl = new URL(ogImage, Astro.site);
+const altEl = new URL(getAlternateUrl(Astro.url, 'el'), Astro.site).toString();
+const altEn = new URL(getAlternateUrl(Astro.url, 'en'), Astro.site).toString();
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{fullTitle}</title>
+    <meta name="description" content={desc} />
+    <link rel="canonical" href={canonical.toString()} />
+    <link rel="alternate" hreflang="el" href={altEl} />
+    <link rel="alternate" hreflang="en" href={altEn} />
+    <link rel="alternate" hreflang="x-default" href={altEl} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={desc} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical.toString()} />
+    <meta property="og:image" content={ogUrl.toString()} />
+    <meta property="og:locale" content={lang === 'el' ? 'el_GR' : 'en_GB'} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#6b1b2c" />
+  </head>
+  <body>
+    <Header />
+    <main class={wide ? 'wide' : undefined}>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+import { getLangFromUrl, useTranslations } from '../../../i18n/utils';
+import type { UIKey } from '../../../i18n/ui';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('articles');
+  return articles
+    .filter(a => a.data.language === 'en' && !a.data.draft)
+    .map(a => ({ params: { slug: a.id }, props: { entry: a } }));
+}
+
+const { entry } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const { Content } = await render(entry);
+const dateStr = entry.data.pubDate.toLocaleDateString('en-GB', {
+  year: 'numeric', month: 'long', day: 'numeric',
+});
+---
+
+<BaseLayout title={entry.data.title} description={entry.data.description}>
+  <article>
+    <header class="article-header">
+      <h1 lang={entry.data.language}>{entry.data.title}</h1>
+      <p class="metadata">
+        {entry.data.author} · <time datetime={entry.data.pubDate.toISOString()}>{dateStr}</time>
+      </p>
+    </header>
+    <div class="article-body" lang={entry.data.language}>
+      <Content />
+    </div>
+    {(entry.data.sourceUrl || entry.data.license) && (
+      <footer class="attribution">
+        {entry.data.sourceUrl && (
+          <p>
+            <strong>{t('source')}:</strong>{' '}
+            <a href={entry.data.sourceUrl} rel="noopener external">{entry.data.sourceUrl}</a>
+          </p>
+        )}
+        {entry.data.license && (
+          <p>
+            <strong>{t('license')}:</strong>{' '}
+            {t(`license.${entry.data.license}` as UIKey)}
+          </p>
+        )}
+      </footer>
+    )}
+  </article>
+</BaseLayout>
+
+<style>
+  .article-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .article-header h1 { margin-top: 0; }
+</style>

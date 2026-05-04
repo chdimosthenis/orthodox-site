@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+export async function getStaticPaths() {
+  const fathers = await getCollection('fathers');
+  return fathers
+    .filter(f => f.data.language === 'el')
+    .map(f => ({ params: { slug: f.id }, props: { entry: f } }));
+}
+
+const { entry } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const { Content } = await render(entry);
+
+let dateStr: string | null = null;
+if (entry.data.feastDay) {
+  const [month, day] = entry.data.feastDay.split('-');
+  const dt = new Date(2024, Number(month) - 1, Number(day));
+  dateStr = dt.toLocaleDateString('el-GR', { day: 'numeric', month: 'long' });
+}
+---
+
+<BaseLayout title={entry.data.fullName} description={entry.data.summary}>
+  <article>
+    <header class="father-header">
+      <h1 lang={entry.data.language}>{entry.data.fullName}</h1>
+      <p class="metadata">
+        {entry.data.century}{t('century.suffix')}
+        {dateStr && <> · {t('feastDay')}: {dateStr}</>}
+      </p>
+    </header>
+    <div lang={entry.data.language}>
+      <Content />
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .father-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .father-header h1 { margin-top: 0; }
+</style>

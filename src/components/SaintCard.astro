@@ -1,0 +1,51 @@
+---
+import { getLangFromUrl, useTranslations, getLocalizedPath } from '../i18n/utils';
+import type { UIKey } from '../i18n/ui';
+
+interface Props {
+  slug: string;
+  name: string;
+  feastDay: string;
+  category: 'martyr' | 'monastic' | 'hierarch' | 'apostle' | 'other';
+  language: 'el' | 'en';
+}
+
+const { slug, name, feastDay, category, language } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const [month, day] = feastDay.split('-');
+const dt = new Date(2024, Number(month) - 1, Number(day));
+const dateStr = dt.toLocaleDateString(lang === 'el' ? 'el-GR' : 'en-GB', { day: 'numeric', month: 'long' });
+---
+
+<article class="card">
+  <h3>
+    <a href={getLocalizedPath(`/saints/${slug}`, lang)} lang={language}>{name}</a>
+  </h3>
+  <p class="metadata">
+    {t('feastDay')}: {dateStr} · {t(`category.${category}` as UIKey)}
+  </p>
+</article>
+
+<style>
+  .card {
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .card:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  .card h3 {
+    margin: 0 0 0.35rem;
+    font-size: 1.2rem;
+  }
+  .card h3 a {
+    color: var(--color-text);
+    border-bottom: none;
+  }
+  .card h3 a:hover {
+    color: var(--color-accent);
+  }
+</style>

@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css2?family=GFS+Didot&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  --color-burgundy: #6b1b2c;
+  --color-gold: #b08d57;
+  --color-parchment: #faf6ed;
+  --color-ink: #1a1410;
+  --color-muted: #6e6258;
+
+  --color-bg: var(--color-parchment);
+  --color-text: var(--color-ink);
+  --color-accent: var(--color-burgundy);
+  --color-border: rgba(26, 20, 16, 0.12);
+  --color-attribution-bg: rgba(176, 141, 87, 0.07);
+
+  --max-width: 65ch;
+  --max-width-wide: 80ch;
+  --font-serif: 'GFS Didot', 'Georgia', 'Times New Roman', serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #15110d;
+    --color-text: #ebe2cf;
+    --color-muted: #9a8e80;
+    --color-accent: #c89863;
+    --color-border: rgba(235, 226, 207, 0.14);
+    --color-attribution-bg: rgba(176, 141, 87, 0.08);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 17px;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-feature-settings: "kern", "liga", "clig", "calt";
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+}
+
+main.wide {
+  max-width: var(--max-width-wide);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: -0.005em;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--color-text);
+}
+
+h1 { font-size: 2.4rem; margin-top: 0; }
+h2 { font-size: 1.7rem; }
+h3 { font-size: 1.25rem; }
+h4 { font-size: 1.05rem; font-family: var(--font-sans); font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase; color: var(--color-muted); }
+
+p { margin: 1rem 0; }
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  transition: opacity 0.15s ease, color 0.15s ease;
+}
+
+a:hover { opacity: 0.7; }
+
+nav, header, footer, button, input, .ui-text {
+  font-family: var(--font-sans);
+}
+
+blockquote {
+  border-left: 3px solid var(--color-gold);
+  padding: 0.5rem 0 0.5rem 1.5rem;
+  margin: 1.75rem 0;
+  font-style: italic;
+  color: var(--color-text);
+}
+
+blockquote p { margin: 0.4rem 0; }
+blockquote strong { font-style: normal; }
+
+[lang="grc"], .polytonic {
+  font-feature-settings: "kern", "liga", "calt", "case", "hist";
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: 3rem 0;
+}
+
+code, pre {
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 0.9em;
+}
+
+img { max-width: 100%; height: auto; }
+
+.muted { color: var(--color-muted); }
+
+.tagline {
+  font-style: italic;
+  color: var(--color-muted);
+  font-size: 1.15rem;
+  margin-bottom: 2rem;
+}
+
+.metadata {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  letter-spacing: 0.02em;
+  margin-top: 0;
+}
+
+.card-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+  display: grid;
+  gap: 1.75rem;
+}
+
+.section + .section { margin-top: 3.5rem; }
+
+.attribution {
+  margin-top: 3rem;
+  padding: 1rem 1.25rem;
+  border-left: 3px solid var(--color-gold);
+  background: var(--color-attribution-bg);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  border-radius: 0 4px 4px 0;
+}
+.attribution p { margin: 0.25rem 0; }
+.attribution a { color: inherit; word-break: break-all; }
+
+.button-link {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--color-text);
+  text-decoration: none;
+}
+.button-link:hover { border-color: var(--color-accent); color: var(--color-accent); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

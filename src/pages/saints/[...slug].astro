@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ShareButtons from '../../components/ShareButtons.astro';
 import { getCollection, render } from 'astro:content';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 import type { UIKey } from '../../i18n/ui';
@@ -15,6 +16,7 @@ const { entry } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const { Content } = await render(entry);
+const shareUrl = new URL(Astro.url.pathname, Astro.site).toString();
 
 const [month, day] = entry.data.feastDay.split('-');
 const dt = new Date(2024, Number(month) - 1, Number(day));
@@ -67,6 +69,8 @@ const jsonld = {
         <Content />
       </div>
     </section>
+
+    <ShareButtons title={entry.data.name} url={shareUrl} />
   </article>
 </BaseLayout>
 

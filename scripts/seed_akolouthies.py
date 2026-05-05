@@ -34,7 +34,7 @@ from _common import (
     write_content,
 )
 
-BASE_URL = "https://glt.goarch.org/texts/Oro/"
+BASE_URL = "https://glt.goarch.org/texts/"
 
 HEADERS = {
     "User-Agent": "OrthodoxLogos/1.0 (educational seeder; https://orthodox-site.pages.dev)",
@@ -47,44 +47,66 @@ SOURCE_CREDIT = (
     "Liturgical Texts Project (glt.goarch.org)."
 )
 
-# Each entry: slug → (title, type, GOA path).
+# Each entry: slug → (title, type, GOA relative path).
+# Path is relative to BASE_URL — e.g. "Oro/Esperinos.html" or "Euch/Baptism.html".
 # Slugs are stable URL identifiers; titles are display strings (polytonic Greek).
 ENTRIES: list[dict[str, str]] = [
+    # --- Daily cycle (Ωρολόγιον) ---
     {"slug": "mikron-apodeipnon", "title": "Μικρὸν Ἀπόδειπνον",
-     "type": "apodeipno", "path": "Apodeipnon.html"},
+     "type": "apodeipno", "path": "Oro/Apodeipnon.html"},
     {"slug": "mega-apodeipnon", "title": "Μέγα Ἀπόδειπνον",
-     "type": "apodeipno", "path": "Great.html"},
+     "type": "apodeipno", "path": "Oro/Great.html"},
     {"slug": "mesonyktikon", "title": "Μεσονυκτικόν",
-     "type": "akolouthia", "path": "Meso.html"},
+     "type": "akolouthia", "path": "Oro/Meso.html"},
     {"slug": "esperinos", "title": "Ἑσπερινός",
-     "type": "akolouthia", "path": "Esperinos.html"},
+     "type": "akolouthia", "path": "Oro/Esperinos.html"},
+    {"slug": "esperinos-kyriakis", "title": "Ἑσπερινὸς τῆς Κυριακῆς",
+     "type": "akolouthia", "path": "Oro/Esperinos%20Sunday.html"},
     {"slug": "orthros", "title": "Ὄρθρος",
-     "type": "akolouthia", "path": "Orthros.html"},
+     "type": "akolouthia", "path": "Oro/Orthros.html"},
+    {"slug": "orthros-kyriakis", "title": "Ὄρθρος τῆς Κυριακῆς",
+     "type": "akolouthia", "path": "Oro/OrthrosSun.html"},
     {"slug": "ora-prote", "title": "Ὧρα Α'",
-     "type": "akolouthia", "path": "one.html"},
+     "type": "akolouthia", "path": "Oro/one.html"},
     {"slug": "ora-trite", "title": "Ὧρα Γ'",
-     "type": "akolouthia", "path": "three.html"},
+     "type": "akolouthia", "path": "Oro/three.html"},
     {"slug": "ora-ekte", "title": "Ὧρα ΣΤ'",
-     "type": "akolouthia", "path": "six.html"},
+     "type": "akolouthia", "path": "Oro/six.html"},
     {"slug": "ora-enate", "title": "Ὧρα Θ'",
-     "type": "akolouthia", "path": "nine.html"},
+     "type": "akolouthia", "path": "Oro/nine.html"},
+    # --- Παρακλήσεις & Ακάθιστος ---
     {"slug": "paraklesis-mikra", "title": "Μικρὰ Παράκλησις στὴν Παναγία",
-     "type": "paraklesis", "path": "paraklesis.html"},
+     "type": "paraklesis", "path": "Oro/paraklesis.html"},
     {"slug": "paraklesis-megale", "title": "Μεγάλη Παράκλησις στὴν Παναγία",
-     "type": "paraklesis", "path": "paraklesis_Great.html"},
+     "type": "paraklesis", "path": "Oro/paraklesis_Great.html"},
     {"slug": "akathistos-ymnos", "title": "Ἀκάθιστος Ὕμνος",
-     "type": "akathistos", "path": "Akathist5.html"},
+     "type": "akathistos", "path": "Oro/Akathist5.html"},
     {"slug": "chairetismoi-staseis", "title": "Χαιρετισμοί — Α', Β', Γ', Δ' Στάσεις",
-     "type": "chairetismoi", "path": "Staseis.html"},
+     "type": "chairetismoi", "path": "Oro/Staseis.html"},
+    # --- Θεῖες Λειτουργίες ---
     {"slug": "theia-leitourgia-chrysostomou",
      "title": "Θεία Λειτουργία τοῦ Ἁγίου Ἰωάννου τοῦ Χρυσοστόμου",
-     "type": "akolouthia", "path": "Sun_Liturgy.html"},
+     "type": "akolouthia", "path": "Oro/Sun_Liturgy.html"},
     {"slug": "theia-leitourgia-vasileiou",
      "title": "Θεία Λειτουργία τοῦ Μεγάλου Βασιλείου",
-     "type": "akolouthia", "path": "Basil_Liturgy.html"},
+     "type": "akolouthia", "path": "Oro/Basil_Liturgy.html"},
     {"slug": "leitourgia-proegiasmenon",
      "title": "Λειτουργία τῶν Προηγιασμένων Δώρων",
-     "type": "akolouthia", "path": "Pro.html"},
+     "type": "akolouthia", "path": "Oro/Pro.html"},
+    {"slug": "theia-leitourgia-iakovou",
+     "title": "Θεία Λειτουργία τοῦ Ἁγίου Ἰακώβου τοῦ Ἀδελφοθέου",
+     "type": "akolouthia", "path": "Oro/StJames.html"},
+    # --- Ευχολόγιον (Μυστήρια) ---
+    {"slug": "mikros-agiasmos", "title": "Μικρὸς Ἁγιασμός",
+     "type": "akolouthia", "path": "Euch/Agiasmos.html"},
+    {"slug": "vaptisma", "title": "Ἀκολουθία τοῦ Ἁγίου Βαπτίσματος",
+     "type": "akolouthia", "path": "Euch/Baptism.html"},
+    {"slug": "stefanoma-gamou", "title": "Ἀκολουθία τοῦ Στεφανώματος (Γάμος)",
+     "type": "akolouthia", "path": "Euch/Wedding.html"},
+    {"slug": "nekrosimos-akolouthia", "title": "Νεκρώσιμος Ἀκολουθία",
+     "type": "akolouthia", "path": "Euch/Funeral.html"},
+    {"slug": "mnimosyno-trisagion", "title": "Τρισάγιον (Μνημόσυνον)",
+     "type": "akolouthia", "path": "Euch/Trisagion.html"},
 ]
 
 
@@ -108,7 +130,7 @@ def fetch_one(entry: dict[str, str], *, force: bool, dry_run: bool) -> bool:
     title = entry["title"]
     typ = entry["type"]
     path = entry["path"]
-    url = BASE_URL + path
+    url = BASE_URL + path.lstrip("/")
 
     if check_exists("liturgical", slug) and not force:
         log(f"skip (exists): {slug}", level="warn")

@@ -25,13 +25,19 @@ LITURGICAL_DIR = CONTENT_ROOT / "liturgical"
 
 # Slugs that came from the GOA scraper. Update if seed_akolouthies.py grows.
 GOA_SLUGS = {
+    # Ωρολόγιον
     "mikron-apodeipnon", "mega-apodeipnon", "mesonyktikon",
-    "esperinos", "orthros",
+    "esperinos", "esperinos-kyriakis", "orthros", "orthros-kyriakis",
     "ora-prote", "ora-trite", "ora-ekte", "ora-enate",
+    # Παρακλήσεις / Ακάθιστος
     "paraklesis-mikra", "paraklesis-megale",
     "akathistos-ymnos", "chairetismoi-staseis",
+    # Θεῖες Λειτουργίες
     "theia-leitourgia-chrysostomou", "theia-leitourgia-vasileiou",
-    "leitourgia-proegiasmenon",
+    "leitourgia-proegiasmenon", "theia-leitourgia-iakovou",
+    # Ευχολόγιον
+    "mikros-agiasmos", "vaptisma", "stefanoma-gamou",
+    "nekrosimos-akolouthia", "mnimosyno-trisagion",
 }
 
 # Audio link variants — any [text](relative/path.mp3) pattern.

@@ -82,4 +82,23 @@ const liturgical = defineCollection({
   }),
 });
 
-export const collections = { articles, fathers, saints, liturgical };
+const bible = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/bible' }),
+  schema: z.object({
+    /** Canonical Greek title — e.g. "Κατά Ματθαίον". */
+    book: z.string(),
+    /** English title for the EN site — e.g. "Gospel of Matthew". */
+    bookEnglish: z.string().optional(),
+    /** Position in NT canon (1=Matthew … 27=Revelation). */
+    order: z.number().int().min(1).max(27),
+    /** Subdivision of the NT for grouping in the index page. */
+    division: z.enum(['gospel', 'acts', 'paul', 'general', 'revelation']),
+    /** Number of chapters (computed at scrape time, used for the per-book TOC). */
+    chapters: z.number().int().min(1).max(28).optional(),
+    language: z.enum(['el', 'en']),
+    sourceUrl: z.string().url().optional(),
+    license: z.enum(['public-domain', 'CC-BY', 'CC-BY-SA', 'original']).optional(),
+  }),
+});
+
+export const collections = { articles, fathers, saints, liturgical, bible };

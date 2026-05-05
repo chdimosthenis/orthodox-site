@@ -63,7 +63,10 @@ const liturgical = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/liturgical' }),
   schema: z.object({
     title: z.string(),
-    type: z.enum(['ode', 'tropar', 'kontak', 'prayer', 'hymn']),
+    type: z.enum([
+      'ode', 'tropar', 'kontak', 'prayer', 'hymn',
+      'apodeipno', 'paraklesis', 'chairetismoi', 'akathistos', 'theia-metalipsi', 'akolouthia',
+    ]),
     source: z.string(),
     language: z.enum(['el', 'en']),
   }),

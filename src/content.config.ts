@@ -69,6 +69,10 @@ const liturgical = defineCollection({
     ]),
     source: z.string(),
     language: z.enum(['el', 'en']),
+    /** Canonical source URL (e.g. glt.goarch.org/texts/Oro/Esperinos.html). */
+    sourceUrl: z.string().url().optional(),
+    /** License of the underlying text. Most akolouthies are public-domain. */
+    license: z.enum(['public-domain', 'CC-BY', 'CC-BY-SA', 'original']).optional(),
   }),
 });
 

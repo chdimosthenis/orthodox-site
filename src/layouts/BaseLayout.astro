@@ -81,7 +81,7 @@ const pageJsonld: Record<string, unknown>[] = jsonld
   </head>
   <body>
     <Header />
-    <main class={wide ? 'wide' : undefined}>
+    <main class={wide ? 'wide' : undefined} data-pagefind-body>
       <slot />
     </main>
     <Footer />

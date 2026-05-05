@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { getLangFromUrl, useTranslations, getLocalizedPath } from '../../i18n/utils';
+import type { UIKey } from '../../i18n/ui';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const HYMN_TYPES = ['hymn', 'tropar', 'kontak', 'ode'];
+
+const items = (await getCollection('liturgical'))
+  .filter(l => l.data.language === lang && HYMN_TYPES.includes(l.data.type))
+  .sort((a, b) => a.data.title.localeCompare(b.data.title, lang));
+---
+
+<BaseLayout title={t('all.hymns')}>
+  <h1>{t('all.hymns')}</h1>
+  <ul class="card-list">
+    {items.length === 0 ? (
+      <li class="muted">{t('no.entries')}</li>
+    ) : items.map(item => (
+      <li class="lit-card">
+        <h3>
+          <a href={getLocalizedPath(`/liturgical/${item.id}`, lang)} lang={item.data.language}>{item.data.title}</a>
+        </h3>
+        <p class="metadata">{t(`type.${item.data.type}` as UIKey)}</p>
+      </li>
+    ))}
+  </ul>
+</BaseLayout>
+
+<style>
+  .lit-card { padding-bottom: 1.25rem; border-bottom: 1px solid var(--color-border); }
+  .lit-card:last-child { border-bottom: none; padding-bottom: 0; }
+  .lit-card h3 { margin: 0 0 0.35rem; font-size: 1.2rem; }
+  .lit-card h3 a { color: var(--color-text); border-bottom: none; }
+  .lit-card h3 a:hover { color: var(--color-accent); }
+</style>

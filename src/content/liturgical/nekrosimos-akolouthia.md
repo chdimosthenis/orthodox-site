@@ -8,9 +8,6 @@ sourceUrl: https://glt.goarch.org/texts/Euch/Funeral.html
 license: public-domain
 ---
 
-ΚΥΔΕΙΑ
-
-ΚΥΔΕΙΑ
 **Εὐλογητὸς ὁ Θεὸς ἡμῶν, πάντοτε, νῦν καὶ ἀεὶ καὶ εἰς τοὺς αἰῶνας τῶν αἰώνων.** Ἀμήν. 
 ΣΤΑΣΙΣ ΠΡΩΤΗ
   

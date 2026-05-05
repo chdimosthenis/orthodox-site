@@ -1,0 +1,131 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import newsData from '../data/news.json';
+
+interface Props {
+  /** How many items to show. Default 5. */
+  limit?: number;
+}
+
+const { limit = 5 } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+type NewsItem = {
+  title: string;
+  url: string;
+  source: string;
+  host: string;
+  published: string | null;
+  excerpt: string;
+  category: string;
+};
+
+const items: NewsItem[] = (newsData.items as NewsItem[]).slice(0, limit);
+const localeTag = lang === 'el' ? 'el-GR' : 'en-GB';
+
+function formatDate(iso: string | null): string {
+  if (!iso) return '';
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return '';
+  return d.toLocaleDateString(localeTag, { day: 'numeric', month: 'short' });
+}
+
+function formatRelative(iso: string | null): string {
+  if (!iso) return '';
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return '';
+  const hours = Math.floor((Date.now() - d.getTime()) / 3_600_000);
+  const rtf = new Intl.RelativeTimeFormat(lang, { numeric: 'auto' });
+  if (hours < 24) return rtf.format(-hours, 'hour');
+  return rtf.format(-Math.floor(hours / 24), 'day');
+}
+---
+
+{items.length > 0 && (
+  <section class="news-widget" aria-labelledby="news-heading">
+    <h2 id="news-heading">{t('news.heading')}</h2>
+    <ul class="news-list">
+      {items.map(item => (
+        <li>
+          <a href={item.url} target="_blank" rel="noopener noreferrer" class="news-item">
+            <span class="news-meta">
+              <span class="news-source">{item.source}</span>
+              {item.published && (
+                <>
+                  <span class="news-dot" aria-hidden="true">·</span>
+                  <time datetime={item.published} title={formatDate(item.published)}>
+                    {formatRelative(item.published)}
+                  </time>
+                </>
+              )}
+            </span>
+            <span class="news-title">{item.title}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+    <p class="news-footer">
+      <a href={lang === 'en' ? '/en/news/' : '/news/'}>{t('news.viewAll')}</a>
+    </p>
+  </section>
+)}
+
+<style>
+  .news-widget {
+    margin-top: 2rem;
+    padding: 1.5rem 1.75rem;
+    border: 1px solid var(--color-border);
+    border-left: 3px solid var(--color-byzantine-purple, #4a1e50);
+    border-radius: 0 4px 4px 0;
+    background: var(--color-attribution-bg);
+  }
+  .news-widget h2 {
+    margin-top: 0;
+    font-size: 1.4rem;
+  }
+  .news-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 1rem;
+  }
+  .news-list li {
+    padding-bottom: 0.85rem;
+    border-bottom: 1px dashed var(--color-border);
+  }
+  .news-list li:last-child { border-bottom: none; padding-bottom: 0; }
+  .news-item {
+    display: block;
+    color: inherit;
+    border-bottom: none;
+    text-decoration: none;
+  }
+  .news-item:hover .news-title { color: var(--color-accent); }
+  .news-meta {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-muted);
+    margin-bottom: 0.25rem;
+  }
+  .news-source { font-weight: 600; color: var(--color-gold); }
+  .news-dot { margin: 0 0.4rem; }
+  .news-title {
+    display: block;
+    font-size: 1.05rem;
+    line-height: 1.35;
+    color: var(--color-text);
+    transition: color 0.15s ease;
+  }
+  .news-footer {
+    margin: 1rem 0 0;
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+  }
+  .news-footer a { color: var(--color-muted); }
+  .news-footer a:hover { color: var(--color-accent); }
+</style>

@@ -6,6 +6,7 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const navItems = [
+  { label: t('nav.news'), path: '/news/' },
   { label: t('nav.articles'), path: '/articles' },
   { label: t('nav.fathers'), path: '/fathers' },
   { label: t('nav.saints'), path: '/saints' },

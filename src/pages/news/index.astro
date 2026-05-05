@@ -1,0 +1,102 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import type { UIKey } from '../../i18n/ui';
+import newsData from '../../data/news.json';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+type NewsItem = {
+  title: string;
+  url: string;
+  source: string;
+  host: string;
+  published: string | null;
+  excerpt: string;
+  category: string;
+};
+
+const items = newsData.items as NewsItem[];
+const localeTag = lang === 'el' ? 'el-GR' : 'en-GB';
+const generatedAt = new Date(newsData.generated_at).toLocaleString(localeTag, {
+  dateStyle: 'medium',
+  timeStyle: 'short',
+});
+---
+
+<BaseLayout title={t('news.title')}>
+  <h1>{t('news.title')}</h1>
+  <p class="muted">{t('news.intro')}</p>
+  <p class="metadata">{t('news.lastUpdated')}: <time datetime={newsData.generated_at}>{generatedAt}</time></p>
+
+  <ul class="news-page-list">
+    {items.map(item => (
+      <li class="news-page-item">
+        <p class="news-page-meta">
+          <span class="news-page-source">{item.source}</span>
+          {item.published && (
+            <>
+              {' · '}
+              <time datetime={item.published}>
+                {new Date(item.published).toLocaleDateString(localeTag, { day: 'numeric', month: 'long', year: 'numeric' })}
+              </time>
+            </>
+          )}
+          {item.category && item.category !== 'general' && (
+            <>
+              {' · '}
+              <span class="news-page-category">{t(`category.${item.category}` as UIKey)}</span>
+            </>
+          )}
+        </p>
+        <h3>
+          <a href={item.url} target="_blank" rel="noopener noreferrer">{item.title}</a>
+        </h3>
+        {item.excerpt && <p class="news-page-excerpt muted">{item.excerpt}</p>}
+      </li>
+    ))}
+  </ul>
+</BaseLayout>
+
+<style>
+  .news-page-list {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0 0;
+    display: grid;
+    gap: 2rem;
+  }
+  .news-page-item {
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .news-page-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .news-page-item h3 {
+    margin: 0.4rem 0 0.5rem;
+    font-size: 1.25rem;
+  }
+  .news-page-item h3 a {
+    color: var(--color-text);
+    border-bottom: none;
+  }
+  .news-page-item h3 a:hover { color: var(--color-accent); }
+  .news-page-meta {
+    margin: 0;
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-muted);
+  }
+  .news-page-source { font-weight: 600; color: var(--color-gold); }
+  .news-page-category {
+    color: var(--color-byzantine-purple, #4a1e50);
+    font-weight: 600;
+  }
+  .news-page-excerpt {
+    margin: 0.5rem 0 0;
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+</style>

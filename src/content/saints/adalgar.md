@@ -7,7 +7,6 @@ life: Blessed Adalgar , third archbishop of Hamburg-Bremen (909)
 language: en
 sourceUrl: https://en.wikipedia.org/wiki/Adalgar
 license: CC-BY-SA
-draft: true
 ---
 
 Blessed Adalgar , third archbishop of Hamburg-Bremen (909)

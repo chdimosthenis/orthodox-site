@@ -8,7 +8,6 @@ life: Hieromartyr Anthimus of Rome , and martyrs Sisinius the deacon with Diocle
 language: en
 sourceUrl: https://en.wikipedia.org/wiki/Anthimus_of_Rome
 license: CC-BY-SA
-draft: true
 iconUrl: https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Sant%27Antimo_prete_e_martire.jpg/960px-Sant%27Antimo_prete_e_martire.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail
 iconAttribution: Antimo Puca · Wikimedia Commons · CC0
 ---

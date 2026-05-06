@@ -7,7 +7,6 @@ life: Saint Alexis Toth , Confessor and Defender of Orthodoxy in America (1909)
 language: en
 sourceUrl: https://en.wikipedia.org/wiki/Alexis_Toth
 license: CC-BY-SA
-draft: true
 iconUrl: https://upload.wikimedia.org/wikipedia/commons/1/1d/Alexis_Toth.jpeg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled
 iconAttribution: anonimus · Wikimedia Commons · Public domain
 ---

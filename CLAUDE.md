@@ -6,11 +6,11 @@ Bilingual (Greek/English) Orthodox Christian content site. Live at
 
 ## Stack
 
-- **Astro 6** static site generator → `dist/`
+- **Astro 6** static site generator → `dist/` (requires Node ≥22.12)
 - **Cloudflare Pages** hosting (free tier, auto-deploys on push to `main`)
-- **Pagefind** in-build search index
+- **Pagefind** in-build search index (`<main data-pagefind-body>` markup)
 - **Python 3.13** content pipeline (in `scripts/`, with venv)
-- **GitHub Actions** daily auto-seed at 03:00 UTC
+- **GitHub Actions**: daily-saints (03:00 UTC), news (every 6h)
 
 ## Communication
 
@@ -21,33 +21,45 @@ in English.
 ## Folder map
 
 ```
-.github/workflows/daily-saints.yml  daily auto-seed cron
-public/                             static assets (favicon, og-default.svg, robots.txt)
-scripts/                            Python content pipeline
-  venv/                             Python venv (gitignored)
-  _common.py                        write_content, slug, HTML cleaning helpers
-  fetch_ccel.py                     public-domain English patristics from ccel.org
-  fetch_myriobiblos.py              Greek texts from myriobiblos.gr (verify license)
-  fetch_orthodoxwiki.py             OrthodoxWiki via MediaWiki API (CC-BY-SA)
-  fetch_icon.py                     Wikipedia langlinks → Commons icon URL
-  daily_seed.py                     auto-seed from Wikipedia EO-liturgics calendar
-  calendar_seed.py                  curated saint seeder with embedded data
+.github/workflows/
+  daily-saints.yml                 daily Wikipedia saint-seed cron (Node 22)
+  news.yml                         every-6h RSS news aggregation cron
+public/                            static assets (favicon, og-default.svg, robots.txt)
+scripts/                           Python content pipeline
+  venv/                            Python venv (gitignored; UTF-8 stdout fix in _common.py)
+  _common.py                       write_content, slug, HTML cleaning, log helpers
+  daily_seed.py                    auto-seed Wikipedia EO-liturgics (with non-saint blocklist)
+  calendar_seed.py                 curated saint seeder with embedded data
+  fetch_ccel.py                    public-domain English patristics from ccel.org
+  fetch_myriobiblos.py             Greek texts from myriobiblos.gr (verify license)
+  fetch_orthodoxwiki.py            OrthodoxWiki single page via MediaWiki API
+  fetch_icon.py                    Wikipedia langlinks → Commons URL (with --audit mode)
+  fetch_news.py                    RSS aggregator (4 Greek Orthodox sources)
+  fetch_bible.py                   Patriarchal Text 1904 NT scraper (el.wikisource.org)
+  seed_fathers.py                  30 curated Church Fathers from OrthodoxWiki
+  seed_akolouthies.py              full akolouthies from glt.goarch.org (Oro/Euch/Jan/...)
+  seed_theology.py                 18 theology articles from OrthodoxWiki
+  seed_history.py                  22 history articles from OrthodoxWiki
+  cleanup_akolouthies.py           idempotent post-processor for GOA-fetched .md
 src/
-  i18n/{ui.ts, utils.ts}            translations + locale helpers
-  content/                          Markdown content (Astro Content Layer API)
-    articles/  fathers/  saints/  liturgical/
-  layouts/BaseLayout.astro          head SEO, JSON-LD WebSite, hreflang, RSS link
-  components/                       Header, Footer, ArticleCard, SaintCard, TodaysSaint
-  pages/                            Greek (default locale, no URL prefix)
-  pages/en/                         English (with /en/ prefix)
-  content.config.ts                 Zod schemas for the four collections
-  styles/global.css                 GFS Didot + Inter, light/dark, polytonic support
-astro.config.mjs                    site URL, integrations (sitemap, mdx), i18n
+  i18n/{ui.ts, utils.ts}           translations + locale helpers
+  content/                         Markdown content (Astro Content Layer)
+    articles/  fathers/  saints/  liturgical/  bible/
+  data/news.json                   live news feed (overwritten by cron)
+  layouts/BaseLayout.astro         <head> SEO, JSON-LD, hreflang, RSS link, pagefind body
+  components/                      Header, Footer, ArticleCard, SaintCard, TodaysSaint,
+                                   ShareButtons, NewsWidget
+  pages/                           Greek (default locale, no URL prefix)
+  pages/en/                        English (with /en/ prefix)
+  content.config.ts                Zod schemas for 5 collections
+  styles/global.css                GFS Didot + Inter, byzantine-purple headings, polytonic
+astro.config.mjs                   site URL, integrations (sitemap, mdx), i18n config
+.claude/skills/                    project-specific skill files (see "Available skills")
 ```
 
 ## Content collections
 
-`src/content.config.ts` defines four collections via the modern Content Layer
+`src/content.config.ts` defines 5 collections via the modern Content Layer
 API. All `language` fields are the enum `'el' | 'en'`. Greek is default;
 English entries render under `/en/` URLs.
 
@@ -55,37 +67,66 @@ English entries render under `/en/` URLs.
 |---|---|---|
 | `articles` | title, description, pubDate, author, language | sourceUrl, license, tags, draft |
 | `saints` | name, feastDay (MM-DD), category, life, language | tropar, kontak, iconUrl, iconAttribution, wikipediaTitle, sourceUrl, license, draft |
-| `fathers` | name, fullName, century, summary, language | feastDay |
-| `liturgical` | title, type (ode/tropar/kontak/prayer/hymn), source, language | — |
+| `fathers` | name, fullName, century, summary, language | feastDay, sourceUrl, license, draft |
+| `liturgical` | title, type, source, language | sourceUrl, license |
+| `bible` | book, order (1-27), division, language | bookEnglish, chapters, sourceUrl, license |
 
-`category` enum for saints: `martyr | monastic | hierarch | apostle | prophet | other`.
-`license` enum: `public-domain | CC-BY | CC-BY-SA | original`.
+Enums:
+- `saints.category`: martyr / monastic / hierarch / apostole / prophet / other
+- `liturgical.type`: ode / tropar / kontak / prayer / hymn / apodeipno /
+  paraklesis / chairetismoi / akathistos / theia-metalipsi / akolouthia
+- `bible.division`: gospel / acts / paul / general / revelation
+- `license`: public-domain / CC-BY / CC-BY-SA / original
+
+## Top-level routes
+
+```
+/             home (TodaysSaint, NewsWidget, latest articles)
+/news         live aggregated news (30 items, refreshed every 6h)
+/bible        New Testament index (5 sections, 27 books)
+/bible/[slug] per-book with chapter TOC
+/articles     all articles
+/theology     theology hub (11 themed sections)
+/history      history hub (5 sections)
+/fathers      Church Fathers index
+/saints       saints index
+/akolouthies  full liturgical services
+/proseuxitari individual prayers
+/ymnoi        hymns / tropars / kontakia
+/liturgical   catchall liturgical (kept for backwards-compat)
+/about        about + contact
+/search       Pagefind UI
+```
+
+Each Greek route has an `/en/` mirror.
 
 ## Conventions
 
 - **Source attribution mandatory** for non-original content (`sourceUrl` + `license`)
 - **Original content** tagged `license: original`
-- **Polytonic Greek preserved as-is** in UTF-8 (no Unicode normalisation)
-- **Auto-seeded entries** carry `draft: true` and are hidden from listings,
-  the today widget, and RSS feeds until reviewed
-- **Commit messages** present-tense imperative; `chore(bot):` prefix for
-  the orthodox-bot's automated commits
+- **Polytonic Greek**: GOA pages use extended Greek block (U+1F77 etc.);
+  regex matching needs `unicodedata.normalize("NFC", ...)`. See
+  `cleanup_akolouthies.py`.
+- **Auto-seeded entries** carry `draft: true` — hidden from listings,
+  TodaysSaint widget, and RSS feeds until human review
+- **Commit messages**: present-tense imperative; `chore(bot):` prefix for
+  bot commits (orthodox-bot for saints, orthodox-news-bot for news)
+- **Co-Authored-By**: include the Claude attribution line in commits
+- **Windows UTF-8**: scripts that print Greek MUST `from _common import log`
+  or use `PYTHONIOENCODING=utf-8` to avoid cp1253 crash
 
 ## Running locally
 
 ```bash
-# Dev server (no Pagefind index in dev mode)
-npm run dev                       # http://localhost:4321
+npm run dev                       # http://localhost:4321 (no Pagefind in dev)
+npm run build                     # full prod build (Astro + Pagefind)
 
-# Full production build (Astro + Pagefind crawl of dist/)
-npm run build
-
-# Python scripts (venv must exist; see Setup below)
+# Python scripts
 cd scripts
-./venv/Scripts/python.exe <script>.py [args]
+PYTHONIOENCODING=utf-8 ./venv/Scripts/python.exe <script>.py [args]
 ```
 
-Python venv setup (one-time, after fresh clone):
+Python venv setup (one-time):
 
 ```bash
 cd scripts
@@ -96,26 +137,50 @@ python -m venv venv
 ## Deploy
 
 `git push` to `main` → Cloudflare Pages picks up the push and deploys in
-~2 minutes. No manual step.
+~1-2 minutes. No manual step.
 
-## Daily auto-seed (GitHub Actions)
+## Automated bots
 
-`.github/workflows/daily-saints.yml` runs at 03:00 UTC daily and on manual
-dispatch. It fetches Wikipedia "Eastern Orthodox liturgics" pages for the
-next two days, parses the saint sections, writes draft stubs to
-`src/content/saints/`, fetches Wikimedia icons for them, verifies the build,
-then commits as `orthodox-bot` and pushes.
+Two GitHub Actions push to `main` autonomously. If your push is rejected,
+see the **recover-from-bot-push** skill.
 
-Manual trigger: <https://github.com/chdimosthenis/orthodox-site/actions> →
-"Daily Saints Seed" → "Run workflow".
+| Workflow | Schedule | Commits as | Touches |
+|---|---|---|---|
+| `daily-saints.yml` | 03:00 UTC daily | `orthodox-bot` | `src/content/saints/*.md` |
+| `news.yml` | every 6h at :05 | `orthodox-news-bot` | `src/data/news.json` |
+
+Manual trigger any workflow:
+<https://github.com/chdimosthenis/orthodox-site/actions>
+
+## Sources used
+
+| Source | License | Pipeline |
+|---|---|---|
+| `glt.goarch.org` (GOA Liturgical Texts) | public-domain canonical texts | `seed_akolouthies.py` + `cleanup_akolouthies.py` |
+| `el.wikisource.org` | public domain | `fetch_bible.py` (Patriarchal Text 1904) |
+| `orthodoxwiki.org` | CC-BY-SA | `fetch_orthodoxwiki.py`, `seed_fathers.py`, `seed_theology.py`, `seed_history.py`, `daily_seed.py` (via Wikipedia EO-liturgics) |
+| Wikipedia + Commons | varies (mostly PD/CC) | `fetch_icon.py` |
+| `pemptousia.com`, `vimaorthodoxias.gr`, `dogma.gr`, `orthodoxianewsagency.gr` | publisher rights / quoted | `fetch_news.py` (RSS, headline + excerpt + outbound link only) |
+| `ccel.org`, `myriobiblos.gr` | varies | `fetch_ccel.py`, `fetch_myriobiblos.py` |
+
+Confirmed-NOT-available (need different source): Holy Unction
+(Εὐχέλαιον), Confession service text, Photian Schism dedicated page,
+Christology/Pneumatology/Eschatology articles on OrthodoxWiki.
 
 ## Available skills
 
 For recurring operations, prefer the project skills under `.claude/skills/`:
 
-- **add-saint** — write a new saint entry with original Greek prose
-- **review-drafts** — triage bot-seeded draft entries (publish/improve/delete)
-- **fix-icon** — replace a saint's iconUrl when the auto-pick is wrong
-- **add-article** — publish a long-form article (original or imported)
-- **fetch-content** — drive the CCEL / OrthodoxWiki / Myriobiblos / Commons scrapers
-- **translate-entry** — create an English counterpart of a Greek saint/article
+| Skill | When to use |
+|---|---|
+| **add-saint** | write a new saint entry with original Greek prose |
+| **review-drafts** | triage bot-seeded saint drafts (publish/improve/delete) |
+| **fix-icon** | replace a saint's iconUrl; also `--audit` mode for bulk classification |
+| **add-article** | publish a long-form article (original or imported) |
+| **fetch-content** | drive single-page scrapers (CCEL / OrthodoxWiki / Myriobiblos / Commons) |
+| **translate-entry** | create the English counterpart of a Greek saint/article |
+| **seed-batch** | build a new themed batch seeder (`scripts/seed_X.py`) |
+| **fetch-akolouthia** | add a new full liturgical service from glt.goarch.org |
+| **classifier-workaround** | when long Greek text generation gets blocked — pivot to scraper |
+| **recover-from-bot-push** | resolve `git push` rejection from bot collisions |
+| **manage-news** | add RSS sources, tune news classifier, debug the feeder |

@@ -76,6 +76,43 @@ intend to add stubs to the working tree.
 ./venv/Scripts/python.exe daily_seed.py --dry-run --days 1
 ```
 
+## Themed batch seeders (already in scripts/)
+
+For multi-entry imports of a content theme, prefer the existing batch
+seeders rather than calling `fetch_orthodoxwiki.py` repeatedly:
+
+```bash
+# 30 curated Church Fathers
+./venv/Scripts/python.exe seed_fathers.py
+
+# 18 theology articles (hesychasm, philokalia, theosis, vestments, etc.)
+./venv/Scripts/python.exe seed_theology.py
+
+# 22 Orthodox-history articles (ecumenical councils, patriarchates, schisms)
+./venv/Scripts/python.exe seed_history.py
+
+# 24 full akolouthies from glt.goarch.org (Vespers, Orthros, Compline, ...)
+./venv/Scripts/python.exe seed_akolouthies.py
+
+# 27 New Testament books from el.wikisource.org (Patriarchal Text 1904)
+./venv/Scripts/python.exe fetch_bible.py
+```
+
+Each accepts `--slug <X>`, `--force`, `--dry-run`. To add a new themed
+cluster (e.g. desert fathers, hymnographers, modern saints), see the
+`seed-batch` skill.
+
+## News aggregator (every 6 hours)
+
+`scripts/fetch_news.py` aggregates from RSS feeds of major Greek
+Orthodox outlets (pemptousia, vimaorthodoxias, dogma,
+orthodoxianewsagency). See the `manage-news` skill.
+
+## glt.goarch.org liturgical pipeline
+
+Full akolouthia texts go through a 2-step scraper + cleanup pipeline.
+See the `fetch-akolouthia` skill.
+
 ## After any fetch
 
 1. Review the resulting Markdown — boilerplate sometimes leaks through

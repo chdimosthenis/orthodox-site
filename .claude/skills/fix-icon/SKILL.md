@@ -60,7 +60,28 @@ git add . && git commit -m "fix(icon): replace <saint> icon with <description>" 
 ```
 
 This prints filename / URL / artist / license to stdout without writing.
-Useful to check if a title resolves to anything before committing to it.
+Output also includes a `byzantine?:` line classifying the filename as
+`byzantine` / `western` / `uncertain` based on filename keywords.
+
+## Audit: which icons need fixing?
+
+```bash
+./venv/Scripts/python.exe fetch_icon.py --audit
+```
+
+Pure offline classification — no network. Iterates `saints/*.md`, parses
+each `iconUrl` filename, and flags entries as:
+
+- **byzantine**: filename contains icon/sinai/athos/novgorod/rublev/
+  fresco/15th-17th century markers
+- **western**: filename contains painter names (Raphael, Vasnetsov,
+  Repin, Caravaggio, Palma il Vecchio) or oil_on_canvas markers
+- **uncertain**: neither pattern matched (the bulk; many are actually fine)
+- **missing-iconUrl**: needs a fetch
+
+Use the flagged list to prioritize manual fix-icon passes. False
+positives in either direction are common — the audit is a triage tool,
+not a verdict.
 
 ## Don'ts
 

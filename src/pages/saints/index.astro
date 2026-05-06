@@ -7,27 +7,146 @@ import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const saints = (await getCollection('saints'))
-  .filter(s => s.data.language === lang && !s.data.draft)
-  .sort((a, b) => a.data.feastDay.localeCompare(b.data.feastDay));
+// Greek primary view shows EVERY non-draft saint regardless of entry language
+// (most entries are bot-seeded with English names; we still want them visible
+// in the Greek site index per user instruction). The English /en/saints page
+// keeps the legacy language-filter via a separate index file.
+const showAllLanguages = lang === 'el';
+
+const allSaints = (await getCollection('saints'))
+  .filter(s => !s.data.draft)
+  .filter(s => showAllLanguages || s.data.language === lang)
+  .sort((a, b) => a.data.name.localeCompare(b.data.name, lang === 'el' ? 'el-GR' : 'en-GB'));
+
+// Strip combining diacritics (U+0300–U+036F) to compute the grouping initial.
+function initialOf(name: string): string {
+  const ch = name.normalize('NFD').replace(/[̀-ͯ]/g, '').charAt(0);
+  return ch.toUpperCase();
+}
+
+const groups: Record<string, typeof allSaints> = {};
+for (const s of allSaints) {
+  const k = initialOf(s.data.name) || '·';
+  (groups[k] ||= []).push(s);
+}
+const letters = Object.keys(groups).sort((a, b) => a.localeCompare(b, lang === 'el' ? 'el-GR' : 'en-GB'));
+
+// Per-category counts.
+type Cat = 'martyr' | 'monastic' | 'hierarch' | 'apostle' | 'prophet' | 'other';
+const cats: Cat[] = ['martyr', 'monastic', 'hierarch', 'apostle', 'prophet', 'other'];
+const counts = Object.fromEntries(
+  cats.map(c => [c, allSaints.filter(s => s.data.category === c).length])
+) as Record<Cat, number>;
 ---
 
 <BaseLayout title={t('all.saints')}>
   <h1>{t('all.saints')}</h1>
-  <ul class="card-list">
-    {saints.length === 0 ? (
-      <li class="muted">{t('no.entries')}</li>
-    ) : saints.map(s => (
-      <li>
-        <SaintCard
-          slug={s.id}
-          name={s.data.name}
-          feastDay={s.data.feastDay}
-          category={s.data.category}
-          language={s.data.language}
-          iconUrl={s.data.iconUrl}
-        />
-      </li>
-    ))}
-  </ul>
+
+  <div class="saints-stats">
+    <p class="muted total">
+      <strong>{allSaints.length}</strong>
+      {lang === 'el' ? 'ἅγιοι ἐγγεγραμμένοι στὸ συναξάριο' : 'saints in the calendar'}
+    </p>
+    <ul class="cat-counts">
+      {cats.filter(c => counts[c] > 0).map(c => (
+        <li><span class="cat-count">{counts[c]}</span> {t(`category.${c}` as any)}</li>
+      ))}
+    </ul>
+  </div>
+
+  {letters.length > 0 && (
+    <nav class="letter-toc" aria-label={lang === 'el' ? 'Ἀλφαβητικὴ πλοήγηση' : 'Alphabetical navigation'}>
+      {letters.map(l => (
+        <a href={`#letter-${l}`}>{l}</a>
+      ))}
+    </nav>
+  )}
+
+  {letters.length === 0 ? (
+    <p class="muted">{t('no.entries')}</p>
+  ) : letters.map(l => (
+    <section class="letter-section" id={`letter-${l}`}>
+      <h2>{l} <span class="muted small">({groups[l].length})</span></h2>
+      <ul class="card-list">
+        {groups[l].map(s => (
+          <li>
+            <SaintCard
+              slug={s.id}
+              name={s.data.name}
+              feastDay={s.data.feastDay}
+              category={s.data.category}
+              language={s.data.language}
+              iconUrl={s.data.iconUrl}
+            />
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))}
 </BaseLayout>
+
+<style>
+  .saints-stats {
+    margin: 1rem 0 1.5rem;
+    padding: 1rem 1.25rem;
+    background: var(--color-surface, rgba(0,0,0,0.02));
+    border-left: 3px solid var(--color-accent);
+    border-radius: 2px;
+  }
+  .saints-stats .total {
+    margin: 0 0 0.5rem;
+    font-size: 1.05rem;
+  }
+  .saints-stats .total strong {
+    color: var(--color-accent);
+    font-size: 1.4rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .cat-counts {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.1rem;
+    font-size: 0.92rem;
+    color: var(--color-muted, #6e6452);
+  }
+  .cat-count {
+    font-weight: 700;
+    color: var(--color-text);
+    font-variant-numeric: tabular-nums;
+    margin-right: 0.25rem;
+  }
+  .letter-toc {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 0.6rem;
+    padding: 0.75rem 0;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .letter-toc a {
+    display: inline-block;
+    min-width: 1.6em;
+    padding: 0.25rem 0.5rem;
+    text-align: center;
+    font-weight: 600;
+    border: 1px solid var(--color-border);
+    border-radius: 2px;
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-text);
+  }
+  .letter-toc a:hover {
+    background: var(--color-accent);
+    color: white;
+    border-color: var(--color-accent);
+  }
+  .letter-section { margin-top: 2rem; scroll-margin-top: 4rem; }
+  .letter-section h2 {
+    margin-top: 0;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .small { font-size: 0.7em; font-weight: 400; }
+</style>

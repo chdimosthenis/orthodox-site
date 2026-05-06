@@ -5,7 +5,7 @@ pubDate: 2026-05-06
 author: "Σύνταξη"
 language: el
 license: original
-tags: ["clergy", "ecclesiology"]
+tags: ["clergy", "ecclesiology", "naos-orders"]
 ---
 
 Ἡ Ὀρθόδοξος Ἐκκλησία διατηρεῖ τὴν ἀποστολικὴ τάξη τῆς ἱεροσύνης σὲ

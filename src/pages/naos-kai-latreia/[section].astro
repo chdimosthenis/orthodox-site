@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { getLangFromUrl, useTranslations, getLocalizedPath } from '../../i18n/utils';
+import type { UIKey } from '../../i18n/ui';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const sections = [
+  { id: 'architecture', primaryTag: 'naos-architecture', titleKey: 'naos.section.architecture' },
+  { id: 'vestments',    primaryTag: 'naos-vestments',    titleKey: 'naos.section.vestments'    },
+  { id: 'orders',       primaryTag: 'naos-orders',       titleKey: 'naos.section.orders'       },
+] as const;
+
+export async function getStaticPaths() {
+  return [
+    { params: { section: 'architecture' } },
+    { params: { section: 'vestments' } },
+    { params: { section: 'orders' } },
+  ];
+}
+
+const { section } = Astro.params;
+const s = sections.find(x => x.id === section);
+if (!s) return Astro.redirect('/naos-kai-latreia');
+
+const articles = (await getCollection('articles'))
+  .filter(a => !a.data.draft && a.data.tags && a.data.tags.includes(s.primaryTag) && a.data.language === 'el')
+  .sort((a, b) => a.data.title.localeCompare(b.data.title, 'el-GR'));
+
+const localeTag = lang === 'el' ? 'el-GR' : 'en-GB';
+---
+
+<BaseLayout title={t(s.titleKey as UIKey)}>
+  <p class="breadcrumb">
+    <a href={getLocalizedPath('/naos-kai-latreia', lang)}>← {t('naos.title')}</a>
+  </p>
+  <h1>{t(s.titleKey as UIKey)}</h1>
+
+  {articles.length === 0 ? (
+    <p class="muted empty-state">
+      Δὲν ὑπάρχουν ἀκόμη ἑλληνικὰ ἄρθρα σὲ αὐτὴ τὴν ὑποενότητα.
+    </p>
+  ) : (
+    <ul class="card-list">
+      {articles.map(a => (
+        <li class="naos-card">
+          <h3>
+            <a href={getLocalizedPath(`/articles/${a.id}`, lang)} lang={a.data.language}>{a.data.title}</a>
+          </h3>
+          <p class="metadata">
+            <time datetime={a.data.pubDate.toISOString()}>
+              {a.data.pubDate.toLocaleDateString(localeTag, { year: 'numeric', month: 'long' })}
+            </time>
+          </p>
+          {a.data.description && a.data.description !== a.data.title && (
+            <p class="muted">{a.data.description}</p>
+          )}
+        </li>
+      ))}
+    </ul>
+  )}
+</BaseLayout>
+
+<style>
+  .breadcrumb { margin-bottom: 0.5rem; font-size: 0.95rem; }
+  .breadcrumb a { color: var(--color-muted, #6e6452); border-bottom: none; }
+  .breadcrumb a:hover { color: var(--color-accent); }
+  .empty-state { padding: 2rem 0; }
+  .naos-card {
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .naos-card:last-child { border-bottom: none; padding-bottom: 0; }
+  .naos-card h3 { margin: 0 0 0.35rem; font-size: 1.2rem; }
+  .naos-card h3 a { color: var(--color-text); border-bottom: none; }
+  .naos-card h3 a:hover { color: var(--color-accent); }
+  .naos-card p { margin: 0.25rem 0 0; }
+</style>

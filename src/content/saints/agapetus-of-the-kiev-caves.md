@@ -7,6 +7,8 @@ life: Saint Agapetus of the Kiev Caves , Unmercenary physician of the Kiev Near 
 language: en
 sourceUrl: https://en.wikipedia.org/wiki/Agapetus_of_the_Kiev_Caves
 license: CC-BY-SA
+iconUrl: https://upload.wikimedia.org/wikipedia/commons/8/81/Agapetus_Pechorskiy.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled
+iconAttribution: Sergey Nikitin · Wikimedia Commons · CC BY-SA 3.0
 ---
 
 Saint Agapetus of the Kiev Caves , Unmercenary physician of the Kiev Near Caves (1095)

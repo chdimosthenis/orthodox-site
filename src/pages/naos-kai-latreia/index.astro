@@ -7,39 +7,34 @@ import type { UIKey } from '../../i18n/ui';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const greekOnly = lang === 'el';
-
 const articles = (await getCollection('articles'))
-  .filter(a => !a.data.draft && a.data.tags && a.data.tags.includes('history'))
-  .filter(a => !greekOnly || a.data.language === 'el');
+  .filter(a => !a.data.draft && a.data.tags && a.data.language === 'el');
 
-const clusters = [
-  { id: 'councils',       primaryTag: 'ecumenical-council', titleKey: 'history.section.councils'      },
-  { id: 'patriarchates',  primaryTag: 'patriarchate',       titleKey: 'history.section.patriarchates' },
-  { id: 'autocephalous',  primaryTag: 'autocephalous',      titleKey: 'history.section.autocephalous' },
-  { id: 'schisms',        primaryTag: 'schism',             titleKey: 'history.section.schisms'       },
-  { id: 'councils-other', primaryTag: 'council',            titleKey: 'history.section.councilsOther' },
+const sections = [
+  { id: 'architecture', primaryTag: 'naos-architecture', titleKey: 'naos.section.architecture' },
+  { id: 'vestments',    primaryTag: 'naos-vestments',    titleKey: 'naos.section.vestments'    },
+  { id: 'orders',       primaryTag: 'naos-orders',       titleKey: 'naos.section.orders'       },
 ] as const;
 
 const counts: Record<string, number> = {};
-for (const cl of clusters) {
-  counts[cl.id] = articles.filter(a => a.data.tags!.includes(cl.primaryTag)).length;
+for (const s of sections) {
+  counts[s.id] = articles.filter(a => a.data.tags!.includes(s.primaryTag)).length;
 }
 ---
 
-<BaseLayout title={t('history.title')}>
-  <h1>{t('history.title')}</h1>
-  <p class="muted">{t('history.intro')}</p>
+<BaseLayout title={t('naos.title')}>
+  <h1>{t('naos.title')}</h1>
+  <p class="muted">{t('naos.intro')}</p>
 
   <ul class="cluster-grid">
-    {clusters.map(cl => (
-      <li class={`cluster-card ${counts[cl.id] === 0 ? 'is-empty' : ''}`}>
-        <a href={getLocalizedPath(`/history/${cl.id}`, lang)}>
-          <h2>{t(cl.titleKey as UIKey)}</h2>
+    {sections.map(s => (
+      <li class={`cluster-card ${counts[s.id] === 0 ? 'is-empty' : ''}`}>
+        <a href={getLocalizedPath(`/naos-kai-latreia/${s.id}`, lang)}>
+          <h2>{t(s.titleKey as UIKey)}</h2>
           <p class="muted count">
-            {counts[cl.id] === 0
-              ? (lang === 'el' ? 'σύντομα' : 'soon')
-              : `${counts[cl.id]} ${lang === 'el' ? 'ἄρθρα' : 'articles'}`}
+            {counts[s.id] === 0
+              ? 'σύντομα'
+              : `${counts[s.id]} ${counts[s.id] === 1 ? 'ἄρθρο' : 'ἄρθρα'}`}
           </p>
         </a>
       </li>

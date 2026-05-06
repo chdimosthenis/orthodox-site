@@ -7,15 +7,13 @@ import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-// Greek primary view shows EVERY non-draft saint regardless of entry language
-// (most entries are bot-seeded with English names; we still want them visible
-// in the Greek site index per user instruction). The English /en/saints page
-// keeps the legacy language-filter via a separate index file.
-const showAllLanguages = lang === 'el';
-
+// Strict per-locale filter: the Greek site shows ONLY language: el entries
+// (per user directive — no English content visible on the Greek site).
+// Bot-seeded English drafts still live on disk for future translation but
+// don't render here.
 const allSaints = (await getCollection('saints'))
   .filter(s => !s.data.draft)
-  .filter(s => showAllLanguages || s.data.language === lang)
+  .filter(s => s.data.language === lang)
   .sort((a, b) => a.data.name.localeCompare(b.data.name, lang === 'el' ? 'el-GR' : 'en-GB'));
 
 // Strip combining diacritics (U+0300–U+036F) to compute the grouping initial.
@@ -42,10 +40,23 @@ const counts = Object.fromEntries(
 <BaseLayout title={t('all.saints')}>
   <h1>{t('all.saints')}</h1>
 
+  {lang === 'el' && (
+    <div class="saints-disclaimer">
+      <p>
+        <strong>Ὁ κατάλογος δὲν εἶναι ἐξαντλητικός.</strong> Τὸ Οἰκουμενικὸ Πατριαρχεῖο
+        δὲν δημοσιεύει ἀριθμητικῶς κλειστὸ συναξάριο· οἱ μνῆμες ἁγίων στὴν Ὀρθοδοξία
+        ξεπερνοῦν τὶς δέκα χιλιάδες (πβ. Συναξαριστὴν Ἁγίου Νικοδήμου τοῦ Ἁγιορείτου,
+        Μέγα Συναξαριστὴ Δουκάκη). Ἐδῶ παρουσιάζονται οἱ πιὸ γνωστοὶ καὶ ἀγαπημένοι
+        ἅγιοι σὲ ἑλληνικὴ ἀπόδοση, μὲ εἰκόνες ἀπὸ τὸ Wikimedia Commons. Νέα κείμενα
+        προστίθενται περιοδικά.
+      </p>
+    </div>
+  )}
+
   <div class="saints-stats">
     <p class="muted total">
       <strong>{allSaints.length}</strong>
-      {lang === 'el' ? 'ἅγιοι ἐγγεγραμμένοι στὸ συναξάριο' : 'saints in the calendar'}
+      {lang === 'el' ? 'ἅγιοι σὲ αὐτὸν τὸν κατάλογο' : 'saints in the calendar'}
     </p>
     <ul class="cat-counts">
       {cats.filter(c => counts[c] > 0).map(c => (
@@ -86,6 +97,14 @@ const counts = Object.fromEntries(
 </BaseLayout>
 
 <style>
+  .saints-disclaimer {
+    margin: 1rem 0 1.5rem;
+    padding: 1rem 1.25rem;
+    background: rgba(180, 145, 70, 0.08);
+    border-left: 3px solid #b49146;
+    border-radius: 2px;
+  }
+  .saints-disclaimer p { margin: 0; line-height: 1.55; font-size: 0.95rem; }
   .saints-stats {
     margin: 1rem 0 1.5rem;
     padding: 1rem 1.25rem;

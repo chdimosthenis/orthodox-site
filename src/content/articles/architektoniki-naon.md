@@ -5,7 +5,7 @@ pubDate: 2026-05-06
 author: "Σύνταξη"
 language: el
 license: original
-tags: ["liturgical", "iconography"]
+tags: ["liturgical", "iconography", "naos-architecture"]
 ---
 
 Ὁ ὀρθόδοξος ναὸς δὲν εἶναι ἁπλὰ τόπος συνάθροισης τῶν πιστῶν — εἶναι

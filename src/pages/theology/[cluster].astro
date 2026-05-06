@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { getLangFromUrl, useTranslations, getLocalizedPath } from '../../i18n/utils';
+import type { UIKey } from '../../i18n/ui';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// Cluster definitions — same as the hub page (mirrors seed_theology.py).
+const clusters = [
+  { id: 'spiritual',   primaryTag: 'spiritual-life', titleKey: 'theology.section.spiritual'  },
+  { id: 'hesychasm',   primaryTag: 'hesychasm',      titleKey: 'theology.section.hesychasm'  },
+  { id: 'philokalia',  primaryTag: 'philokalia',     titleKey: 'theology.section.philokalia' },
+  { id: 'dogmatiki',   primaryTag: 'theology',       titleKey: 'theology.section.theology'   },
+  { id: 'liturgika',   primaryTag: 'liturgical',     titleKey: 'theology.section.liturgical' },
+  { id: 'iconography', primaryTag: 'iconography',    titleKey: 'theology.section.iconography'},
+  { id: 'sacraments',  primaryTag: 'sacraments',     titleKey: 'theology.section.sacraments' },
+  { id: 'clergy',      primaryTag: 'clergy',         titleKey: 'theology.section.clergy'     },
+  { id: 'ecclesiology',primaryTag: 'ecclesiology',   titleKey: 'theology.section.ecclesiology'},
+  { id: 'monasticism', primaryTag: 'monasticism',    titleKey: 'theology.section.monasticism'},
+  { id: 'eschatology', primaryTag: 'eschatology',    titleKey: 'theology.section.eschatology'},
+] as const;
+
+export async function getStaticPaths() {
+  const ids = ['spiritual','hesychasm','philokalia','dogmatiki','liturgika','iconography',
+               'sacraments','clergy','ecclesiology','monasticism','eschatology'];
+  return ids.map(id => ({ params: { cluster: id } }));
+}
+
+const { cluster } = Astro.params;
+const c = clusters.find(x => x.id === cluster);
+if (!c) return Astro.redirect('/theology');
+
+// Greek-only filter per user directive — no English content in /theology subsections.
+const greekOnly = lang === 'el';
+const articles = (await getCollection('articles'))
+  .filter(a => !a.data.draft && a.data.tags && a.data.tags.includes(c.primaryTag))
+  .filter(a => !greekOnly || a.data.language === 'el')
+  .sort((a, b) => a.data.title.localeCompare(b.data.title, lang));
+
+const localeTag = lang === 'el' ? 'el-GR' : 'en-GB';
+const sectionTitle = t(c.titleKey as UIKey);
+---
+
+<BaseLayout title={sectionTitle}>
+  <p class="breadcrumb">
+    <a href={getLocalizedPath('/theology', lang)}>← {t('theology.title')}</a>
+  </p>
+  <h1>{sectionTitle}</h1>
+
+  {articles.length === 0 ? (
+    <p class="muted empty-state">
+      {greekOnly
+        ? 'Δὲν ὑπάρχουν ἀκόμη ἑλληνικὰ ἄρθρα σὲ αὐτὴ τὴν ὑποενότητα. Νέα κείμενα προστίθενται περιοδικὰ μὲ τὴν αὐτόματη συγγραφικὴ ροή.'
+        : t('no.entries')}
+    </p>
+  ) : (
+    <ul class="card-list">
+      {articles.map(a => (
+        <li class="theology-card">
+          <h3>
+            <a href={getLocalizedPath(`/articles/${a.id}`, lang)} lang={a.data.language}>{a.data.title}</a>
+          </h3>
+          <p class="metadata">
+            <time datetime={a.data.pubDate.toISOString()}>
+              {a.data.pubDate.toLocaleDateString(localeTag, { year: 'numeric', month: 'long' })}
+            </time>
+          </p>
+          {a.data.description && a.data.description !== a.data.title && (
+            <p class="muted">{a.data.description}</p>
+          )}
+        </li>
+      ))}
+    </ul>
+  )}
+</BaseLayout>
+
+<style>
+  .breadcrumb { margin-bottom: 0.5rem; font-size: 0.95rem; }
+  .breadcrumb a { color: var(--color-muted, #6e6452); border-bottom: none; }
+  .breadcrumb a:hover { color: var(--color-accent); }
+  .empty-state { padding: 2rem 0; }
+  .theology-card {
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .theology-card:last-child { border-bottom: none; padding-bottom: 0; }
+  .theology-card h3 { margin: 0 0 0.35rem; font-size: 1.2rem; }
+  .theology-card h3 a { color: var(--color-text); border-bottom: none; }
+  .theology-card h3 a:hover { color: var(--color-accent); }
+  .theology-card p { margin: 0.25rem 0 0; }
+</style>

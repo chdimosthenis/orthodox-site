@@ -5,7 +5,7 @@ pubDate: 2026-05-06
 author: "Σύνταξη"
 language: el
 license: original
-tags: ["clergy", "liturgical"]
+tags: ["clergy", "liturgical", "naos-vestments"]
 ---
 
 Ἡ ὀρθόδοξη παράδοση διακρίνει τὶς ἐνδυμασίες τῶν κληρικῶν σὲ δύο

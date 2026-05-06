@@ -110,6 +110,9 @@ ENTRIES: list[dict[str, str]] = [
     # --- Δεσποτικαὶ Ἑορταί (Μηναῖα) ---
     {"slug": "megas-agiasmos", "title": "Μέγας Ἁγιασμὸς τῶν Θεοφανείων",
      "type": "akolouthia", "path": "Jan/Jan06.html"},
+    # --- Μεγάλη Ἑβδομάς (Triodion) ---
+    {"slug": "epitafios-thrinos", "title": "Τὰ Ἐγκώμια — Ἐπιτάφιος Θρῆνος",
+     "type": "akolouthia", "path": "Tri/Lamentations.html"},
 ]
 
 

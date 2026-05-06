@@ -56,8 +56,16 @@ ENTRIES: list[dict[str, Any]] = [
     {"page": "Monasticism",              "tags": ["monasticism"]},
     {"page": "Mount Athos",              "tags": ["monasticism", "places"]},
     # --- Eschatology ---
-    {"page": "Eschatology",              "tags": ["eschatology", "theology"]},
-    {"page": "Last Judgment",            "tags": ["eschatology"]},
+    # OrthodoxWiki has no "Eschatology" or "Last Judgment" page — substitute.
+    {"page": "Heaven",                   "tags": ["eschatology"]},
+    {"page": "Death",                    "tags": ["eschatology"]},
+    # --- Pneumatology (substitutes — OrthodoxWiki has no "Pneumatology" page) ---
+    {"page": "Holy Spirit",              "tags": ["theology", "dogmatics"]},
+    {"page": "Filioque",                 "tags": ["theology", "dogmatics"]},
+    # --- Christology reinforcement (the OrthodoxWiki "Christology" page is a stub) ---
+    {"page": "Incarnation",              "tags": ["theology", "dogmatics"]},
+    {"page": "Theotokos",                "tags": ["theology", "dogmatics"]},
+    {"page": "Resurrection",             "tags": ["theology", "dogmatics"]},
 ]
 
 

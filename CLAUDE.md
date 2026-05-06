@@ -165,7 +165,14 @@ Manual trigger any workflow:
 
 Confirmed-NOT-available (need different source): Holy Unction
 (Εὐχέλαιον), Confession service text, Photian Schism dedicated page,
-Christology/Pneumatology/Eschatology articles on OrthodoxWiki.
+the literal `Pneumatology` / `Eschatology` / `Last Judgment` /
+`Mystery (sacrament)` pages on OrthodoxWiki.
+
+For Christology / Pneumatology / Eschatology coverage we substitute
+adjacent OrthodoxWiki pages that DO exist (seeded via Phase K.2):
+- Pneumatology cluster: Holy Spirit, Filioque
+- Christology cluster:  Christology (stub), Incarnation, Theotokos, Resurrection
+- Eschatology cluster:  Heaven, Death
 
 ## Available skills
 

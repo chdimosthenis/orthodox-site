@@ -7,6 +7,8 @@ life: Hieromartyr Alexander of Jerusalem , Archbishop (251)
 language: en
 sourceUrl: https://en.wikipedia.org/wiki/Alexander_of_Jerusalem
 license: CC-BY-SA
+iconUrl: https://upload.wikimedia.org/wikipedia/commons/3/36/Alexander_of_Jerusalem.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled
+iconAttribution: AnonymousUnknown author · Wikimedia Commons · Public domain
 ---
 
 Hieromartyr Alexander of Jerusalem , Archbishop (251)

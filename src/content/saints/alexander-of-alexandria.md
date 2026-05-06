@@ -7,6 +7,8 @@ life: Saint Alexander of Alexandria , Patriarch of Alexandria (326)
 language: en
 sourceUrl: https://en.wikipedia.org/wiki/Pope_Alexander_I_of_Alexandria
 license: CC-BY-SA
+iconUrl: https://upload.wikimedia.org/wikipedia/commons/e/ec/Veljusa_Monastery_St._Alexander_of_Alexandria.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled
+iconAttribution: Unknown author · Wikimedia Commons · FAL
 ---
 
 Saint Alexander of Alexandria , Patriarch of Alexandria (326)

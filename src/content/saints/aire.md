@@ -8,6 +8,8 @@ life: Saint Isberga ( Itisberga ) of Aire, reputed sister of Charlemagne, nun at
 language: en
 sourceUrl: https://en.wikipedia.org/wiki/Aire-sur-la-Lys
 license: CC-BY-SA
+iconUrl: https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Aire-sur-la-Lys_22-09-2008_17-44-44.JPG/960px-Aire-sur-la-Lys_22-09-2008_17-44-44.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail
+iconAttribution: Paul Hermans · Wikimedia Commons · CC BY-SA 3.0
 ---
 
 Saint Isberga ( Itisberga ) of Aire, reputed sister of Charlemagne, nun at Aire (Aria) in the Artois , of which she is the patroness (c. 800)

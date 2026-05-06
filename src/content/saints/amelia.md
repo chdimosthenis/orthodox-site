@@ -7,6 +7,8 @@ life: Martyr Secundus, At Amelia in Umbria, when thrown into the Tiber (304)
 language: en
 sourceUrl: https://en.wikipedia.org/wiki/Amelia,_Umbria
 license: CC-BY-SA
+iconUrl: https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Amelia.jpg/960px-Amelia.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail
+iconAttribution: PentaPrisma23 · Wikimedia Commons · CC BY 4.0
 ---
 
 Martyr Secundus, At Amelia in Umbria, when thrown into the Tiber (304)

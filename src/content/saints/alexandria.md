@@ -7,6 +7,8 @@ life: Martyr Philosophus at Alexandria (252)
 language: en
 sourceUrl: https://en.wikipedia.org/wiki/Alexandria
 license: CC-BY-SA
+iconUrl: https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/AlexandriaSkyline.jpg/960px-AlexandriaSkyline.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail
+iconAttribution: ASaber91 · Wikimedia Commons · CC BY-SA 4.0
 ---
 
 Martyr Philosophus at Alexandria (252)

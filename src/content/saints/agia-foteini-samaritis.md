@@ -4,7 +4,9 @@ feastDay: "02-26"
 category: martyr
 life: "Ἡ Σαμαρείτιδα τοῦ Εὐαγγελίου (Ἰω. 4) ποὺ συνομίλησε μὲ τὸν Χριστὸ στὸ φρέαρ τοῦ Ἰακώβ· ἀργότερα ἱεραπόστολος καὶ μάρτυς στὴ Ρώμη."
 language: el
-wikipediaTitle: "Photine"
+wikipediaTitle: "Samaritan woman at the well"
+iconUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Angelika_Kauffmann_-_Christus_und_die_Samariterin_am_Brunnen_-1796.jpeg/960px-Angelika_Kauffmann_-_Christus_und_die_Samariterin_am_Brunnen_-1796.jpeg"
+iconAttribution: "Angelika Kauffmann (1796) · Wikimedia Commons · Public domain"
 license: original
 ---
 

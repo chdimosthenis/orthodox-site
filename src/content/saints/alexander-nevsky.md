@@ -7,6 +7,8 @@ life: Saint Theodore Yaroslavich of Novgorod, brother of St. Alexander Nevsky (1
 language: en
 sourceUrl: https://en.wikipedia.org/wiki/Alexander_Nevsky
 license: CC-BY-SA
+iconUrl: https://upload.wikimedia.org/wikipedia/commons/1/13/AlexanderNevskyTitul.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled
+iconAttribution: Collective of Kremlin Armory artists · Wikimedia Commons · Public domain
 ---
 
 Saint Theodore Yaroslavich of Novgorod, brother of St. Alexander Nevsky (1233)

@@ -5,6 +5,8 @@ category: monastic
 life: "Μοναχὸς τοῦ 16ου αἰ. ποὺ ἀσκήτευσε στὴν Κεφαλληνία ἱδρύοντας τὴν Ἱερὰ Μονὴ Ὁμαλῶν· πολιοῦχος τοῦ νησιοῦ καὶ θαυματουργός."
 language: el
 wikipediaTitle: "Gerasimos of Kefalonia"
+iconUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/S%C3%A3o_Gerasimos_de_Cefal%C3%B3nia%2C_Antivouniotissa_Museum%2C_Corfu_01.jpg/500px-S%C3%A3o_Gerasimos_de_Cefal%C3%B3nia%2C_Antivouniotissa_Museum%2C_Corfu_01.jpg"
+iconAttribution: "Antivouniotissa Museum, Corfu · Wikimedia Commons · CC BY-SA 4.0"
 license: original
 ---
 

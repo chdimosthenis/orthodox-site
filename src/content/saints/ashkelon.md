@@ -7,6 +7,8 @@ life: Five Martyrs of Ashkelon , dragged to death.
 language: en
 sourceUrl: https://en.wikipedia.org/wiki/Ashkelon
 license: CC-BY-SA
+iconUrl: https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Ashkelonskyline.jpg/960px-Ashkelonskyline.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail
+iconAttribution: Wikipod · Wikimedia Commons · Public domain
 ---
 
 Five Martyrs of Ashkelon , dragged to death.

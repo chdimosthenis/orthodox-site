@@ -7,6 +7,8 @@ life: Saint Alcuin of York , monk (804)
 language: en
 sourceUrl: https://en.wikipedia.org/wiki/Alcuin_of_York
 license: CC-BY-SA
+iconUrl: https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Raban-Maur_Alcuin_Otgar.jpg/960px-Raban-Maur_Alcuin_Otgar.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail
+iconAttribution: Fulda · Wikimedia Commons · Public domain
 ---
 
 Saint Alcuin of York , monk (804)

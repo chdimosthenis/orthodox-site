@@ -4,7 +4,9 @@ feastDay: "09-17"
 category: martyr
 life: "Μάρτυρες στὴ Ρώμη ἐπὶ Ἀδριανοῦ (~137 μ.Χ.)· τὰ τρία κορίτσια ἡλικίας 12, 10 καὶ 9 ἐτῶν μαρτύρησαν πρὸ τῆς μητέρας των."
 language: el
-wikipediaTitle: "Saints Faith, Hope, and Charity"
+wikipediaTitle: "Sophia of Rome"
+iconUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Eschau_StTrophime_75_%28square_crop%29.JPG/960px-Eschau_StTrophime_75_%28square_crop%29.JPG"
+iconAttribution: "Eschau, St-Trophime · Wikimedia Commons · Public domain"
 license: original
 ---
 

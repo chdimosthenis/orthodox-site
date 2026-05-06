@@ -7,6 +7,8 @@ life: Saint Zosimas of Cilicia, Bishop of Babylon in Egypt (6th century)
 language: en
 sourceUrl: https://en.wikipedia.org/wiki/Babylon_Fortress
 license: CC-BY-SA
+iconUrl: https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Cairo_-_Coptic_area_-_Roman_Tower.JPG/960px-Cairo_-_Coptic_area_-_Roman_Tower.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail
+iconAttribution: Daniel Mayer · Wikimedia Commons · CC BY-SA 4.0
 ---
 
 Saint Zosimas of Cilicia, Bishop of Babylon in Egypt (6th century)

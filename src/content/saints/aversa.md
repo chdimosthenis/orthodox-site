@@ -7,6 +7,9 @@ life: Saint Elpidios ( Elpidius ), Bishop of Aversa in Campania , southern Italy
 language: en
 sourceUrl: https://en.wikipedia.org/wiki/Aversa
 license: CC-BY-SA
+iconUrl: https://upload.wikimedia.org/wikipedia/commons/2/2f/Porta_Napoli_Aversa.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled
+iconAttribution: http://www.comune.aversa.ce.it/biblioteca/nuova_pagina_2.htm · Wikimedia Commons · CC
+  BY-SA 3.0
 ---
 
 Saint Elpidios ( Elpidius ), Bishop of Aversa in Campania , southern Italy (5th century)

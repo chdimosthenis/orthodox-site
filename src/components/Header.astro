@@ -5,6 +5,10 @@ import { languages } from '../i18n/ui';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
+// Greek-only entries (the user has scoped new content additions to Greek
+// going forward; conditional rendering keeps them out of the EN nav).
+const greekOnly = lang === 'el';
+
 const navItems = [
   { label: t('nav.news'), path: '/news/' },
   { label: t('nav.bible'), path: '/bible' },
@@ -13,6 +17,7 @@ const navItems = [
   { label: t('nav.history'), path: '/history' },
   { label: t('nav.fathers'), path: '/fathers' },
   { label: t('nav.saints'), path: '/saints' },
+  ...(greekOnly ? [{ label: t('nav.eortologio'), path: '/eortologio' }] : []),
   { label: t('nav.akolouthies'), path: '/akolouthies' },
   { label: t('nav.prayerbook'), path: '/proseuxitari' },
   { label: t('nav.hymns'), path: '/ymnoi' },

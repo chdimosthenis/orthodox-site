@@ -1,0 +1,202 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getLangFromUrl, useTranslations, getLocalizedPath } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// --- Δωδεκάορτον (12 great feasts) ---
+// Fixed-date feasts ordered by ecclesiastical year (starts 1 Sep).
+const dodekaorto = [
+  { date: '08-09', dateLabel: '8 Σεπτεμβρίου',  title: 'Γέννησις τῆς Ὑπεραγίας Θεοτόκου',
+    type: 'theomitoriki', note: 'Ἀρχὴ τοῦ ἑορτολογικοῦ ἔτους τῆς Ὀρθοδοξίας.' },
+  { date: '14-09', dateLabel: '14 Σεπτεμβρίου', title: 'Ἡ Ὕψωσις τοῦ Τιμίου Σταυροῦ',
+    type: 'despotiki', note: 'Νηστεία τὴν ἡμέρα τῆς ἑορτῆς. Παγκόσμιος προσκύνησις τοῦ Σταυροῦ.' },
+  { date: '21-11', dateLabel: '21 Νοεμβρίου',   title: 'Τὰ Εἰσόδια τῆς Θεοτόκου',
+    type: 'theomitoriki', note: 'Ἡ τριετὴς Μαρία ἀφιερώνεται στὸν Ναό.' },
+  { date: '25-12', dateLabel: '25 Δεκεμβρίου',  title: 'Ἡ κατὰ Σάρκα Γέννησις τοῦ Κυρίου ἡμῶν Ἰησοῦ Χριστοῦ',
+    type: 'despotiki', note: 'Χριστούγεννα. Ἑορτὴ μετὰ τὴν 40ήμερη νηστεία.' },
+  { date: '06-01', dateLabel: '6 Ἰανουαρίου',   title: 'Τὰ Ἅγια Θεοφάνεια',
+    type: 'despotiki', note: 'Βάπτισις τοῦ Κυρίου στὸν Ἰορδάνη. Ἐμφάνισις τῆς Ἁγίας Τριάδος.' },
+  { date: '02-02', dateLabel: '2 Φεβρουαρίου',  title: 'Ἡ Ὑπαπαντὴ τοῦ Κυρίου',
+    type: 'despotiki', note: '40 ἡμέρες μετὰ τὰ Χριστούγεννα. Ὁ Συμεὼν ὁ Θεοδόχος.' },
+  { date: '25-03', dateLabel: '25 Μαρτίου',     title: 'Ὁ Εὐαγγελισμὸς τῆς Θεοτόκου',
+    type: 'theomitoriki', note: 'Συμπίπτει συχνὰ μὲ τὴ Μ. Σαρακοστή. Πάντα ἐπιτρέπεται κατάλυσις ἰχθύος.' },
+  { date: '06-08', dateLabel: '6 Αὐγούστου',    title: 'Ἡ Μεταμόρφωσις τοῦ Κυρίου',
+    type: 'despotiki', note: 'Στὸ ὄρος Θαβώρ. Φῶς τὸ Ἄκτιστον.' },
+  { date: '15-08', dateLabel: '15 Αὐγούστου',   title: 'Ἡ Κοίμησις τῆς Θεοτόκου',
+    type: 'theomitoriki', note: 'Τέλος τῆς νηστείας τοῦ Δεκαπενταυγούστου. «Πάσχα τοῦ καλοκαιριοῦ».' },
+];
+
+// --- Movable feasts (Πάσχα-σχετιζόμενες) ---
+const kinites = [
+  { offset: 'Κυριακὴ πρὸ Πάσχα',           title: 'Ἡ Βαϊοφόρος (Κυριακὴ τῶν Βαΐων)',
+    type: 'despotiki', note: 'Ἑορτὴ τοῦ Δωδεκαόρτου. Εἰσοδία τοῦ Κυρίου στὰ Ἱεροσόλυμα.' },
+  { offset: 'Σάββατο πρὸ Πάσχα',           title: 'Σάββατο τοῦ Λαζάρου',
+    type: 'despotiki', note: 'Ἀνάστασις τοῦ Λαζάρου, προοίμιον τῆς Ἀναστάσεως.' },
+  { offset: 'Πάσχα',                       title: 'ΠΑΣΧΑ — Ἡ Λαμπρὰ τοῦ Κυρίου Ἀνάστασις',
+    type: 'pascha', note: '«Ἑορτὴ τῶν ἑορτῶν καὶ πανήγυρις τῶν πανηγύρεων». Κορυφὴ τοῦ ἐκκλησιαστικοῦ ἔτους.' },
+  { offset: '40 ἡμέρες μετὰ Πάσχα',        title: 'Ἡ Ἀνάληψις τοῦ Κυρίου',
+    type: 'despotiki', note: 'Ἑορτὴ τοῦ Δωδεκαόρτου. Πάντοτε Πέμπτη.' },
+  { offset: '50 ἡμέρες μετὰ Πάσχα',        title: 'Ἡ Πεντηκοστή',
+    type: 'despotiki', note: 'Ἑορτὴ τοῦ Δωδεκαόρτου. Κάθοδος τοῦ Ἁγίου Πνεύματος. Γεννέθλια τῆς Ἐκκλησίας.' },
+  { offset: 'Δευτέρα μετὰ Πεντηκοστήν',    title: 'Τοῦ Ἁγίου Πνεύματος',
+    type: 'despotiki', note: 'Δοξολογία πρὸς τὸ τρίτο Πρόσωπο τῆς Ἁγίας Τριάδος.' },
+  { offset: "Α' Παρασκευὴ μετὰ Πάσχα",     title: 'Ἡ Ζωοδόχος Πηγή',
+    type: 'theomitoriki', note: 'Θαυματουργικὴ ἐκδήλωσις τῆς Θεοτόκου στὴν Κωνσταντινούπολη.' },
+];
+
+// --- Νηστεῖες ---
+const nisteies = [
+  { name: 'Μεγάλη Σαρακοστή',              when: '7 ἑβδομάδες πρὸ Πάσχα',
+    note: 'Ἡ μακρότερη καὶ αὐστηρότερη νηστεία τοῦ ἔτους. Προετοιμασία γιὰ τὸ Πάσχα.' },
+  { name: 'Νηστεία τῶν Ἁγίων Ἀποστόλων',   when: 'Δευτέρα μετὰ τὴν Κυριακὴ τῶν Ἁγίων Πάντων → 28 Ἰουνίου',
+    note: 'Μεταβλητὴ διάρκεια (ἀνάλογα μὲ τὴν ἡμερομηνία τοῦ Πάσχα). Λήγει στὶς 29 Ἰουνίου.' },
+  { name: 'Δεκαπενταύγουστος',              when: '1–14 Αὐγούστου',
+    note: 'Νηστεία πρὸ τῆς Κοιμήσεως τῆς Θεοτόκου.' },
+  { name: 'Νηστεία Χριστουγέννων (Σαρακοστή)', when: '15 Νοεμβρίου – 24 Δεκεμβρίου',
+    note: '40 ἡμέρες· λήγει τὸ μεσημέρι τῆς παραμονῆς τῶν Χριστουγέννων.' },
+];
+
+// --- Ἄλλες σημαντικὲς ἑορτές ---
+const alles = [
+  { date: '08-11', dateLabel: '8 Νοεμβρίου',    title: 'Σύναξις τῶν Ἀρχαγγέλων Μιχαὴλ καὶ Γαβριήλ' },
+  { date: '06-12', dateLabel: '6 Δεκεμβρίου',   title: 'Ἅγιος Νικόλαος Ἐπίσκοπος Μύρων τῆς Λυκίας' },
+  { date: '26-12', dateLabel: '26 Δεκεμβρίου',  title: 'Ἡ Σύναξις τῆς Θεοτόκου' },
+  { date: '01-01', dateLabel: '1 Ἰανουαρίου',   title: 'Ἡ Περιτομὴ τοῦ Κυρίου · Μέγας Βασίλειος' },
+  { date: '07-01', dateLabel: '7 Ἰανουαρίου',   title: 'Σύναξις τοῦ Τιμίου Προδρόμου' },
+  { date: '30-01', dateLabel: '30 Ἰανουαρίου',  title: 'Σύναξις τῶν Τριῶν Ἱεραρχῶν' },
+  { date: '23-04', dateLabel: '23 Ἀπριλίου',    title: 'Ἅγιος Γεώργιος ὁ Τροπαιοφόρος' },
+  { date: '21-05', dateLabel: '21 Μαΐου',       title: 'Ἅγιοι Κωνσταντῖνος καὶ Ἑλένη' },
+  { date: '24-06', dateLabel: '24 Ἰουνίου',     title: 'Γενέθλια τοῦ Τιμίου Προδρόμου' },
+  { date: '29-06', dateLabel: '29 Ἰουνίου',     title: 'Ἀπόστολοι Πέτρος καὶ Παῦλος' },
+  { date: '20-07', dateLabel: '20 Ἰουλίου',     title: 'Προφήτης Ἠλίας' },
+  { date: '01-09', dateLabel: '1 Σεπτεμβρίου',  title: 'Ἀρχὴ τῆς Ἰνδίκτου (ἐκκλησιαστικὸν νέον ἔτος)' },
+  { date: '01-11', dateLabel: '1 Νοεμβρίου',    title: 'Ἅγιοι Κοσμᾶς καὶ Δαμιανός (Ἀνάργυροι)' },
+  { date: '24-09', dateLabel: '24 Σεπτεμβρίου', title: 'Παναγία Μυρτιδιώτισσα · Ἁγία Θέκλα' },
+];
+
+const isGreek = lang === 'el';
+---
+
+<BaseLayout title={isGreek ? 'Ἑορτολόγιον' : 'Calendar of Feasts'}>
+  <h1>Ἑορτολόγιον</h1>
+  <p class="muted">
+    Οἱ μεγάλες ἑορτὲς τῆς Ὀρθοδόξου Ἐκκλησίας — τὸ Πάσχα ὡς κορυφή,
+    τὸ Δωδεκάορτον ὡς ἑορτολογικὸ ὀστραῦλιο, οἱ νηστεῖες ὡς ρυθμικὴ
+    προετοιμασία, οἱ ἑορτὲς ἁγίων ὡς καθημερινὴ διδασκαλία.
+  </p>
+
+  <section class="eo-section">
+    <h2>Δωδεκάορτον — οἱ ὀκτὼ ἀκίνητες ἑορτὲς</h2>
+    <p class="muted">
+      Ἀπὸ τὶς δώδεκα μεγάλες ἑορτές, οἱ ὀκτὼ ἀκολουθοῦν σταθερὲς ἡμερομηνίες·
+      οἱ ὑπόλοιπες τέσσερις σχετίζονται μὲ τὸ Πάσχα.
+    </p>
+    <table class="eo-table">
+      <thead><tr><th>Ἡμερομηνία</th><th>Ἑορτή</th><th>Σχόλιο</th></tr></thead>
+      <tbody>
+        {dodekaorto.map(e => (
+          <tr class={`eo-row eo-${e.type}`}>
+            <td class="eo-date">{e.dateLabel}</td>
+            <td class="eo-title">{e.title}</td>
+            <td class="muted">{e.note}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </section>
+
+  <section class="eo-section">
+    <h2>Πάσχα καὶ κινητὲς ἑορτές</h2>
+    <p class="muted">
+      Ὑπολογίζονται μὲ ἀφετηρία τὸ Πάσχα. Ἡ ἡμερομηνία τοῦ Πάσχα ὁρίζεται
+      ἀπὸ τὴν Α' Οἰκουμενικὴ Σύνοδο (Νίκαια 325): ἡ πρώτη Κυριακὴ μετὰ
+      τὴν πρώτη πανσέληνο τῆς ἐαρινῆς ἰσημερίας.
+    </p>
+    <table class="eo-table">
+      <thead><tr><th>Χρόνος</th><th>Ἑορτή</th><th>Σχόλιο</th></tr></thead>
+      <tbody>
+        {kinites.map(e => (
+          <tr class={`eo-row eo-${e.type}`}>
+            <td class="eo-date">{e.offset}</td>
+            <td class="eo-title">{e.title}</td>
+            <td class="muted">{e.note}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </section>
+
+  <section class="eo-section">
+    <h2>Νηστεῖες</h2>
+    <p class="muted">Τέσσερις περίοδοι νηστείας ὀργανώνουν τὸ ἐκκλησιαστικὸ ἔτος.</p>
+    <ul class="eo-list">
+      {nisteies.map(n => (
+        <li>
+          <strong>{n.name}</strong> — <span class="muted">{n.when}</span>
+          <p class="muted">{n.note}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="eo-section">
+    <h2>Ἄλλες σημαντικὲς ἑορτές</h2>
+    <p class="muted">
+      Ὁλόκληρος ὁ κατάλογος τῶν καθημερινῶν μνήμων εἶναι στοὺς
+      <a href={getLocalizedPath('/saints', lang)}>Ἁγίους</a>.
+      Παρακάτω, μερικὲς ἀπὸ τὶς πιὸ προσφιλεῖς:
+    </p>
+    <table class="eo-table">
+      <thead><tr><th>Ἡμερομηνία</th><th>Ἑορτή</th></tr></thead>
+      <tbody>
+        {alles.map(e => (
+          <tr class="eo-row">
+            <td class="eo-date">{e.dateLabel}</td>
+            <td class="eo-title">{e.title}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </section>
+</BaseLayout>
+
+<style>
+  .eo-section { margin-top: 2.5rem; }
+  .eo-section h2 {
+    margin-top: 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .eo-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+  }
+  .eo-table th, .eo-table td {
+    text-align: left;
+    padding: 0.65rem 0.5rem;
+    border-bottom: 1px solid var(--color-border);
+    vertical-align: top;
+  }
+  .eo-table th {
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--color-muted, #6e6452);
+  }
+  .eo-date { white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .eo-title { font-weight: 500; }
+  .eo-pascha .eo-title { color: var(--color-accent); font-weight: 700; }
+  .eo-despotiki .eo-date { color: var(--color-accent); }
+  .eo-theomitoriki .eo-date { color: #5a3a82; }
+  .eo-list { list-style: none; padding-left: 0; }
+  .eo-list li {
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .eo-list li:last-child { border-bottom: none; }
+  .eo-list p { margin: 0.25rem 0 0; }
+</style>

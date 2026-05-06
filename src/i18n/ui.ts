@@ -17,6 +17,7 @@ export const ui = {
     'nav.hymns': 'Ὕμνοι',
     'nav.about': 'Περί',
     'nav.search': 'Αναζήτηση',
+    'nav.eortologio': 'Ἑορτολόγιον',
     'all.akolouthies': 'Ὅλες οἱ Ἀκολουθίες',
     'all.prayers': 'Ὅλες οἱ Προσευχές',
     'all.hymns': 'Ὅλοι οἱ Ὕμνοι & Τροπάρια',

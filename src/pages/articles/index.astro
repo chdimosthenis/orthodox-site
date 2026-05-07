@@ -17,20 +17,10 @@ const articles = (await getCollection('articles'))
   .filter(a => a.data.language === lang && !a.data.draft)
   .filter(a => !isNaosEntry(a.data.tags))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-
-const rssHref = '/rss.xml';
 ---
 
 <BaseLayout title={t('all.articles')}>
-  <div class="page-header">
-    <h1>{t('all.articles')}</h1>
-    <a class="button-link rss-chip" href={rssHref} aria-label={t('rss.subscribe')}>
-      <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
-        <path fill="currentColor" d="M5.5 17a1.5 1.5 0 100 3 1.5 1.5 0 000-3zM4 11v3a7 7 0 017 7h3a10 10 0 00-10-10zM4 5v3a13 13 0 0113 13h3A16 16 0 004 5z"/>
-      </svg>
-      <span>{t('rss.subscribe')}</span>
-    </a>
-  </div>
+  <h1>{t('all.articles')}</h1>
   <ul class="card-list">
     {articles.length === 0 ? (
       <li class="muted">{t('no.entries')}</li>

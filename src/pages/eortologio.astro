@@ -1,9 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ShareButtons from '../components/ShareButtons.astro';
 import { getLangFromUrl, useTranslations, getLocalizedPath } from '../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const shareUrl = new URL(Astro.url.pathname, Astro.site).toString();
 
 // --- Δωδεκάορτον (12 great feasts) ---
 // Fixed-date feasts ordered by ecclesiastical year (starts 1 Sep).
@@ -368,6 +370,8 @@ const isGreek = lang === 'el';
       </tbody>
     </table>
   </section>
+
+  <ShareButtons title="Ἑορτολόγιον — Ὀρθόδοξος Λόγος" url={shareUrl} />
 </BaseLayout>
 
 <style>

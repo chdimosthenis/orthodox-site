@@ -1,11 +1,13 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ShareButtons from '../../components/ShareButtons.astro';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 import type { UIKey } from '../../i18n/ui';
 import newsData from '../../data/news.json';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const shareUrl = new URL(Astro.url.pathname, Astro.site).toString();
 
 type NewsItem = {
   title: string;
@@ -35,8 +37,8 @@ const generatedAt = new Date(newsData.generated_at).toLocaleString(localeTag, {
   </p>
 
   <ul class="news-page-list">
-    {items.map(item => (
-      <li class="news-page-item">
+    {items.map((item, idx) => (
+      <li class="news-page-item" id={`item-${idx + 1}`}>
         <p class="news-page-meta">
           <span class="news-page-source">{item.source}</span>
           {item.published && (
@@ -58,9 +60,32 @@ const generatedAt = new Date(newsData.generated_at).toLocaleString(localeTag, {
           <a href={item.url} target="_blank" rel="noopener noreferrer">{item.title}</a>
         </h3>
         {item.excerpt && <p class="news-page-excerpt muted">{item.excerpt}</p>}
+        <p class="news-page-share">
+          {(() => {
+            const itemShareUrl = `${shareUrl}#item-${idx + 1}`;
+            const enc = encodeURIComponent;
+            const x  = `https://twitter.com/intent/tweet?text=${enc(item.title)}&url=${enc(itemShareUrl)}`;
+            const fb = `https://www.facebook.com/sharer/sharer.php?u=${enc(itemShareUrl)}`;
+            const wa = `https://wa.me/?text=${enc(`${item.title} ${itemShareUrl}`)}`;
+            const tg = `https://t.me/share/url?url=${enc(itemShareUrl)}&text=${enc(item.title)}`;
+            const em = `mailto:?subject=${enc(item.title)}&body=${enc(itemShareUrl)}`;
+            return (
+              <>
+                <span class="share-tiny-label">Κοινοποίηση:</span>
+                <a class="share-tiny" href={x}  target="_blank" rel="noopener noreferrer" aria-label="X">X</a>
+                <a class="share-tiny" href={fb} target="_blank" rel="noopener noreferrer" aria-label="Facebook">FB</a>
+                <a class="share-tiny" href={wa} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">WA</a>
+                <a class="share-tiny" href={tg} target="_blank" rel="noopener noreferrer" aria-label="Telegram">TG</a>
+                <a class="share-tiny" href={em} aria-label="Email">✉</a>
+              </>
+            );
+          })()}
+        </p>
       </li>
     ))}
   </ul>
+
+  <ShareButtons title="Νέα τῆς Ὀρθοδοξίας — Ὀρθόδοξος Λόγος" url={shareUrl} />
 </BaseLayout>
 
 <style>
@@ -102,5 +127,35 @@ const generatedAt = new Date(newsData.generated_at).toLocaleString(localeTag, {
     margin: 0.5rem 0 0;
     font-size: 0.95rem;
     line-height: 1.55;
+  }
+  .news-page-share {
+    margin: 0.65rem 0 0;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    flex-wrap: wrap;
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+  }
+  .share-tiny-label {
+    color: var(--color-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .share-tiny {
+    display: inline-block;
+    min-width: 1.6rem;
+    text-align: center;
+    padding: 0.15rem 0.45rem;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    color: var(--color-muted);
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .share-tiny:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
   }
 </style>

@@ -1,5 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ShareButtons from '../components/ShareButtons.astro';
+
+const shareUrl = new URL(Astro.url.pathname, Astro.site).toString();
 
 // --- 1. Ἁγιορείτικες Μονές (κατὰ τάξιν, 20) ---
 const athos = [
@@ -190,6 +193,8 @@ const sina = [
       </tbody>
     </table>
   </section>
+
+  <ShareButtons title="Εὑρετήριο Ναῶν καὶ Μοναστηριῶν — Ὀρθόδοξος Λόγος" url={shareUrl} />
 </BaseLayout>
 
 <style>

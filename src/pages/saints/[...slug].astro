@@ -32,7 +32,7 @@ const jsonld = {
 };
 ---
 
-<BaseLayout title={entry.data.name} description={entry.data.life} jsonld={jsonld}>
+<BaseLayout title={entry.data.name} description={entry.data.life} jsonld={jsonld} ogImage={entry.data.iconUrl ?? '/og-default.png'}>
   <article>
     <header class="saint-header">
       {entry.data.iconUrl && (

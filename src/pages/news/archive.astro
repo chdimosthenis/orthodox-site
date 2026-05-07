@@ -1,0 +1,100 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { useTranslations } from '../../i18n/utils';
+
+const t = useTranslations('el');
+
+// Eagerly import every dated news archive at build time. Files live under
+// src/data/news/YYYY-MM-DD.json. If the directory is empty, days[] is empty
+// and the page renders an "οὐδὲν ἀκόμη" message.
+const archives = import.meta.glob<{ default: { generated_at: string; count: number; items: unknown[] } }>(
+  '../../data/news/*.json',
+  { eager: true }
+);
+
+const days = Object.entries(archives)
+  .map(([path, mod]) => {
+    const m = path.match(/(\d{4}-\d{2}-\d{2})\.json$/);
+    if (!m) return null;
+    return {
+      date: m[1],
+      count: (mod as any).default?.count ?? 0,
+      generated_at: (mod as any).default?.generated_at ?? null,
+    };
+  })
+  .filter((d): d is { date: string; count: number; generated_at: string | null } => d !== null)
+  .sort((a, b) => b.date.localeCompare(a.date));
+
+const formatDate = (iso: string) => {
+  const [y, m, d] = iso.split('-').map(Number);
+  return new Date(y, m - 1, d).toLocaleDateString('el-GR', {
+    weekday: 'long', day: 'numeric', month: 'long', year: 'numeric',
+  });
+};
+---
+
+<BaseLayout title="Ἀρχεῖο Νέων">
+  <h1>Ἀρχεῖο Νέων</h1>
+  <p class="muted">
+    Καθημερινὸ ἀρχεῖο τῶν συγκεντρωμένων νέων ἀπὸ ἑλληνικὰ ὀρθόδοξα μέσα ἐνημέρωσης.
+    Κάθε ἡμέρα διατηρεῖ τὸ δικό της στιγμιότυπο, ὥστε νὰ μπορεῖτε νὰ περιηγηθεῖτε σὲ προγενέστερες ἡμέρες.
+  </p>
+  <p class="back-link"><a href="/news/">← Πιὸ πρόσφατα νέα</a></p>
+
+  {days.length === 0 ? (
+    <p class="muted">Δὲν ὑπάρχουν ἀκόμη ἀρχειοθετημένες ἡμέρες.</p>
+  ) : (
+    <ul class="archive-list">
+      {days.map(d => (
+        <li class="archive-item">
+          <a href={`/news/${d.date}`}>
+            <time datetime={d.date} class="archive-date">{formatDate(d.date)}</time>
+            <span class="archive-count">{d.count} {d.count === 1 ? 'εἴδηση' : 'εἰδήσεις'}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  )}
+</BaseLayout>
+
+<style>
+  .back-link {
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+  }
+  .archive-list {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0 0;
+    display: grid;
+    gap: 0;
+  }
+  .archive-item {
+    border-bottom: 1px solid var(--color-border);
+  }
+  .archive-item:last-child { border-bottom: none; }
+  .archive-item a {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 1rem 0.5rem;
+    color: var(--color-text);
+    border-bottom: none;
+    text-decoration: none;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .archive-item a:hover {
+    background: var(--color-surface, #faf7f1);
+    color: var(--color-accent);
+  }
+  .archive-date {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+  }
+  .archive-count {
+    font-size: 0.88rem;
+    color: var(--color-muted);
+    font-variant-numeric: tabular-nums;
+  }
+</style>

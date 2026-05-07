@@ -42,6 +42,7 @@ SOURCES: list[tuple[str, str, str | None]] = [
 ]
 
 OUTPUT_PATH = REPO_ROOT / "src" / "data" / "news.json"
+ARCHIVE_DIR = REPO_ROOT / "src" / "data" / "news"
 
 # Lightweight category classification by keyword scan.
 CATEGORY_KEYWORDS: list[tuple[str, str]] = [
@@ -162,6 +163,39 @@ def main() -> None:
     OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT_PATH.write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding="utf-8")
     log(f"wrote {OUTPUT_PATH} ({len(top)} items)", level="ok")
+
+    # Also persist a dated archive copy under src/data/news/YYYY-MM-DD.json
+    # so old days remain browsable on the site even after the latest snapshot
+    # is overwritten on the next fetch. If a file already exists for today,
+    # we MERGE: keep all unique items by URL across the existing archive
+    # and the new fetch, then re-trim to the limit. That way running the
+    # fetcher multiple times in one day accumulates rather than replaces.
+    ARCHIVE_DIR.mkdir(parents=True, exist_ok=True)
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    archive_path = ARCHIVE_DIR / f"{today}.json"
+
+    merged_items = list(top)
+    if archive_path.exists():
+        try:
+            existing = json.loads(archive_path.read_text(encoding="utf-8"))
+            seen = {it["url"] for it in merged_items}
+            for it in existing.get("items", []):
+                if it["url"] not in seen:
+                    merged_items.append(it)
+                    seen.add(it["url"])
+            merged_items.sort(key=sort_key, reverse=True)
+            merged_items = merged_items[: args.limit]
+        except (json.JSONDecodeError, KeyError) as e:
+            log(f"  archive merge skipped (corrupt {archive_path.name}): {e}", level="warn")
+
+    archive_payload = {
+        "generated_at": output["generated_at"],
+        "date": today,
+        "count": len(merged_items),
+        "items": merged_items,
+    }
+    archive_path.write_text(json.dumps(archive_payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    log(f"wrote {archive_path} ({len(merged_items)} items)", level="ok")
 
 
 if __name__ == "__main__":

@@ -1,11 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import { useTranslations } from '../../i18n/utils';
 import type { UIKey } from '../../i18n/ui';
-import newsData from '../../data/news.json';
-
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
 
 type NewsItem = {
   title: string;
@@ -17,22 +13,48 @@ type NewsItem = {
   category: string;
 };
 
-const items = newsData.items as NewsItem[];
-const localeTag = lang === 'el' ? 'el-GR' : 'en-GB';
-const generatedAt = new Date(newsData.generated_at).toLocaleString(localeTag, {
-  dateStyle: 'medium',
-  timeStyle: 'short',
+type ArchiveData = {
+  generated_at: string;
+  date?: string;
+  count: number;
+  items: NewsItem[];
+};
+
+export async function getStaticPaths() {
+  const archives = import.meta.glob<{ default: ArchiveData }>(
+    '../../data/news/*.json',
+    { eager: true }
+  );
+  return Object.entries(archives)
+    .map(([path, mod]) => {
+      const m = path.match(/(\d{4}-\d{2}-\d{2})\.json$/);
+      if (!m) return null;
+      return { params: { date: m[1] }, props: { data: mod.default } };
+    })
+    .filter((p): p is { params: { date: string }; props: { data: ArchiveData } } => p !== null);
+}
+
+const t = useTranslations('el');
+const { date } = Astro.params;
+const { data } = Astro.props;
+const items = data.items;
+
+const formatLong = (iso: string) => {
+  const [y, m, d] = iso.split('-').map(Number);
+  return new Date(y, m - 1, d).toLocaleDateString('el-GR', {
+    weekday: 'long', day: 'numeric', month: 'long', year: 'numeric',
+  });
+};
+
+const generatedAt = new Date(data.generated_at).toLocaleString('el-GR', {
+  dateStyle: 'medium', timeStyle: 'short',
 });
 ---
 
-<BaseLayout title={t('news.title')}>
-  <h1>{t('news.title')}</h1>
-  <p class="muted">{t('news.intro')}</p>
-  <p class="metadata">
-    {t('news.lastUpdated')}: <time datetime={newsData.generated_at}>{generatedAt}</time>
-    {' · '}
-    <a href="/news/archive">Ἀρχεῖο ἡμερῶν →</a>
-  </p>
+<BaseLayout title={`Νέα · ${formatLong(date!)}`}>
+  <p class="back-link"><a href="/news/archive">← Ἀρχεῖο Νέων</a></p>
+  <h1>Νέα τῆς {formatLong(date!)}</h1>
+  <p class="metadata">Στιγμιότυπο: <time datetime={data.generated_at}>{generatedAt}</time></p>
 
   <ul class="news-page-list">
     {items.map(item => (
@@ -43,7 +65,7 @@ const generatedAt = new Date(newsData.generated_at).toLocaleString(localeTag, {
             <>
               {' · '}
               <time datetime={item.published}>
-                {new Date(item.published).toLocaleDateString(localeTag, { day: 'numeric', month: 'long', year: 'numeric' })}
+                {new Date(item.published).toLocaleDateString('el-GR', { day: 'numeric', month: 'long', year: 'numeric' })}
               </time>
             </>
           )}
@@ -64,6 +86,10 @@ const generatedAt = new Date(newsData.generated_at).toLocaleString(localeTag, {
 </BaseLayout>
 
 <style>
+  .back-link {
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+  }
   .news-page-list {
     list-style: none;
     padding: 0;

@@ -8,6 +8,8 @@ life: "Ὁ Ἅγιος Ἰάκωβος Τσαλίκης (κατὰ κόσμον 
 language: el
 wikipediaTitle: "Iakovos Tsalikis"
 license: original
+reposeYear: 1991
+reposeLabel: "†1991"
 ---
 
 Ὁ Ἅγιος Ἰάκωβος Τσαλίκης γεννήθηκε στὰ μικρασιατικὰ παράλια. Μετὰ τὴν Καταστροφὴ

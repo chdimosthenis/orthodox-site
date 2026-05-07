@@ -9,6 +9,8 @@ wikipediaTitle: Mark the Evangelist
 license: original
 iconUrl: https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Emmanuel_Tzanes_-_St._Mark_the_Evangelist_-_1657.jpg/960px-Emmanuel_Tzanes_-_St._Mark_the_Evangelist_-_1657.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail
 iconAttribution: Emmanuel Tzanes · Wikimedia Commons · Public domain
+reposeYear: 68
+reposeLabel: "†c. 68"
 ---
 
 Ὁ Μάρκος, γνωστὸς καὶ ὡς Ἰωάννης Μᾶρκος, ἦταν ἀνεψιὸς τοῦ Βαρνάβα καὶ συνεργάτης τοῦ Παύλου στὴν πρώτη ἀποστολικὴ περιοδεία. Ἀργότερα ἐργάστηκε στενὰ μὲ τὸν ἀπόστολο Πέτρο στὴ Ρώμη, καὶ τὸ Εὐαγγέλιό του θεωρεῖται οὐσιαστικὰ ἡ καταγραφὴ τοῦ προφορικοῦ κηρύγματος τοῦ Πέτρου.

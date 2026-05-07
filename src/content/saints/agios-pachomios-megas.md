@@ -8,6 +8,8 @@ wikipediaTitle: Pachomius the Great
 license: original
 iconUrl: https://upload.wikimedia.org/wikipedia/commons/3/39/StPakhom.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled
 iconAttribution: Wikimedia Commons · Public domain
+reposeYear: 348
+reposeLabel: "†348"
 ---
 
 Ὁ Παχώμιος γεννήθηκε στὴ Θηβαΐδα τῆς Αἰγύπτου τὸ 292 ἀπὸ εἰδωλολατρικὴ οἰκογένεια. Στρατεύθηκε ἀναγκαστικὰ στὸ ρωμαϊκὸ στρατὸ τοῦ Κωνσταντίνου, καὶ κατὰ τὴ διάρκεια τῆς θητείας του βίωσε τὴν ἀγάπη τῶν χριστιανῶν: σὲ μία πόλη ποὺ διέρχονταν ἁλυσιδωμένοι, οἱ ντόπιοι χριστιανοὶ τοῦ ἔφεραν τροφὴ καὶ νερό. Συνταρακτηκε καὶ βαπτίστηκε.

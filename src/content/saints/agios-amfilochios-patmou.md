@@ -8,6 +8,8 @@ life: "Ὁ Ἅγιος Ἀμφιλόχιος (κατὰ κόσμον Ἀθανά
 language: el
 wikipediaTitle: "Amphilochios Makris"
 license: original
+reposeYear: 1970
+reposeLabel: "†1970"
 ---
 
 Ὁ Ἅγιος Ἀμφιλόχιος εἶναι μία ἀπὸ τὶς πιὸ φωτεινὲς μορφὲς τοῦ νεώτερου ἑλληνικοῦ

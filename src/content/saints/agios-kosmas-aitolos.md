@@ -9,6 +9,8 @@ wikipediaTitle: Cosmas of Aetolia
 license: original
 iconUrl: https://upload.wikimedia.org/wikipedia/commons/6/6d/Kosmas_Aitolos.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled
 iconAttribution: Unknown author · Wikimedia Commons · Public domain
+reposeYear: 1779
+reposeLabel: "†1779"
 ---
 
 Ὁ Κωνσταντῖνος —τὸ κατὰ κόσμον ὄνομα τοῦ Ἁγίου Κοσμᾶ— γεννήθηκε στὸ Μέγα Δένδρο Αἰτωλίας τὸ 1714. Σπούδασε στὴν Ἀθωνιάδα Ἀκαδημία ὑπὸ τὸν Εὐγένιο Βούλγαρη καὶ ἐκάρη μοναχὸς στὸ Ἅγιον Ὄρος μὲ τὸ ὄνομα Κοσμᾶς. Τὸ 1759, μετὰ ἀπὸ ἔγκριση τοῦ Πατριάρχη Σεραφεὶμ Β', ξεκίνησε ἱεραποστολικὲς περιοδεῖες στὴ σκλαβωμένη Ἑλλάδα.

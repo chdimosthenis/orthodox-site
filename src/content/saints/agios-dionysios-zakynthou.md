@@ -9,6 +9,8 @@ wikipediaTitle: Dionysios of Zakynthos
 license: original
 iconUrl: https://upload.wikimedia.org/wikipedia/commons/2/2a/Saint_Dionysius_of_Zante.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled
 iconAttribution: Unknown author · Wikimedia Commons · Public domain
+reposeYear: 1622
+reposeLabel: "†1622"
 ---
 
 Ὁ Δραγανίγος Σιγοῦρος, ὁ μετέπειτα Διονύσιος, γεννήθηκε στὴ Ζάκυνθο τὸ 1547 ἀπὸ εὐγενῆ οἰκογένεια. Ἐκάρη μοναχὸς στὴν Παναγία τῆς Στροφάδων (νησιὰ νοτίως τῆς Ζακύνθου), καὶ ἀργότερα διορίστηκε Ἀρχιεπίσκοπος Αἰγίνης. Παραιτήθηκε καὶ ἐπέστρεψε στὴ Ζάκυνθο, ὅπου ἔζησε ὡς ἁπλὸς ἡγούμενος μέχρι τὴν κοίμησή του τὸ 1622.

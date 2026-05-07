@@ -8,6 +8,8 @@ life: "Ὁ Ἅγιος Νικόλαος Πλανᾶς γεννήθηκε τὸ 1
 language: el
 wikipediaTitle: "Nicholas Planas"
 license: original
+reposeYear: 1932
+reposeLabel: "†1932"
 ---
 
 Ὁ «Παπα-Νικόλας Πλανᾶς» ἀναδείχθηκε στὴν συνείδηση τοῦ ἀθηναϊκοῦ λαοῦ ὡς ἕνας

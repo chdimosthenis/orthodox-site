@@ -8,6 +8,8 @@ wikipediaTitle: Raphael of Lesbos
 license: original
 iconUrl: https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Agioi_rafail%2C_nikolaos_and_eirini.jpg/960px-Agioi_rafail%2C_nikolaos_and_eirini.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail
 iconAttribution: P.aimel'écriture · Wikimedia Commons · CC BY-SA 3.0
+reposeYear: 1463
+reposeLabel: "†1463"
 ---
 
 Οἱ Ἅγιοι Ραφαήλ, Νικόλαος καὶ Εἰρήνη ἀνήκουν στὴν κατηγορία τῶν νεοφανῶν ἁγίων — αὐτῶν ποὺ ἀνεκαλύφθησαν πολὺ μετὰ τὸ μαρτύριό τους. Ὁ Ραφαὴλ ἦταν Ἑλληνας ἱερομόναχος, ἡγούμενος τοῦ Καρυέως μοναστηριοῦ στὴ Λέσβο. Ὁ Νικόλαος ἦταν διάκονος καὶ συνασκητής του. Ἡ Εἰρήνη ἦταν δωδεκάχρονη κόρη τοῦ τοπικοῦ ἄρχοντα Βασιλείου, στὸ χωριὸ Θερμή.

@@ -7,8 +7,10 @@ life: Πρῶτος στυλίτης (5ος αἰ.)· ἀσκήτεψε γιὰ 
 language: el
 wikipediaTitle: Simeon Stylites
 license: original
-iconUrl: https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Plaque_de_Saint-Simeon_%28Louvre%2C_Bj_2180%29_%28cropped%29.jpg/960px-Plaque_de_Saint-Simeon_%28Louvre%2C_Bj_2180%29_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail
-iconAttribution: Tangopaso · Wikimedia Commons · Public domain
+iconUrl: https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/MHS_Szymon_Slupnik_XVI_w_Kostarowce_p.jpg/640px-MHS_Szymon_Slupnik_XVI_w_Kostarowce_p.jpg
+iconAttribution: Anonymous, post-Byzantine icon (16th c.), Sanok Historical Museum · Wikimedia Commons · Public domain
+reposeYear: 459
+reposeLabel: "†459"
 ---
 
 Ὁ Συμεὼν γεννήθηκε γύρω στὸ 390 σὲ χωριὸ τῆς ὀρεινῆς Κιλικίας. Σὲ ἡλικία δεκατριῶν ἐτῶν, ἀκούγοντας τοὺς Μακαρισμοὺς στὴν ἐκκλησία, ζήτησε νὰ καταλάβει τί σήμαινε «μακάριοι οἱ καθαροὶ τῇ καρδίᾳ». Ἕνας γέροντας τοῦ ἀπάντησε: «Σιωπή, νηστεία, προσευχή, ταπείνωση». Ἀπὸ τότε ξεκίνησε τὴν ἀσκητική του πορεία.

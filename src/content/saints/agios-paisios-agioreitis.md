@@ -16,6 +16,8 @@ wikipediaTitle: Paisios of Mount Athos
 license: original
 iconUrl: https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Paisios_of_Mount_Athos.jpg/960px-Paisios_of_Mount_Athos.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail
 iconAttribution: Spartacos31 · Wikimedia Commons · CC BY 4.0
+reposeYear: 1994
+reposeLabel: "†1994"
 ---
 
 Ὁ Ἅγιος Παΐσιος ὁ Ἁγιορείτης ἀναδείχθηκε σὲ μία ἀπὸ τὶς πιὸ ἀγαπητὲς φυσιογνωμίες

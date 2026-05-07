@@ -9,6 +9,8 @@ wikipediaTitle: Philothei of Athens
 license: original
 iconUrl: https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Agia-philothei.jpg/960px-Agia-philothei.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail
 iconAttribution: Unknown author · Wikimedia Commons · Public domain
+reposeYear: 1589
+reposeLabel: "†1589"
 ---
 
 Ἡ Ρεβούλα Μπενιζέλου, ἡ μετέπειτα μοναχὴ Φιλοθέη, γεννήθηκε στὴν Ἀθήνα τὸ 1522 ἀπὸ ἀριστοκρατικὴ οἰκογένεια. Παντρεύτηκε σὲ νεαρὴ ἡλικία ἕναν εὐγενὴ ποὺ τὴν κακοποιοῦσε· χήρευσε σύντομα. Ἀντὶ νὰ ξαναπαντρευτεῖ ὅπως τὴν πίεζε ἡ οἰκογένειά της, ἐκάρη μοναχὴ μὲ τὸ ὄνομα Φιλοθέη — «αὐτὴ ποὺ ἀγαπᾶ τὸν Θεό».

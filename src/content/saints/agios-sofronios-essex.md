@@ -15,6 +15,8 @@ wikipediaTitle: Sophrony (Sakharov)
 license: original
 iconUrl: https://upload.wikimedia.org/wikipedia/commons/4/40/Eldersophrony.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled
 iconAttribution: Jack1956 · Wikimedia Commons · Public domain
+reposeYear: 1993
+reposeLabel: "†1993"
 ---
 
 Ὁ Ἅγιος Σωφρόνιος εἶναι ἀπὸ τὶς πιὸ θεολογικὰ βαθιὲς μορφὲς τῆς ὀρθόδοξης

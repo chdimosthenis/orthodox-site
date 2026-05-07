@@ -10,6 +10,8 @@ life: Πολιούχος της Θεσσαλονίκης· μαρτύρησε υ
 language: el
 iconUrl: https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Saint_Demetrius_of_Protat.JPG/960px-Saint_Demetrius_of_Protat.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail
 iconAttribution: Manuel Panselinos · Wikimedia Commons · Public domain
+reposeYear: 306
+reposeLabel: "†306"
 ---
 
 Ρωμαίος ευγενής αξιωματικός στη Θεσσαλονίκη, ο άγιος Δημήτριος ομολόγησε ανοιχτά την πίστη του στον Χριστό κηρύσσοντας στους νεαρούς της πόλης. Όταν ο αυτοκράτωρ Μαξιμιανός το έμαθε, διέταξε τη φυλάκισή του. Στη φυλακή ο νεαρός Νέστωρ ζήτησε ευλογία να αντιμετωπίσει τον φοβερό μονομάχο Λυαίο, και κατά παρότρυνση του αγίου τον νίκησε εν ονόματι του Χριστού. Σε εκδίκηση, ο Δημήτριος λογχίστηκε στη φυλακή το 306. Από τον τάφο του ανέβλυζε για αιώνες θαυματουργό μύρο — εξ ου και η προσωνυμία «Μυροβλύτης». Είναι ο πολιούχος και προστάτης της Θεσσαλονίκης.

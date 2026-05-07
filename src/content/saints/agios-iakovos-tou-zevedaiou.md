@@ -8,6 +8,8 @@ wikipediaTitle: James, son of Zebedee
 license: original
 iconUrl: https://upload.wikimedia.org/wikipedia/commons/f/fb/Last_Supper_by_Theophanes_the_Cretan.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled
 iconAttribution: Theophanes the Cretan · Wikimedia Commons · Public domain
+reposeYear: 44
+reposeLabel: "†44"
 ---
 
 Ὁ Ἰάκωβος καὶ ὁ Ἰωάννης ἦταν ἀδέρφια καὶ υἱοὶ τοῦ Ζεβεδαίου, ψαρέοντας μαζὶ μὲ τὸν πατέρα τους στὴ Γαλιλαία. Ὁ Κύριος τοὺς κάλεσε ἐνῶ ἐπισκεύαζαν τὰ δίκτυα μαζὶ μὲ τοὺς ἑταίρους τους Σίμωνα Πέτρο καὶ Ἀνδρέα. Ὁ Ἰάκωβος ἀνῆκε στὸν στενότερο κύκλο τοῦ Κυρίου: μαζὶ μὲ τὸν Πέτρο καὶ τὸν Ἰωάννη, ἦταν παρὼν στὴ Μεταμόρφωση, στὴν ἀνάσταση τῆς θυγατέρας τοῦ Ἰαείρου, καὶ στὴν ἀγωνία τῆς Γεθσημανί.

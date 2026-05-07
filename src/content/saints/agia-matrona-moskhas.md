@@ -9,6 +9,8 @@ wikipediaTitle: Matrona of Moscow
 license: original
 iconUrl: https://upload.wikimedia.org/wikipedia/commons/6/66/%D0%91%D0%BB%D0%B0%D0%B6%D0%B5%D0%BD%D0%BD%D0%B0%D1%8F_%D0%9C%D0%B0%D1%82%D1%80%D0%BE%D0%BD%D0%B0_%D0%9C%D0%BE%D1%81%D0%BA%D0%BE%D0%B2%D1%81%D0%BA%D0%B0%D1%8F_%2813899411716%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled
 iconAttribution: Иконописная мастерская Елеон · Wikimedia Commons · CC BY 2.0
+reposeYear: 1952
+reposeLabel: "†1952"
 ---
 
 Ἡ Ματρῶνα Νικίτικνα Νικόνωβα γεννήθηκε τὸ 1881 σὲ ἀπομονωμένο χωριὸ τῆς ἐπαρχίας Τούλα τῆς Ρωσίας. Γεννήθηκε ὁλικὰ τυφλή. Ἀπὸ νεαρὴ ἡλικία ἔδειξε χάρισμα διοράσεως — προφήτευε γεγονότα, διέκρινε πνευματικὲς καταστάσεις τῶν ἀνθρώπων, ἔδινε συμβουλές ποὺ ἀποδεικνύονταν θεόπνευστες. Σὲ ἡλικία δεκαεπτὰ ἐτῶν, παράλυσε τὰ πόδια της — δὲν θὰ ξαναπερπατοῦσε.

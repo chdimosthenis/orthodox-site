@@ -9,6 +9,8 @@ wikipediaTitle: Ignatius of Antioch
 license: original
 iconUrl: https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Hosios_Loukas_%28south_west_chapel%2C_south_side%29_-_Ignatios.jpg/960px-Hosios_Loukas_%28south_west_chapel%2C_south_side%29_-_Ignatios.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail
 iconAttribution: AnonymousUnknown author · Wikimedia Commons · Public domain
+reposeYear: 107
+reposeLabel: "†c. 107"
 ---
 
 Ὁ Ἰγνάτιος ὑπῆρξε μαθητὴς τοῦ Εὐαγγελιστοῦ Ἰωάννη καὶ τρίτος ἐπίσκοπος Ἀντιοχείας μετὰ τοὺς ἀποστόλους Πέτρο καὶ Εὐόδιο. Τὸ προσωνύμιο «Θεοφόρος» (αὐτὸς ποὺ φέρει τὸν Θεὸ μέσα του) συνδέεται μὲ τὴν παράδοση ὅτι ἦταν τὸ παιδὶ ποὺ ὁ Κύριος εἶχε τοποθετήσει στὸ μέσον τῶν ἀποστόλων (Ματθ. 18,2).

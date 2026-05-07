@@ -8,6 +8,8 @@ wikipediaTitle: "Gerasimos of Kefalonia"
 iconUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/S%C3%A3o_Gerasimos_de_Cefal%C3%B3nia%2C_Antivouniotissa_Museum%2C_Corfu_01.jpg/500px-S%C3%A3o_Gerasimos_de_Cefal%C3%B3nia%2C_Antivouniotissa_Museum%2C_Corfu_01.jpg"
 iconAttribution: "Antivouniotissa Museum, Corfu · Wikimedia Commons · CC BY-SA 4.0"
 license: original
+reposeYear: 1579
+reposeLabel: "†1579"
 ---
 
 Ὁ Ἀναστάσιος Νοταρᾶς, μετέπειτα Γεράσιμος, γεννήθηκε στὰ Τρίκαλα Κορινθίας τὸ 1509 ἀπὸ ἀριστοκρατικὴ οἰκογένεια. Σπούδασε στὴν Κωνσταντινούπολη καὶ ταξίδεψε στοὺς Ἁγίους Τόπους, στὴ Ζάκυνθο καὶ στὸ Ἅγιον Ὄρος ὅπου ἐκάρη μοναχός. Ἀναζητώντας ἡσυχία, ἐγκαταστάθηκε στὴν Κεφαλληνία τὸ 1554.

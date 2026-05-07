@@ -9,6 +9,8 @@ wikipediaTitle: Forty Martyrs of Sebaste
 license: original
 iconUrl: https://upload.wikimedia.org/wikipedia/commons/3/3b/FortyMartyrsofSebaste.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled
 iconAttribution: anonimus · Wikimedia Commons · Public domain
+reposeYear: 320
+reposeLabel: "†320"
 ---
 
 Στὴν ἐποχὴ τοῦ Λικινίου (320 μ.Χ.), ὁ ρωμαϊκὸς στρατὸς ἦταν ἀκόμα ἀνεκτικὸς πρὸς τοὺς χριστιανοὺς στρατιῶτες, ἀλλὰ τοπικοὶ ἀξιωματοῦχοι σὲ ὁρισμένες ἐπαρχίες ἀκολουθοῦσαν διαφορετικὴ πολιτική. Στὴ Σεβάστεια τῆς Μ. Ἀσίας (σημερινὴ Σιβᾶς, Τουρκία), σαράντα στρατιῶτες τῆς ἴδιας λεγεώνας ὁμολόγησαν δημοσίως τὴν πίστη τους.

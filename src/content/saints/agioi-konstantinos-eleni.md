@@ -10,6 +10,8 @@ license: original
 iconUrl: https://upload.wikimedia.org/wikipedia/commons/c/cc/Constantine_I_Hagia_Sophia.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled
 iconAttribution: 'File:Hagia_Sophia_Southwestern_entrance_mosaics.jpg: Photograph: Myrabella derivative
   work: Myrabella · Wikimedia Commons · Public domain'
+reposeYear: 337
+reposeLabel: "†337"
 ---
 
 Ὁ Μέγας Κωνσταντῖνος (272-337) εἶναι ἡ καθοριστικότερη ἱστορικὴ φυσιογνωμία γιὰ τὴ Χριστιανικὴ Ἐκκλησία μετὰ τοὺς Ἀποστόλους. Πρὸ τῆς νικητήριας μάχης στὴ Μουλβία γέφυρα τὸ 312, εἶδε σὲ ὅραμα τὸν Σταυρὸ μὲ τὴν ἐπιγραφὴ «ἐν τούτῳ νίκα». Τὸ ἑπόμενο ἔτος ὑπέγραψε τὸ Διάταγμα τῶν Μεδιολάνων, ποὺ ἐξασφάλισε τὴ θρησκευτικὴ ἀνεκτικότητα στὴ Ρωμαϊκὴ αὐτοκρατορία.

@@ -5,9 +5,11 @@ category: martyr
 life: "Ἡ Σαμαρείτιδα τοῦ Εὐαγγελίου (Ἰω. 4) ποὺ συνομίλησε μὲ τὸν Χριστὸ στὸ φρέαρ τοῦ Ἰακώβ· ἀργότερα ἱεραπόστολος καὶ μάρτυς στὴ Ρώμη."
 language: el
 wikipediaTitle: "Samaritan woman at the well"
-iconUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Angelika_Kauffmann_-_Christus_und_die_Samariterin_am_Brunnen_-1796.jpeg/960px-Angelika_Kauffmann_-_Christus_und_die_Samariterin_am_Brunnen_-1796.jpeg"
-iconAttribution: "Angelika Kauffmann (1796) · Wikimedia Commons · Public domain"
+iconUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Samaritan_Woman_at_the_Well_%28Tzanes%29.png/640px-Samaritan_Woman_at_the_Well_%28Tzanes%29.png"
+iconAttribution: "Emmanuel Tzanes, Cretan school (1689) · Wikimedia Commons · Public domain"
 license: original
+reposeYear: 66
+reposeLabel: "†c. 66"
 ---
 
 Ἡ ἀνώνυμη Σαμαρείτιδα τοῦ τέταρτου κεφαλαίου τοῦ Εὐαγγελίου τοῦ Ἰωάννου παίρνει ὄνομα ἀπὸ τὴν Παράδοση: Φωτεινή («αὐτὴ ποὺ φωτίστηκε ἀπὸ τὸν Χριστό»). Στὸ φρέαρ τοῦ Ἰακὼβ ἔλαβε τὴ διδαχὴ περὶ τοῦ ζῶντος ὕδατος καὶ ἔγινε ἡ πρώτη ποὺ ἐκφράστηκε ἀπὸ τὸν Κύριο γιὰ τὴν ταυτότητά Του ὡς Μεσσία.

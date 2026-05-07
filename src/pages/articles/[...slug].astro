@@ -17,9 +17,6 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const { Content } = await render(entry);
 const shareUrl = new URL(Astro.url.pathname, Astro.site).toString();
-const dateStr = entry.data.pubDate.toLocaleDateString('el-GR', {
-  year: 'numeric', month: 'long', day: 'numeric',
-});
 
 const jsonld = {
   '@context': 'https://schema.org',
@@ -38,9 +35,7 @@ const jsonld = {
   <article>
     <header class="article-header">
       <h1 lang={entry.data.language}>{entry.data.title}</h1>
-      <p class="metadata">
-        {entry.data.author} · <time datetime={entry.data.pubDate.toISOString()}>{dateStr}</time>
-      </p>
+      <p class="metadata">{entry.data.author}</p>
     </header>
     <div class="article-body" lang={entry.data.language}>
       <Content />

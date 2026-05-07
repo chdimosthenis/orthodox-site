@@ -7,8 +7,10 @@ life: Παρθενομάρτυς τῆς Ἀντιόχειας Πισιδίας 
 language: el
 wikipediaTitle: Saint Margaret the Virgin
 license: original
-iconUrl: https://upload.wikimedia.org/wikipedia/commons/8/81/St.Marina_the_Martyr_holding_a_devil.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled
-iconAttribution: died more than 70 years ago · Wikimedia Commons · Public domain
+iconUrl: https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Icon_of_Saint_Marina_%2814th_-15th_cent%29_at_the_Byzantine_and_Christian_Museum_of_Athens_on_12_April_2019.jpg/640px-Icon_of_Saint_Marina_%2814th_-15th_cent%29_at_the_Byzantine_and_Christian_Museum_of_Athens_on_12_April_2019.jpg
+iconAttribution: Anonymous, Byzantine (14th–15th c.), Byzantine and Christian Museum of Athens · Wikimedia Commons · CC BY-SA 4.0
+reposeYear: 304
+reposeLabel: "†c. 304"
 ---
 
 Ἡ Ἁγία Μαρίνα γεννήθηκε στὴν Ἀντιόχεια τῆς Πισιδίας ἀπὸ εἰδωλολάτρη πατέρα. Ἀφοῦ ἔμαθε γιὰ τὸν Χριστὸ ἀπὸ τὴν τροφό της, βαπτίστηκε κρυφὰ ὅταν ἦταν δώδεκα ἐτῶν. Ὁ πατέρας της, ποὺ ἀνακάλυψε τὴν πίστη της, τὴν ἀπέρριψε.

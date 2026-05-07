@@ -9,6 +9,8 @@ wikipediaTitle: John the Baptist
 license: original
 iconUrl: https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Meister_von_Gracanica_%28I%29_001.jpg/960px-Meister_von_Gracanica_%28I%29_001.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail
 iconAttribution: Meister von Gracanica (I) · Wikimedia Commons · Public domain
+reposeYear: 32
+reposeLabel: "†c. 32"
 ---
 
 Ὁ Ἰωάννης ὁ Πρόδρομος εἶναι ἡ ζωντανὴ γέφυρα ἀνάμεσα στοὺς προφῆτες τῆς Παλαιᾶς Διαθήκης καὶ τὸν Μεσσία. Γεννήθηκε ἀπὸ τὸν ἱερέα Ζαχαρία καὶ τὴν Ἐλισάβετ μὲ θαυματουργικὸ τρόπο, ἀφοῦ οἱ γονεῖς του ἦταν ἡλικιωμένοι καὶ στεῖροι. Ἔζησε ὡς ἀσκητὴς στὴν ἔρημο τοῦ Ἰορδάνη, κηρύττοντας τὸ βάπτισμα τῆς μετανοίας καὶ προαναγγέλλοντας τὴν ἔλευση τοῦ Χριστοῦ.

@@ -15,6 +15,8 @@ wikipediaTitle: Joseph the Hesychast
 license: original
 iconUrl: https://upload.wikimedia.org/wikipedia/commons/a/a7/%D0%98%D0%BE%D1%81%D0%B8%D1%84_%D0%98%D1%81%D0%B8%D1%85%D0%B0%D1%81%D1%82.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled
 iconAttribution: Litrian · Wikimedia Commons · CC BY-SA 4.0
+reposeYear: 1959
+reposeLabel: "†1959"
 ---
 
 Ὁ Ἅγιος Ἰωσὴφ ὁ Ἡσυχαστὴς εἶναι ὁ ἀρχιτέκτονας τῆς ἀναγέννησης τοῦ

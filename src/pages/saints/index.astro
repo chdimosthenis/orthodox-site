@@ -13,21 +13,15 @@ const t = useTranslations(lang);
 // don't render here.
 const allSaints = (await getCollection('saints'))
   .filter(s => !s.data.draft)
-  .filter(s => s.data.language === lang)
-  .sort((a, b) => a.data.name.localeCompare(b.data.name, lang === 'el' ? 'el-GR' : 'en-GB'));
+  .filter(s => s.data.language === lang);
 
-// Strip combining diacritics (U+0300–U+036F) to compute the grouping initial.
-function initialOf(name: string): string {
-  const ch = name.normalize('NFD').replace(/[̀-ͯ]/g, '').charAt(0);
-  return ch.toUpperCase();
-}
-
-const groups: Record<string, typeof allSaints> = {};
-for (const s of allSaints) {
-  const k = initialOf(s.data.name) || '·';
-  (groups[k] ||= []).push(s);
-}
-const letters = Object.keys(groups).sort((a, b) => a.localeCompare(b, lang === 'el' ? 'el-GR' : 'en-GB'));
+// Chronological sort: oldest -> newest by year of repose. Saints with no
+// reposeYear sink to the bottom (sentinel = 9999).
+const sorted = allSaints.slice().sort((a, b) => {
+  const ay = a.data.reposeYear ?? 9999;
+  const by = b.data.reposeYear ?? 9999;
+  return ay - by;
+});
 
 // Per-category counts.
 type Cat = 'martyr' | 'monastic' | 'hierarch' | 'apostle' | 'prophet' | 'other';
@@ -65,35 +59,25 @@ const counts = Object.fromEntries(
     </ul>
   </div>
 
-  {letters.length > 0 && (
-    <nav class="letter-toc" aria-label={lang === 'el' ? 'Ἀλφαβητικὴ πλοήγηση' : 'Alphabetical navigation'}>
-      {letters.map(l => (
-        <a href={`#letter-${l}`}>{l}</a>
-      ))}
-    </nav>
-  )}
-
-  {letters.length === 0 ? (
+  {sorted.length === 0 ? (
     <p class="muted">{t('no.entries')}</p>
-  ) : letters.map(l => (
-    <section class="letter-section" id={`letter-${l}`}>
-      <h2>{l} <span class="muted small">({groups[l].length})</span></h2>
-      <ul class="card-list">
-        {groups[l].map(s => (
-          <li>
-            <SaintCard
-              slug={s.id}
-              name={s.data.name}
-              feastDay={s.data.feastDay}
-              category={s.data.category}
-              language={s.data.language}
-              iconUrl={s.data.iconUrl}
-            />
-          </li>
-        ))}
-      </ul>
-    </section>
-  ))}
+  ) : (
+    <ul class="card-list">
+      {sorted.map(s => (
+        <li>
+          <SaintCard
+            slug={s.id}
+            name={s.data.name}
+            feastDay={s.data.feastDay}
+            category={s.data.category}
+            language={s.data.language}
+            iconUrl={s.data.iconUrl}
+            reposeLabel={s.data.reposeLabel}
+          />
+        </li>
+      ))}
+    </ul>
+  )}
 </BaseLayout>
 
 <style>
@@ -137,35 +121,9 @@ const counts = Object.fromEntries(
     font-variant-numeric: tabular-nums;
     margin-right: 0.25rem;
   }
-  .letter-toc {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem 0.6rem;
-    padding: 0.75rem 0;
-    margin-bottom: 1.5rem;
-    border-bottom: 1px solid var(--color-border);
+  .card-list {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 0;
   }
-  .letter-toc a {
-    display: inline-block;
-    min-width: 1.6em;
-    padding: 0.25rem 0.5rem;
-    text-align: center;
-    font-weight: 600;
-    border: 1px solid var(--color-border);
-    border-radius: 2px;
-    border-bottom: 1px solid var(--color-border);
-    color: var(--color-text);
-  }
-  .letter-toc a:hover {
-    background: var(--color-accent);
-    color: white;
-    border-color: var(--color-accent);
-  }
-  .letter-section { margin-top: 2rem; scroll-margin-top: 4rem; }
-  .letter-section h2 {
-    margin-top: 0;
-    padding-bottom: 0.4rem;
-    border-bottom: 1px solid var(--color-border);
-  }
-  .small { font-size: 0.7em; font-weight: 400; }
 </style>

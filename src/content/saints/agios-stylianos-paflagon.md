@@ -9,6 +9,8 @@ wikipediaTitle: Stylianos of Paphlagonia
 license: original
 iconUrl: https://upload.wikimedia.org/wikipedia/commons/b/bb/Stephen_Arnea_Church_Stylian.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled
 iconAttribution: Unknown author · Wikimedia Commons · Public domain
+reposeYear: 550
+reposeLabel: "6ος αἰὼν"
 ---
 
 Ὁ Στυλιανὸς γεννήθηκε στὴν Ἀδριανούπολη τῆς Παφλαγονίας (σημερινὴ Β. Τουρκία) τὸν 6ο αἰώνα. Ἀπὸ μικρὸς διέθεσε τὴν περιουσία ποὺ κληρονόμησε στοὺς φτωχοὺς καὶ ἔγινε μοναχός. Γιὰ νὰ ἀποφύγει τὴν δόξα ποὺ τοῦ προσέφεραν, ἀναχώρησε σὲ μία σπηλιὰ τῆς ἐρήμου ὅπου ἔζησε σαράντα χρόνια ὡς ἀναχωρητής, καθαρώτατος καὶ ταπεινός.

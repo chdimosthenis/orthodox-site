@@ -9,6 +9,8 @@ wikipediaTitle: Theodore Stratelates
 license: original
 iconUrl: https://upload.wikimedia.org/wikipedia/commons/7/79/Teodor_Stratilat.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled
 iconAttribution: Manuel Panselinos · Wikimedia Commons · Public domain
+reposeYear: 319
+reposeLabel: "†319"
 ---
 
 Ὁ Θεόδωρος ὁ Στρατηλάτης γεννήθηκε στὴν Εὐχάιτα τῆς Μ. Ἀσίας καὶ διακρίθηκε ἀπὸ νωρὶς γιὰ τὴν ἀνδρεία του στὸν Ρωμαϊκὸ στρατό. Ὁ αὐτοκράτορας Λικίνιος, παρόλο ποὺ ἦταν εἰδωλολάτρης, τὸν διόρισε στρατηλάτη (ἀρχιστράτηγο) τῆς λεγεώνας τῆς Ἡράκλειας — πόλη στὴ Θράκη μὲ μεγάλη στρατηγικὴ σημασία.

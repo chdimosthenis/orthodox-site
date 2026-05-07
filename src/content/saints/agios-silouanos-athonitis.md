@@ -9,6 +9,8 @@ wikipediaTitle: Silouan the Athonite
 license: original
 iconUrl: https://upload.wikimedia.org/wikipedia/commons/6/6f/%D0%A1%D0%B8%D0%BB%D1%83%D0%B0%D0%BD_%D0%90%D1%84%D0%BE%D0%BD%D1%81%D0%BA%D0%B8%D0%B9._1930-%D0%B5.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled
 iconAttribution: Unknown author · Wikimedia Commons · Public domain
+reposeYear: 1938
+reposeLabel: "†1938"
 ---
 
 Ὁ Συμεὼν Ἀντῶνωβ —τὸ κατὰ κόσμον ὄνομα τοῦ Σιλουανοῦ— γεννήθηκε σὲ ἕνα χωριὸ τῆς Ρωσίας τὸ 1866. Νεαρὸς ἔζησε σὲ ἁμαρτητικὲς ἐκτροπές, ἀλλὰ μετὰ ἀπὸ μιὰ προσωπικὴ ἐμπειρία τῆς θείας χάριτος ἀναχώρησε γιὰ τὸ Ἅγιον Ὄρος καὶ ἐκάρη μοναχὸς στὴν ρωσικὴ μονὴ τοῦ Ἁγίου Παντελεήμονος (1892).

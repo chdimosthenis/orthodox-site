@@ -16,6 +16,8 @@ wikipediaTitle: Luke of Simferopol
 license: original
 iconUrl: https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Voino-yasenetsky-zarbarak-doska-3141_cropped.jpg/960px-Voino-yasenetsky-zarbarak-doska-3141_cropped.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail
 iconAttribution: PereslavlFoto · Wikimedia Commons · CC BY-SA 3.0
+reposeYear: 1961
+reposeLabel: "†1961"
 ---
 
 Σπάνιος συνδυασμὸς κορυφαίου χειρουργοῦ καὶ ἁγίου ἀρχιεπισκόπου, ὁ Ἅγιος Λουκᾶς

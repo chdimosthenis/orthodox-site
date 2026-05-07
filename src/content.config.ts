@@ -62,6 +62,16 @@ const saints = defineCollection({
      * from listings, the today widget, and the RSS feed.
      */
     draft: z.boolean().optional().default(false),
+    /**
+     * Year of repose, used to sort the saints listing chronologically.
+     * NEGATIVE for BC dates (e.g. -850 for Prophet Elijah).
+     */
+    reposeYear: z.number().int().optional(),
+    /**
+     * Human-readable display label for the repose date — e.g. "9ος αἰὼν π.Χ.",
+     * "†1809", "ΙΘ΄ αἰών". Falls back to reposeYear if absent.
+     */
+    reposeLabel: z.string().optional(),
   }),
 });
 

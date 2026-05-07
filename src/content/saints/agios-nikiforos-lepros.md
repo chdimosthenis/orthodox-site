@@ -8,6 +8,8 @@ life: "Ὁ Ἅγιος Νικηφόρος ὁ Λεπρός (κατὰ κόσμο
 language: el
 wikipediaTitle: "Nikephoros the Leper"
 license: original
+reposeYear: 1964
+reposeLabel: "†1964"
 ---
 
 Ὁ Ἅγιος Νικηφόρος ὁ Λεπρὸς εἶναι μία ἀπὸ τὶς πιὸ συγκινητικὲς μορφὲς τῆς

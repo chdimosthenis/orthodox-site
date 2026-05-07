@@ -9,9 +9,10 @@ interface Props {
   category: 'martyr' | 'monastic' | 'hierarch' | 'apostle' | 'prophet' | 'other';
   language: 'el' | 'en';
   iconUrl?: string;
+  reposeLabel?: string;
 }
 
-const { slug, name, feastDay, category, language, iconUrl } = Astro.props;
+const { slug, name, feastDay, category, language, iconUrl, reposeLabel } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
@@ -31,7 +32,8 @@ const dateStr = dt.toLocaleDateString('el-GR', { day: 'numeric', month: 'long' }
       <a href={getLocalizedPath(`/saints/${slug}`, lang)} lang={language}>{name}</a>
     </h3>
     <p class="metadata">
-      {t('feastDay')}: {dateStr} · {t(`category.${category}` as UIKey)}
+      {reposeLabel && (<><span class="repose">{reposeLabel}</span> · </>)}
+      {t(`category.${category}` as UIKey)} · {t('feastDay')}: {dateStr}
     </p>
   </div>
 </article>
@@ -70,5 +72,11 @@ const dateStr = dt.toLocaleDateString('el-GR', { day: 'numeric', month: 'long' }
   }
   .card-body h3 a:hover {
     color: var(--color-accent);
+  }
+  .metadata { margin: 0; font-size: 0.92rem; color: var(--color-muted, #6e6452); }
+  .repose {
+    color: var(--color-accent);
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
   }
 </style>

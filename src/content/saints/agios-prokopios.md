@@ -9,6 +9,8 @@ wikipediaTitle: Procopius of Scythopolis
 license: original
 iconUrl: https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/St_Procopius_Icon_Sinai_13th_century.jpg/960px-St_Procopius_Icon_Sinai_13th_century.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail
 iconAttribution: Unknown author · Wikimedia Commons · Public domain
+reposeYear: 303
+reposeLabel: "†303"
 ---
 
 Ὁ Προκόπιος —τὸ προηγούμενο ὄνομά του ἦταν Νεάνιος— γεννήθηκε στὰ Ἱεροσόλυμα ἀπὸ μητέρα χριστιανὴ καὶ πατέρα εἰδωλολάτρη. Στρατεύθηκε στὸν Ρωμαϊκὸ στρατὸ καὶ ἐνέβη ἀξιωματικὸς ἐπὶ τοῦ Διοκλητιανοῦ. Σὲ μιὰ ἀποστολὴ διώξεως χριστιανῶν στὴν Ἀλεξάνδρεια, εἶδε σὲ ὅραμα ἕναν Σταυρὸ φωτεινὸ μὲ τὴν ἐπιγραφὴ «Ἐν τούτῳ νίκα» — ἴδιο ὅραμα ποὺ θὰ εἶχε ἀργότερα ὁ Κωνσταντῖνος.

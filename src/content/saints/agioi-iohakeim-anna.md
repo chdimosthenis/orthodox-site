@@ -9,6 +9,8 @@ wikipediaTitle: Joachim
 license: original
 iconUrl: https://upload.wikimedia.org/wikipedia/commons/8/8d/Giotto_-_Expulsion_of_Joachim_from_the_Temple_detail3_Joachim_-_Cappella_degli_Scrovegni.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled
 iconAttribution: Giotto · Wikimedia Commons · Public domain
+reposeYear: 1
+reposeLabel: "1ος αἰὼν"
 ---
 
 Ὁ Ἰωακεὶμ καὶ ἡ Ἄννα δὲν ἀναφέρονται στὰ κανονικὰ Εὐαγγέλια. Τὰ ὀνόματα καὶ ἡ ἱστορία τους προέρχονται ἀπὸ τὸ ἀρχαίο ἀπόκρυφο «Πρωτευαγγέλιο τοῦ Ἰακώβου» (2ος αἰώνας) — κείμενο ποὺ δὲν ἀναγνωρίζεται ὡς κανονικὸ ἀλλὰ ἀποτελεῖ τὴν αὐθεντικὴ ἐκκλησιαστικὴ παράδοση γιὰ τὰ πρώιμα γεγονότα τῆς ζωῆς τῆς Παναγίας.

@@ -9,6 +9,8 @@ wikipediaTitle: Anthony the Great
 license: original
 iconUrl: https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Saint_Anthony_%28Damaskinos%29.png/960px-Saint_Anthony_%28Damaskinos%29.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail
 iconAttribution: Michael Damaskinos · Wikimedia Commons · Public domain
+reposeYear: 356
+reposeLabel: "†356"
 ---
 
 Ὁ Ἀντώνιος γεννήθηκε στὴν Κόμα τῆς Αἰγύπτου τὸ 251 ἀπὸ εὔπορη οἰκογένεια. Σὲ ἡλικία εἴκοσι ἐτῶν, μετὰ τὸν θάνατο τῶν γονέων του, ἄκουσε στὴν Ἐκκλησία τὸ εὐαγγελικὸ ρητὸ «πώλησόν σου τὰ ὑπάρχοντα καὶ δὸς πτωχοῖς» (Ματθ. 19,21) καὶ τὸ ἔλαβε προσωπικά. Διάθεσε ὁλόκληρη τὴν περιουσία του καὶ ἐγκαταστάθηκε ἀρχικὰ στὴν ἄκρη τοῦ χωριοῦ, ἀργότερα στὸν παρακείμενο τάφο, καὶ τέλος στὴν ἔρημο.

@@ -9,6 +9,8 @@ wikipediaTitle: Saint Eustace
 license: original
 iconUrl: https://upload.wikimedia.org/wikipedia/commons/0/0c/Saint_Eustace%2C_Cretan_school%2C_17_c..jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled
 iconAttribution: Cretan School · Wikimedia Commons · Public domain
+reposeYear: 118
+reposeLabel: "†c. 118"
 ---
 
 Ὁ Πλακίδας ἦταν στρατηγὸς τῶν Ρωμαϊκῶν λεγεώνων ἐπὶ τοῦ αὐτοκράτορος Τραϊανοῦ (98-117 μ.Χ.). Διακρίθηκε γιὰ τὴν ἀνδρεία καὶ τὴ φιλανθρωπία του ἀλλὰ ἦταν εἰδωλολάτρης. Κατὰ τὴ διάρκεια κυνηγιοῦ, εἶδε μπροστά του ἕνα μεγάλο ἐλάφι μὲ φωτεινὸ Σταυρὸ ἀνάμεσα στὰ κέρατά του. Ἀκούστηκε φωνὴ ἀπὸ τὸν Σταυρό: «Πλακίδα, γιατί μὲ διώκεις; Εἶμαι ὁ Ἰησοῦς, ποὺ τιμᾷς ἀνεπιγνώστως διὰ τῶν ἀγαθῶν σου ἔργων».

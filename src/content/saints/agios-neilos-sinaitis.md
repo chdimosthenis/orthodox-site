@@ -9,6 +9,8 @@ wikipediaTitle: Nilus of Sinai
 license: original
 iconUrl: https://upload.wikimedia.org/wikipedia/commons/4/4f/Nil_Postnik.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled
 iconAttribution: Yakov Bogatenko (1875 - 1941) · Wikimedia Commons · Public domain
+reposeYear: 430
+reposeLabel: "†c. 430"
 ---
 
 Ὁ Νεῖλος γεννήθηκε στὴν Κωνσταντινούπολη γύρω στὸ 380 ἀπὸ ἀριστοκρατικὴ οἰκογένεια. Σπούδασε ὑπὸ τὸν ἅγιο Ἰωάννη τὸν Χρυσόστομο καὶ ἀνέλαβε τὴν ὑψηλὴ θέση τοῦ ὑπάρχου τῆς πόλης. Παντρεύτηκε καὶ ἀπέκτησε δύο παιδιά. Ἀλλὰ ἡ ψυχή του ἀναζητοῦσε κάτι περισσότερο.

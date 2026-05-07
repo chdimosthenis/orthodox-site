@@ -8,6 +8,8 @@ wikipediaTitle: Philip the Apostle
 license: original
 iconUrl: https://upload.wikimedia.org/wikipedia/commons/8/8f/Philip_the_Apostle_icon.jpeg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled
 iconAttribution: Unknown Russian Orthodox icon painter · Wikimedia Commons · Public domain
+reposeYear: 80
+reposeLabel: "†c. 80"
 ---
 
 Ὁ Φίλιππος ἦταν ἀπὸ τὴ Βηθσαϊδά τῆς Γαλιλαίας, ὁμοχωρίτης τοῦ Πέτρου καὶ τοῦ Ἀνδρέα. Κλήθηκε ἀπὸ τὸν ἴδιο τὸν Χριστὸ μὲ τὸ ἁπλὸ «Ἀκολούθει μοι», καὶ ἀμέσως ἔτρεξε νὰ φέρει καὶ τὸν Ναθαναὴλ —τὸν μετέπειτα Βαρθολομαῖο— ἐνημερώνοντάς τον: «Ὃν ἔγραψεν Μωϋσῆς ἐν τῷ νόμῳ καὶ οἱ προφῆται εὑρήκαμεν, Ἰησοῦν τὸν υἱὸν τοῦ Ἰωσὴφ τὸν ἀπὸ Ναζαρέτ».

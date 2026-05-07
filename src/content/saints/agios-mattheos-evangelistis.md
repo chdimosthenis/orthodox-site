@@ -8,6 +8,8 @@ wikipediaTitle: Matthew the Apostle
 license: original
 iconUrl: https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Ilyas_Basim_Khuri_Bazzi_Rahib_-_Portrait_of_Matthew_-_Walters_W5923A_-_Full_Page.jpg/960px-Ilyas_Basim_Khuri_Bazzi_Rahib_-_Portrait_of_Matthew_-_Walters_W5923A_-_Full_Page.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail
 iconAttribution: Wikimedia Commons · Public domain
+reposeYear: 80
+reposeLabel: "†c. 80"
 ---
 
 Ὁ Ματθαῖος, γνωστὸς ἐπίσης ὡς Λευΐς, ἦταν τελώνης στὴν Καπερναούμ ὅταν ὁ Κύριος τὸν κάλεσε μὲ τὶς ἁπλὲς λέξεις «Ἀκολούθει μοι». Ἐκείνη τὴ στιγμή, σηκώθηκε ἀπὸ τὸ τραπέζι τῶν τελῶν καὶ Τὸν ἀκολούθησε, ἀφήνοντας πίσω του μία ζωὴ ἀνέσεως καὶ ἕνα ἐπάγγελμα ἀντιδημοφιλὲς στοὺς συμπατριῶτες του.

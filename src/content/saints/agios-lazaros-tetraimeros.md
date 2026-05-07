@@ -7,8 +7,10 @@ life: Ὁ φίλος τοῦ Χριστοῦ ποὺ ἀναστήθηκε ἐκ
 language: el
 wikipediaTitle: Lazarus of Bethany
 license: original
-iconUrl: https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Juan_de_Flandes_001.jpg/960px-Juan_de_Flandes_001.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail
-iconAttribution: Juan de Flandes · Wikimedia Commons · Public domain
+iconUrl: https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/%D0%92%D0%BE%D1%81%D0%BA%D1%80%D0%B5%D1%88%D0%B5%D0%BD%D0%B8%D0%B5_%D0%9B%D0%B0%D0%B7%D0%B0%D1%80%D1%8F.jpg/640px-%D0%92%D0%BE%D1%81%D0%BA%D1%80%D0%B5%D1%88%D0%B5%D0%BD%D0%B8%D0%B5_%D0%9B%D0%B0%D0%B7%D0%B0%D1%80%D1%8F.jpg
+iconAttribution: Anonymous, Byzantine (late 14th–early 15th c.), State Russian Museum · Wikimedia Commons · Public domain
+reposeYear: 63
+reposeLabel: "†c. 63"
 ---
 
 Ὁ Λάζαρος ἦταν στενὸς φίλος τοῦ Χριστοῦ καὶ ἀδελφὸς τῆς Μάρθας καὶ τῆς Μαρίας. Ζοῦσαν στὴ Βηθανία, χωριὸ ἀνατολικὰ τῆς Ἱερουσαλήμ, ὅπου ὁ Κύριος συχνὰ φιλοξενοῦνταν. Ὅταν ὁ Λάζαρος ἀρρώστησε σοβαρά, οἱ ἀδελφές του ἔστειλαν μήνυμα στὸν Χριστὸ πέρα ἀπὸ τὸν Ἰορδάνη. Ὁ Κύριος καθυστέρησε σκόπιμα τέσσερις ἡμέρες, ὥστε ὁ Λάζαρος εἶχε ἤδη πεθάνει καὶ ἐνταφιαστεῖ ὅταν ἔφτασε.

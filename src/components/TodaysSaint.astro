@@ -15,39 +15,7 @@ const allSaints = (await getCollection('saints'))
 
 const todays = allSaints.filter(s => s.data.feastDay === todayKey);
 
-type SaintEntry = (typeof allSaints)[number];
-type Upcoming = { entry: SaintEntry; daysUntil: number; dateStr: string };
-
-const localeTag = lang === 'el' ? 'el-GR' : 'en-GB';
-
-function buildUpcoming(): Upcoming[] {
-  if (todays.length > 0) return [];
-  const sorted = allSaints.slice().sort((a, b) => a.data.feastDay.localeCompare(b.data.feastDay));
-  const after = sorted.filter(s => s.data.feastDay > todayKey);
-  // If fewer than 3 feasts left this calendar year, wrap to start of next year
-  const candidates = after.length >= 3 ? after : [...after, ...sorted];
-  const seen = new Set<string>();
-  const picked: SaintEntry[] = [];
-  for (const s of candidates) {
-    if (seen.has(s.id)) continue;
-    seen.add(s.id);
-    picked.push(s);
-    if (picked.length === 3) break;
-  }
-  const todayStart = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-  return picked.map(entry => {
-    const [m, d] = entry.data.feastDay.split('-').map(Number);
-    let target = new Date(today.getFullYear(), m - 1, d);
-    if (target < todayStart) target = new Date(today.getFullYear() + 1, m - 1, d);
-    const daysUntil = Math.round((target.getTime() - todayStart.getTime()) / 86_400_000);
-    const dateStr = target.toLocaleDateString(localeTag, { day: 'numeric', month: 'long' });
-    return { entry, daysUntil, dateStr };
-  });
-}
-
-const upcoming = buildUpcoming();
-const rtf = new Intl.RelativeTimeFormat(lang, { numeric: 'auto' });
-const heading = todays.length > 0 ? t('today.saint') : t('today.upcoming');
+const heading = t('today.saint');
 ---
 
 <section class="todays-saint">
@@ -72,27 +40,6 @@ const heading = todays.length > 0 ? t('today.saint') : t('today.upcoming');
                 {s.data.tropar}
               </blockquote>
             )}
-          </div>
-        </li>
-      ))}
-    </ul>
-  ) : upcoming.length > 0 ? (
-    <ul class="todays-list upcoming-list">
-      {upcoming.map(u => (
-        <li>
-          {u.entry.data.iconUrl && (
-            <a class="todays-icon-link" href={getLocalizedPath(`/saints/${u.entry.id}`, lang)} aria-hidden="true" tabindex="-1">
-              <img class="todays-icon" src={u.entry.data.iconUrl} alt="" loading="lazy" decoding="async" />
-            </a>
-          )}
-          <div class="todays-text">
-            <h3>
-              <a href={getLocalizedPath(`/saints/${u.entry.id}`, lang)} lang={u.entry.data.language}>{u.entry.data.name}</a>
-            </h3>
-            <p class="upcoming-meta">
-              <time>{u.dateStr}</time>
-              <span class="muted"> · {rtf.format(u.daysUntil, 'day')}</span>
-            </p>
           </div>
         </li>
       ))}

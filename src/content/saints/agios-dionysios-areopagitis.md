@@ -10,6 +10,8 @@ license: original
 iconUrl: https://upload.wikimedia.org/wikipedia/commons/a/ae/Dionysius_Areopagita.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled
 iconAttribution: The original uploader was Markus Mueller at German Wikipedia. · Wikimedia Commons · Public
   domain
+reposeYear: 96
+reposeLabel: "†c. 96"
 ---
 
 Ὁ Διονύσιος ἦταν μέλος τοῦ Ἀρείου Πάγου τῶν Ἀθηνῶν — τοῦ ἀνώτατου δικαστικοῦ ὀργάνου τῆς πόλης. Ὅταν ὁ ἀπόστολος Παῦλος ἐκήρυξε στὸν Ἄρειο Πάγο γιὰ τὸν «ἄγνωστο Θεό» (Πραξ. 17,22-34), ὁ Διονύσιος ἦταν ὁ μόνος ἀπὸ τοὺς δικαστὲς ποὺ μετεστράφη ἀμέσως. Ἀκολούθησε τὸν ἀπόστολο, βαπτίστηκε καὶ ἔγινε ὁ πρῶτος ἐπίσκοπος Ἀθηνῶν.

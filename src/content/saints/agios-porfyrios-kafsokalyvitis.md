@@ -8,6 +8,8 @@ life: "Ὁ Ἅγιος Πορφύριος ὁ Καυσοκαλυβίτης (κα
 language: el
 wikipediaTitle: "Porphyrios (Bairaktaris) the Kavsokalyvite"
 license: original
+reposeYear: 1991
+reposeLabel: "†1991"
 ---
 
 Ὁ Γέροντας Πορφύριος ἀναχώρησε γιὰ τὸ Ἅγιον Ὄρος μόλις 14 ἐτῶν, ἀναζητώντας τὸν

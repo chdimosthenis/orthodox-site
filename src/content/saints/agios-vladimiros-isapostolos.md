@@ -7,8 +7,8 @@ life: Μέγας Πρίγκιπας Κιέβου (10ος-11ος αἰ.)· βαπ
 language: el
 wikipediaTitle: Vladimir the Great
 license: original
-iconUrl: https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Saint_Vladimir_icon_%28GTG%2C_15_c.%29.jpg/640px-Saint_Vladimir_icon_%28GTG%2C_15_c.%29.jpg
-iconAttribution: Anonymous, Novgorod school (first third of 15th c.), Tretyakov Gallery · Wikimedia Commons · Public domain
+iconUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Saint_Vladimir_icon_%28GTG%2C_15_c.%29.jpg/640px-Saint_Vladimir_icon_%28GTG%2C_15_c.%29.jpg"
+iconAttribution: "Anonymous, Novgorod school (first third of 15th c.), Tretyakov Gallery · Wikimedia Commons · Public domain"
 reposeYear: 1015
 reposeLabel: "†1015"
 ---

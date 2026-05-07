@@ -7,8 +7,8 @@ life: Πρῶτος στυλίτης (5ος αἰ.)· ἀσκήτεψε γιὰ 
 language: el
 wikipediaTitle: Simeon Stylites
 license: original
-iconUrl: https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/MHS_Szymon_Slupnik_XVI_w_Kostarowce_p.jpg/640px-MHS_Szymon_Slupnik_XVI_w_Kostarowce_p.jpg
-iconAttribution: Anonymous, post-Byzantine icon (16th c.), Sanok Historical Museum · Wikimedia Commons · Public domain
+iconUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/MHS_Szymon_Slupnik_XVI_w_Kostarowce_p.jpg/640px-MHS_Szymon_Slupnik_XVI_w_Kostarowce_p.jpg"
+iconAttribution: "Anonymous, post-Byzantine icon (16th c.), Sanok Historical Museum · Wikimedia Commons · Public domain"
 reposeYear: 459
 reposeLabel: "†459"
 ---

@@ -16,8 +16,13 @@ const allSaints = (await getCollection('saints'))
 const todays = allSaints.filter(s => s.data.feastDay === todayKey);
 
 const heading = t('today.saint');
+
+// If no saint commemorated today, render NOTHING. Per user directive,
+// we do not show "Σήμερα δὲν ἑορτάζει..." filler on the home page.
+const hide = todays.length === 0;
 ---
 
+{!hide && (
 <section class="todays-saint">
   <h2>{heading}</h2>
   {todays.length > 0 ? (
@@ -44,10 +49,9 @@ const heading = t('today.saint');
         </li>
       ))}
     </ul>
-  ) : (
-    <p class="muted">{t('today.none')}</p>
-  )}
+  ) : null}
 </section>
+)}
 
 <style>
   .todays-saint {

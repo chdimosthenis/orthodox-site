@@ -5,8 +5,8 @@ feastDay: 12-04
 category: martyr
 life: Παρθενομάρτυς που μαρτύρησε στις αρχές του 4ου αιώνα.
 language: el
-iconUrl: https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Piatnitsa%2C_Varvara%2C_Uliana_%2814-15_c%2C_GTG%29.jpg/640px-Piatnitsa%2C_Varvara%2C_Uliana_%2814-15_c%2C_GTG%29.jpg
-iconAttribution: Anonymous, Pskov school (late 14th–early 15th c.), Tretyakov Gallery · Wikimedia Commons · Public domain
+iconUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Piatnitsa%2C_Varvara%2C_Uliana_%2814-15_c%2C_GTG%29.jpg/640px-Piatnitsa%2C_Varvara%2C_Uliana_%2814-15_c%2C_GTG%29.jpg"
+iconAttribution: "Anonymous, Pskov school (late 14th–early 15th c.), Tretyakov Gallery · Wikimedia Commons · Public domain"
 reposeYear: 306
 reposeLabel: "†c. 306"
 ---

@@ -6,6 +6,8 @@ life: "Πριγκίπισσα τῆς Μαγεδῶνος (4ος αἰ.) ποὺ
 language: el
 wikipediaTitle: "Irene of Macedonia"
 license: original
+iconUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Agape%2C_Chionia%2C_and_Irene.jpg/640px-Agape%2C_Chionia%2C_and_Irene.jpg"
+iconAttribution: "Anonymous, Byzantine — Ἁγία Εἰρήνη μετὰ τῶν ἀδελφῶν Ἀγάπης καὶ Χιονίας · Wikimedia Commons · Public domain"
 reposeYear: 304
 reposeLabel: "†c. 304"
 ---

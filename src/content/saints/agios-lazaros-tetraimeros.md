@@ -7,8 +7,8 @@ life: Ὁ φίλος τοῦ Χριστοῦ ποὺ ἀναστήθηκε ἐκ
 language: el
 wikipediaTitle: Lazarus of Bethany
 license: original
-iconUrl: https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/%D0%92%D0%BE%D1%81%D0%BA%D1%80%D0%B5%D1%88%D0%B5%D0%BD%D0%B8%D0%B5_%D0%9B%D0%B0%D0%B7%D0%B0%D1%80%D1%8F.jpg/640px-%D0%92%D0%BE%D1%81%D0%BA%D1%80%D0%B5%D1%88%D0%B5%D0%BD%D0%B8%D0%B5_%D0%9B%D0%B0%D0%B7%D0%B0%D1%80%D1%8F.jpg
-iconAttribution: Anonymous, Byzantine (late 14th–early 15th c.), State Russian Museum · Wikimedia Commons · Public domain
+iconUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/%D0%92%D0%BE%D1%81%D0%BA%D1%80%D0%B5%D1%88%D0%B5%D0%BD%D0%B8%D0%B5_%D0%9B%D0%B0%D0%B7%D0%B0%D1%80%D1%8F.jpg/640px-%D0%92%D0%BE%D1%81%D0%BA%D1%80%D0%B5%D1%88%D0%B5%D0%BD%D0%B8%D0%B5_%D0%9B%D0%B0%D0%B7%D0%B0%D1%80%D1%8F.jpg"
+iconAttribution: "Anonymous, Byzantine (late 14th–early 15th c.), State Russian Museum · Wikimedia Commons · Public domain"
 reposeYear: 63
 reposeLabel: "†c. 63"
 ---

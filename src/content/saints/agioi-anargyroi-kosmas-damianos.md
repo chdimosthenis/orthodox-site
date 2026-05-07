@@ -6,8 +6,8 @@ life: Ἀδέλφια ἰατροὶ τοῦ 3ου αἰ. ποὺ θεράπευ
 language: el
 wikipediaTitle: Cosmas and Damian
 license: original
-iconUrl: https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Saints_Cosmas_and_Damian_of_the_Gymnasium_Church%2C_Saints_Cosmas_and_Damian_Icon%2C_18th_Century.png/640px-Saints_Cosmas_and_Damian_of_the_Gymnasium_Church%2C_Saints_Cosmas_and_Damian_Icon%2C_18th_Century.png
-iconAttribution: Anonymous, post-Byzantine Greek school (18th c.), Gymnasium Church · Wikimedia Commons · Public domain
+iconUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Saints_Cosmas_and_Damian_of_the_Gymnasium_Church%2C_Saints_Cosmas_and_Damian_Icon%2C_18th_Century.png/640px-Saints_Cosmas_and_Damian_of_the_Gymnasium_Church%2C_Saints_Cosmas_and_Damian_Icon%2C_18th_Century.png"
+iconAttribution: "Anonymous, post-Byzantine Greek school (18th c.), Gymnasium Church · Wikimedia Commons · Public domain"
 reposeYear: 287
 reposeLabel: "†c. 287"
 ---

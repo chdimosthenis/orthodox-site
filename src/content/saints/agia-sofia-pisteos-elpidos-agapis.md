@@ -5,11 +5,11 @@ category: martyr
 life: "Μάρτυρες στὴ Ρώμη ἐπὶ Ἀδριανοῦ (~137 μ.Χ.)· τὰ τρία κορίτσια ἡλικίας 12, 10 καὶ 9 ἐτῶν μαρτύρησαν πρὸ τῆς μητέρας των."
 language: el
 wikipediaTitle: "Sophia of Rome"
-iconUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Sophia_the_Martyr.jpg/640px-Sophia_the_Martyr.jpg"
-iconAttribution: "Anonymous, Novgorod school (16th c.) · Wikimedia Commons · Public domain"
 license: original
 reposeYear: 137
 reposeLabel: "†c. 137"
+iconUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Sophia_the_Martyr.jpg/960px-Sophia_the_Martyr.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+iconAttribution: "Anonymous, Novgorod school (16th c.) · Wikimedia Commons · Public domain"
 ---
 
 Ἡ Ἁγία Σοφία ἦταν εὐσεβὴς χριστιανὴ χήρα στὴ Ρώμη, ποὺ ἀνέθρεψε τὶς τρεῖς θυγατέρες της δίνοντάς τους ὀνόματα τῶν τριῶν θεολογικῶν ἀρετῶν: Πίστις, Ἐλπίς, Ἀγάπη. Ἐπὶ αὐτοκράτορος Ἀδριανοῦ (117-138 μ.Χ.) καταγγέλθηκαν στὸν ἔπαρχο τῆς πόλεως καὶ συνελήφθησαν.

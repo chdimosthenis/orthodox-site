@@ -8,6 +8,8 @@ wikipediaTitle: "Saint Alexius of Rome"
 license: original
 reposeYear: 411
 reposeLabel: "†c. 411"
+iconUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Alexius_of_Rome_%2817th_c.%2C_GTG%29_01_by_shakko.jpg/960px-Alexius_of_Rome_%2817th_c.%2C_GTG%29_01_by_shakko.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+iconAttribution: "Anonymous, Russian school (17th c.), Tretyakov Gallery · Wikimedia Commons · Public domain"
 ---
 
 Ὁ Ἀλέξιος γεννήθηκε στὴ Ρώμη γύρω στὸ 360 μ.Χ. ἀπὸ ἀριστοκρατικὴ οἰκογένεια. Ὁ πατέρας του Εὐφημιανὸς ἦταν συγκλητικὸς καὶ ἕνας ἀπὸ τοὺς πλουσιότερους ἄνδρες τῆς πόλης. Ὁ νεαρὸς Ἀλέξιος παντρεύτηκε σὲ νεαρὴ ἡλικία μιὰ ὁμοίως εὐγενὴ νύφη, μὲ ὅλη τὴν ἐπίσημη τελετουργία τῆς ἐποχῆς.

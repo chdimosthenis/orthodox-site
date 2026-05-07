@@ -8,6 +8,8 @@ wikipediaTitle: "Menas (martyr)"
 license: original
 reposeYear: 296
 reposeLabel: "†296"
+iconUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Christ_and_the_Abbot_Menas_Louvre_E11565_n02.jpg/960px-Christ_and_the_Abbot_Menas_Louvre_E11565_n02.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+iconAttribution: "Anonymous, Coptic icon (6th–7th c.), Musée du Louvre — the famous “Icon of Friendship” (Christ and Abbot Menas) · Wikimedia Commons · Public domain"
 ---
 
 Ὁ Μηνᾶς γεννήθηκε στὴν Αἴγυπτο τὸν 3ο αἰώνα καὶ κατέλαβε ὑψηλὸ ἀξίωμα στὸν Ρωμαϊκὸ στρατό. Ὅταν ξεκίνησε ὁ διωγμὸς τοῦ Διοκλητιανοῦ (303), ἐγκατέλειψε τὶς λεγεῶνες καὶ ἀπεσύρθη στὴν ἔρημο τῆς Φρυγίας ὅπου ἔζησε ὡς ἀσκητής, μελετῶντας τὶς Γραφές.

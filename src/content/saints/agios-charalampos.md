@@ -8,6 +8,8 @@ wikipediaTitle: "Saint Charalampus"
 license: original
 reposeYear: 202
 reposeLabel: "†202"
+iconUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/048_Saint_Charalambos_Icon_from_Saint_Paraskevi_Church_in_Langadas.jpg/960px-048_Saint_Charalambos_Icon_from_Saint_Paraskevi_Church_in_Langadas.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+iconAttribution: "Anonymous, post-Byzantine Greek school, Saint Paraskevi Church in Langadas · Wikimedia Commons · CC BY-SA 4.0"
 ---
 
 Ὁ Χαράλαμπος ἐχειροτονήθη ἐπίσκοπος Μαγνησίας τῆς Μ. Ἀσίας στὴν ἐποχὴ τῶν Ἀποστόλων ἢ λίγο μετά. Διηκόνησε σὲ αὐτὴ τὴ θέση γιὰ δεκαετίες, κηρύττοντας μὲ θαυματουργικὰ σημεῖα. Ἡ μακρότατη ζωή του (ἕως 113 ἐτῶν) ἔγινε ἡ ἴδια θαῦμα ποὺ ὁ Θεὸς ἐπέτρεψε γιὰ νὰ ἐξαπλωθεῖ τὸ Εὐαγγέλιο.

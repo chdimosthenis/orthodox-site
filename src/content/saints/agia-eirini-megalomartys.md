@@ -6,10 +6,10 @@ life: "Πριγκίπισσα τῆς Μαγεδῶνος (4ος αἰ.) ποὺ
 language: el
 wikipediaTitle: "Irene of Macedonia"
 license: original
-iconUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Agape%2C_Chionia%2C_and_Irene.jpg/640px-Agape%2C_Chionia%2C_and_Irene.jpg"
-iconAttribution: "Anonymous, Byzantine — Ἁγία Εἰρήνη μετὰ τῶν ἀδελφῶν Ἀγάπης καὶ Χιονίας · Wikimedia Commons · Public domain"
 reposeYear: 304
 reposeLabel: "†c. 304"
+iconUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Agape%2C_Chionia%2C_and_Irene.jpg/960px-Agape%2C_Chionia%2C_and_Irene.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+iconAttribution: "Anonymous, Byzantine — Saints Agape, Chionia and Irene · Wikimedia Commons · Public domain"
 ---
 
 Ἡ Ἁγία Εἰρήνη γεννήθηκε στὴ Μαγεδῶνα τῆς Περσίας τὸν 4ο αἰώνα ὡς θυγατέρα τοῦ εἰδωλολάτρη βασιλιᾶ Λικινίου. Τὸ πρωτότυπο ὄνομά της ἦταν Πηνελόπη. Σὲ μικρὴ ἡλικία ἔμαθε γιὰ τὸν Χριστὸ ἀπὸ τὸν παιδαγωγό της Ἀπελλιανὸ καὶ βαπτίστηκε κρυφὰ ἀπὸ τὸν ἀπόστολο Τιμόθεο, παίρνοντας τὸ νέο ὄνομα Εἰρήνη.

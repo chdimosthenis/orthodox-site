@@ -8,6 +8,8 @@ wikipediaTitle: "John the Hut-Dweller"
 license: original
 reposeYear: 450
 reposeLabel: "5ος αἰὼν"
+iconUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Athonite_Fresco_of_Saint_John_Calabytes.jpg/960px-Athonite_Fresco_of_Saint_John_Calabytes.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+iconAttribution: "Anonymous, Athonite fresco · Wikimedia Commons · Public domain"
 ---
 
 Ἡ ζωή τοῦ Ἁγίου Ἰωάννου τοῦ Καλυβίτου παρουσιάζει ἐκπληκτικὲς ὁμοιότητες μὲ ἐκείνη τοῦ Ἁγίου Ἀλεξίου τοῦ Ἀνθρώπου τοῦ Θεοῦ — καὶ συχνὰ συγχέονται. Ὁ Ἰωάννης γεννήθηκε στὴν Κωνσταντινούπολη τὸν 5ο αἰώνα ἀπὸ τὴν εὔπορη οἰκογένεια Εὐτροπίου καὶ Θεοδώρας. Σπούδασε καλὰ κλασικά, ἀλλὰ ἀπὸ νεαρὴ ἡλικία ἔδειξε ἔντονη πνευματικὴ τάση.

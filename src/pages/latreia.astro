@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { useTranslations } from '../i18n/utils';
+
+const t = useTranslations('el');
+
+// Sub-sections of Λατρεία, sorted alphabetically by Greek label.
+const cards = [
+  { title: 'Ἀκολουθίες',     href: '/akolouthies',     desc: 'Λειτουργίες, ἑσπερινοί, παρακλήσεις καὶ ἀκολουθίες ὅλου τοῦ κύκλου.' },
+  { title: 'Ἑορτολόγιον',     href: '/eortologio',      desc: 'Ἑορταὶ ἀκίνητες καὶ κινητές, νηστεῖες, σύνολο τοῦ ἐκκλησιαστικοῦ ἔτους.' },
+  { title: 'Μοναστήρια',      href: '/monasteries',     desc: 'Εὑρετήριο μεγάλων μονῶν καὶ προσκυνημάτων Ἑλλάδος καὶ Ἁγίου Ὄρους.' },
+  { title: 'Ναὸς & Λατρεία',  href: '/naos-kai-latreia', desc: 'Ἀρχιτεκτονικὴ ναῶν, ἐνδυμασίες κληρικῶν, βαθμίδες ἱεροσύνης.' },
+  { title: 'Προσευχητάριον',   href: '/proseuxitari',    desc: 'Καθημερινὲς προσευχὲς καὶ μυστηριακὲς εὐχές.' },
+  { title: 'Ὕμνοι',           href: '/ymnoi',           desc: 'Τροπάρια, κοντάκια, ὑμνογραφικὰ κείμενα.' },
+].sort((a, b) => a.title.localeCompare(b.title, 'el-GR'));
+---
+
+<BaseLayout title={t('latreia.title')}>
+  <h1>{t('latreia.title')}</h1>
+  <p class="muted">{t('latreia.intro')}</p>
+
+  <ul class="cluster-grid">
+    {cards.map(c => (
+      <li class="cluster-card">
+        <a href={c.href}>
+          <h2>{c.title}</h2>
+          <p class="muted">{c.desc}</p>
+        </a>
+      </li>
+    ))}
+  </ul>
+</BaseLayout>
+
+<style>
+  .cluster-grid {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+  .cluster-card {
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    transition: border-color 0.15s;
+  }
+  .cluster-card:hover { border-color: var(--color-accent); }
+  .cluster-card a {
+    display: block;
+    padding: 1.1rem 1.2rem;
+    color: var(--color-text);
+    border-bottom: none;
+    height: 100%;
+  }
+  .cluster-card h2 {
+    margin: 0 0 0.4rem;
+    font-size: 1.15rem;
+    line-height: 1.25;
+  }
+  .cluster-card p { margin: 0; font-size: 0.92rem; }
+</style>

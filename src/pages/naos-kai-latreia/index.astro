@@ -20,6 +20,10 @@ const counts: Record<string, number> = {};
 for (const s of sections) {
   counts[s.id] = articles.filter(a => a.data.tags!.includes(s.primaryTag)).length;
 }
+
+const sortedSections = [...sections]
+  .map(s => ({ ...s, title: t(s.titleKey as UIKey) }))
+  .sort((a, b) => a.title.localeCompare(b.title, 'el-GR'));
 ---
 
 <BaseLayout title={t('naos.title')}>
@@ -27,10 +31,10 @@ for (const s of sections) {
   <p class="muted">{t('naos.intro')}</p>
 
   <ul class="cluster-grid">
-    {sections.map(s => (
+    {sortedSections.map(s => (
       <li class={`cluster-card ${counts[s.id] === 0 ? 'is-empty' : ''}`}>
         <a href={getLocalizedPath(`/naos-kai-latreia/${s.id}`, lang)}>
-          <h2>{t(s.titleKey as UIKey)}</h2>
+          <h2>{s.title}</h2>
           <p class="muted count">
             {counts[s.id] === 0
               ? 'σύντομα'

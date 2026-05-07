@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { useTranslations } from '../i18n/utils';
+
+const t = useTranslations('el');
+
+// Sub-sections of Διδασκαλία, sorted alphabetically by Greek label.
+const cards = [
+  { title: 'Ἄρθρα',     href: '/articles', desc: 'Ὅλα τὰ ἄρθρα τῆς ἱστοσελίδας — πρόσφατα καὶ παλαιότερα.' },
+  { title: 'Θεολογία',  href: '/theology', desc: 'Πνευματικότητα, ἡσυχασμός, δογματική, λειτουργικά, εἰκονογραφία, μυστήρια, ἐσχατολογία.' },
+  { title: 'Ἱστορία',   href: '/history',  desc: 'Οἰκουμενικαὶ Σύνοδοι, Πατριαρχεῖα, αὐτοκέφαλες ἐκκλησίες, σχίσματα, τοπικαὶ σύνοδοι.' },
+].sort((a, b) => a.title.localeCompare(b.title, 'el-GR'));
+---
+
+<BaseLayout title={t('didaskalia.title')}>
+  <h1>{t('didaskalia.title')}</h1>
+  <p class="muted">{t('didaskalia.intro')}</p>
+
+  <ul class="cluster-grid">
+    {cards.map(c => (
+      <li class="cluster-card">
+        <a href={c.href}>
+          <h2>{c.title}</h2>
+          <p class="muted">{c.desc}</p>
+        </a>
+      </li>
+    ))}
+  </ul>
+</BaseLayout>
+
+<style>
+  .cluster-grid {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+  .cluster-card {
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    transition: border-color 0.15s;
+  }
+  .cluster-card:hover { border-color: var(--color-accent); }
+  .cluster-card a {
+    display: block;
+    padding: 1.1rem 1.2rem;
+    color: var(--color-text);
+    border-bottom: none;
+    height: 100%;
+  }
+  .cluster-card h2 {
+    margin: 0 0 0.4rem;
+    font-size: 1.15rem;
+    line-height: 1.25;
+  }
+  .cluster-card p { margin: 0; font-size: 0.92rem; }
+</style>

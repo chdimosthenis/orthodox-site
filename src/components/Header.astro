@@ -1,41 +1,25 @@
 ---
-import { getLangFromUrl, useTranslations, getLocalizedPath, getAlternateUrl } from '../i18n/utils';
-import { languages } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
 
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
+const t = useTranslations('el');
 
-// Greek-only entries (the user has scoped new content additions to Greek
-// going forward; conditional rendering keeps them out of the EN nav).
-const greekOnly = lang === 'el';
-
+// Top-level navigation: 7 items, each leading to a hub or single page.
+// Sub-sections live within hubs (Διδασκαλία, Πρόσωπα, Λατρεία) and are
+// rendered alphabetically on those pages.
 const navItems = [
-  { label: t('nav.news'), path: '/news/' },
-  { label: t('nav.bible'), path: '/bible' },
-  { label: t('nav.articles'), path: '/articles' },
-  { label: t('nav.theology'), path: '/theology' },
-  { label: t('nav.history'), path: '/history' },
-  { label: t('nav.fathers'), path: '/fathers' },
-  { label: t('nav.saints'), path: '/saints' },
-  ...(greekOnly ? [
-    { label: t('nav.eortologio'), path: '/eortologio' },
-    { label: t('nav.naos'),       path: '/naos-kai-latreia' },
-    { label: 'Μοναστήρια',         path: '/monasteries' },
-  ] : []),
-  { label: t('nav.akolouthies'), path: '/akolouthies' },
-  { label: t('nav.prayerbook'), path: '/proseuxitari' },
-  { label: t('nav.hymns'), path: '/ymnoi' },
-  { label: t('nav.about'), path: '/about' },
-  { label: t('nav.search'), path: '/search/' },
+  { label: t('nav.news'),        path: '/news/' },
+  { label: t('nav.bible'),       path: '/bible' },          // "Καινὴ Διαθήκη"
+  { label: t('nav.didaskalia'),  path: '/didaskalia' },     // hub: Ἄρθρα + Θεολογία + Ἱστορία
+  { label: t('nav.prosopa'),     path: '/prosopa' },        // hub: Ἅγιοι + Πατέρες
+  { label: t('nav.latreia'),     path: '/latreia' },        // hub: Ἀκολουθίες, Ἑορτολόγιον, Μοναστήρια, Ναὸς & Λατρεία, Προσευχητάριον, Ὕμνοι
+  { label: t('nav.search'),      path: '/search/' },
+  { label: t('nav.about'),       path: '/about' },
 ];
-
-const altLang = lang === 'el' ? 'en' : 'el';
-const altUrl = getAlternateUrl(Astro.url, altLang);
 ---
 
 <header class="site-header">
   <div class="header-inner">
-    <a href={getLocalizedPath('/', lang)} class="brand" aria-label={t('site.title')}>
+    <a href="/" class="brand" aria-label={t('site.title')}>
       <span class="brand-mark" aria-hidden="true">☦</span>
       <span class="brand-text">{t('site.title')}</span>
     </a>
@@ -43,14 +27,11 @@ const altUrl = getAlternateUrl(Astro.url, altLang);
       <ul>
         {navItems.map(item => (
           <li>
-            <a href={getLocalizedPath(item.path, lang)}>{item.label}</a>
+            <a href={item.path}>{item.label}</a>
           </li>
         ))}
       </ul>
     </nav>
-    <a class="lang-switch" href={altUrl} aria-label={t('language.switch')} hreflang={altLang}>
-      {languages[altLang]}
-    </a>
   </div>
 </header>
 
@@ -103,19 +84,6 @@ const altUrl = getAlternateUrl(Astro.url, altLang);
     padding: 0.25rem 0;
   }
   nav a:hover {
-    color: var(--color-accent);
-  }
-  .lang-switch {
-    font-size: 0.85rem;
-    padding: 0.35rem 0.85rem;
-    border: 1px solid var(--color-border);
-    border-radius: 999px;
-    color: var(--color-muted);
-    text-decoration: none;
-    border-bottom: 1px solid var(--color-border);
-  }
-  .lang-switch:hover {
-    border-color: var(--color-accent);
     color: var(--color-accent);
   }
   @media (max-width: 720px) {

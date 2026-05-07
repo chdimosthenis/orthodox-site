@@ -18,7 +18,7 @@ const articles = (await getCollection('articles'))
   .filter(a => !isNaosEntry(a.data.tags))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-const rssHref = lang === 'en' ? '/en/rss.xml' : '/rss.xml';
+const rssHref = '/rss.xml';
 ---
 
 <BaseLayout title={t('all.articles')}>

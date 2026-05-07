@@ -17,7 +17,7 @@ const t = useTranslations(lang);
 
 const [month, day] = feastDay.split('-');
 const dt = new Date(2024, Number(month) - 1, Number(day));
-const dateStr = dt.toLocaleDateString(lang === 'el' ? 'el-GR' : 'en-GB', { day: 'numeric', month: 'long' });
+const dateStr = dt.toLocaleDateString('el-GR', { day: 'numeric', month: 'long' });
 ---
 
 <article class="card">

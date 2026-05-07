@@ -2,7 +2,7 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { getLangFromUrl, useTranslations, getAlternateUrl } from '../i18n/utils';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
 
 interface Props {
   title: string;
@@ -22,12 +22,6 @@ const fullTitle = title === siteTitle ? title : `${title} — ${siteTitle}`;
 const desc = description ?? t('site.tagline');
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogUrl = new URL(ogImage, Astro.site);
-const altEl = new URL(getAlternateUrl(Astro.url, 'el'), Astro.site).toString();
-const altEn = new URL(getAlternateUrl(Astro.url, 'en'), Astro.site).toString();
-
-// RSS feed URL — locale-specific where it exists, otherwise the all-languages feed
-const rssHref = lang === 'en' ? '/en/rss.xml' : '/rss.xml';
-const searchHref = lang === 'en' ? '/en/search/' : '/search/';
 
 // Always include WebSite schema with SearchAction
 const websiteSchema: Record<string, unknown> = {
@@ -35,12 +29,12 @@ const websiteSchema: Record<string, unknown> = {
   '@type': 'WebSite',
   name: siteTitle,
   url: Astro.site!.toString(),
-  inLanguage: ['el', 'en'],
+  inLanguage: 'el',
   potentialAction: {
     '@type': 'SearchAction',
     target: {
       '@type': 'EntryPoint',
-      urlTemplate: new URL(`${searchHref}?q={search_term_string}`, Astro.site).toString(),
+      urlTemplate: new URL(`/search/?q={search_term_string}`, Astro.site).toString(),
     },
     'query-input': 'required name=search_term_string',
   },
@@ -61,16 +55,13 @@ const pageJsonld: Record<string, unknown>[] = jsonld
     <title>{fullTitle}</title>
     <meta name="description" content={desc} />
     <link rel="canonical" href={canonical.toString()} />
-    <link rel="alternate" hreflang="el" href={altEl} />
-    <link rel="alternate" hreflang="en" href={altEn} />
-    <link rel="alternate" hreflang="x-default" href={altEl} />
-    <link rel="alternate" type="application/rss+xml" title={`${siteTitle} — RSS`} href={rssHref} />
+    <link rel="alternate" type="application/rss+xml" title={`${siteTitle} — RSS`} href="/rss.xml" />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={desc} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical.toString()} />
     <meta property="og:image" content={ogUrl.toString()} />
-    <meta property="og:locale" content={lang === 'el' ? 'el_GR' : 'en_GB'} />
+    <meta property="og:locale" content="el_GR" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="theme-color" content="#6b1b2c" />
 

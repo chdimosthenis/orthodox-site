@@ -3,13 +3,12 @@ import { getLangFromUrl, useTranslations } from '../i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const year = new Date().getFullYear();
-const rssHref = lang === 'en' ? '/en/rss.xml' : '/rss.xml';
 ---
 
 <footer>
   <p>{t('footer.attribution')}</p>
   <p class="meta">
-    <a href={rssHref}>{t('rss.subscribe')}</a>
+    <a href="/rss.xml">{t('rss.subscribe')}</a>
     · <a href="https://github.com/chdimosthenis/orthodox-site" rel="noopener external">{t('footer.repo')}</a>
     · © {year}
   </p>

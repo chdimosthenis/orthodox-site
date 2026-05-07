@@ -38,9 +38,6 @@ const sections = [
               <a href={getLocalizedPath(`/bible/${b.id}`, lang)} lang={b.data.language}>
                 <span class="bible-order">{b.data.order}</span>
                 <span class="bible-name">{b.data.book}</span>
-                {b.data.bookEnglish && lang === 'en' && (
-                  <span class="bible-en"> · {b.data.bookEnglish}</span>
-                )}
                 {b.data.chapters && (
                   <span class="bible-chapters">{b.data.chapters} {t('bible.chapters')}</span>
                 )}

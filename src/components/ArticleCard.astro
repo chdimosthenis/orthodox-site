@@ -1,31 +1,22 @@
 ---
-import { getLangFromUrl, useTranslations, getLocalizedPath } from '../i18n/utils';
-import { languages } from '../i18n/ui';
-
 interface Props {
   slug: string;
   title: string;
   description: string;
-  pubDate: Date;
-  language: 'el' | 'en';
+  /** Kept for back-compat but no longer rendered (Greek-only site). */
+  pubDate?: Date;
+  /** Kept for back-compat but no longer rendered (Greek-only site). */
+  language?: 'el' | 'en';
 }
 
-const { slug, title, description, pubDate, language } = Astro.props;
-const lang = getLangFromUrl(Astro.url);
-const dateStr = pubDate.toLocaleDateString(language === 'el' ? 'el-GR' : 'en-GB', {
-  year: 'numeric', month: 'long', day: 'numeric',
-});
+const { slug, title, description } = Astro.props;
 ---
 
 <article class="card">
   <h3>
-    <a href={getLocalizedPath(`/articles/${slug}`, lang)} lang={language}>{title}</a>
+    <a href={`/articles/${slug}`}>{title}</a>
   </h3>
-  <p class="description" lang={language}>{description}</p>
-  <p class="metadata">
-    <time datetime={pubDate.toISOString()}>{dateStr}</time>
-    · <span>{languages[language]}</span>
-  </p>
+  <p class="description">{description}</p>
 </article>
 
 <style>

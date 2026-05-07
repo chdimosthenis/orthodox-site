@@ -25,6 +25,10 @@ const counts: Record<string, number> = {};
 for (const cl of clusters) {
   counts[cl.id] = articles.filter(a => a.data.tags!.includes(cl.primaryTag)).length;
 }
+
+const sortedClusters = [...clusters]
+  .map(cl => ({ ...cl, title: t(cl.titleKey as UIKey) }))
+  .sort((a, b) => a.title.localeCompare(b.title, 'el-GR'));
 ---
 
 <BaseLayout title={t('history.title')}>
@@ -32,14 +36,12 @@ for (const cl of clusters) {
   <p class="muted">{t('history.intro')}</p>
 
   <ul class="cluster-grid">
-    {clusters.map(cl => (
+    {sortedClusters.map(cl => (
       <li class={`cluster-card ${counts[cl.id] === 0 ? 'is-empty' : ''}`}>
         <a href={getLocalizedPath(`/history/${cl.id}`, lang)}>
-          <h2>{t(cl.titleKey as UIKey)}</h2>
+          <h2>{cl.title}</h2>
           <p class="muted count">
-            {counts[cl.id] === 0
-              ? (lang === 'el' ? 'σύντομα' : 'soon')
-              : `${counts[cl.id]} ${lang === 'el' ? 'ἄρθρα' : 'articles'}`}
+            {counts[cl.id] === 0 ? 'σύντομα' : `${counts[cl.id]} ἄρθρα`}
           </p>
         </a>
       </li>

@@ -5,7 +5,7 @@ category: martyr
 life: "Ἡ Σαμαρείτιδα τοῦ Εὐαγγελίου (Ἰω. 4) ποὺ συνομίλησε μὲ τὸν Χριστὸ στὸ φρέαρ τοῦ Ἰακώβ· ἀργότερα ἱεραπόστολος καὶ μάρτυς στὴ Ρώμη."
 language: el
 wikipediaTitle: "Samaritan woman at the well"
-iconUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Samaritan_Woman_at_the_Well_%28Tzanes%29.png/640px-Samaritan_Woman_at_the_Well_%28Tzanes%29.png"
+iconUrl: "https://upload.wikimedia.org/wikipedia/commons/c/cd/Samaritan_Woman_at_the_Well_%28Tzanes%29.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
 iconAttribution: "Emmanuel Tzanes, Cretan school (1689) · Wikimedia Commons · Public domain"
 license: original
 reposeYear: 66

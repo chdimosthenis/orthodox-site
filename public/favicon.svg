@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
   <!-- Eight-pointed Orthodox Cross — the brand mark of the site.
-       Burgundy on transparent; auto-flips to gold on dark UI. -->
-  <g fill="#6b1b2c" stroke="none">
+       Gold (#b08d57) to match the Header brand-mark color exactly. -->
+  <g fill="#b08d57" stroke="none">
     <!-- Vertical post -->
     <rect x="14.6" y="2.5" width="2.8" height="27" rx="0.4"/>
     <!-- Top crossbar (titulus) -->
@@ -11,9 +11,4 @@
     <!-- Slanted footrest (suppedaneum) -->
     <rect x="9.6" y="20.4" width="12.8" height="1.8" rx="0.3" transform="rotate(-15 16 21.3)"/>
   </g>
-  <style>
-    @media (prefers-color-scheme: dark) {
-      g { fill: #c89863; }
-    }
-  </style>
 </svg>

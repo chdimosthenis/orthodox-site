@@ -11,7 +11,8 @@ from PIL import Image, ImageDraw
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "public" / "favicon.ico"
 
-BURGUNDY = (107, 27, 44, 255)
+# Match the Header brand-mark color exactly (var(--color-gold) #b08d57).
+GOLD = (176, 141, 87, 255)
 SIZES = (16, 32, 48, 64)
 
 
@@ -25,7 +26,7 @@ def render(size: int) -> Image.Image:
     k = s / 32.0
 
     def rect(x, y, w, h):
-        drw.rectangle([x * k, y * k, (x + w) * k, (y + h) * k], fill=BURGUNDY)
+        drw.rectangle([x * k, y * k, (x + w) * k, (y + h) * k], fill=GOLD)
 
     # Vertical post
     rect(14.6, 2.5, 2.8, 27)

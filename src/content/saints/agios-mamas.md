@@ -1,13 +1,16 @@
 ---
-name: "Ἅγιος Μάμας ὁ Καππαδόκης"
-feastDay: "09-02"
+name: Ἅγιος Μάμας ὁ Καππαδόκης
+feastDay: 09-02
 category: martyr
-life: "Νεαρὸς ποιμένας τῆς Καππαδοκίας ποὺ μαρτύρησε ἐπὶ Αὐρηλιανοῦ (περὶ τὸ 275)· ἀσκήτευε μόνος του στὸ ὄρος μὲ τὰ ἄγρια θηρία ὡς συντρόφους καὶ ἀρμέγοντας τὰ ἐλάφια ἐτάιζε τοὺς πτωχούς."
+life: Νεαρὸς ποιμένας τῆς Καππαδοκίας ποὺ μαρτύρησε ἐπὶ Αὐρηλιανοῦ (περὶ τὸ 275)· ἀσκήτευε μόνος του στὸ
+  ὄρος μὲ τὰ ἄγρια θηρία ὡς συντρόφους καὶ ἀρμέγοντας τὰ ἐλάφια ἐτάιζε τοὺς πτωχούς.
 language: el
-wikipediaTitle: "Saint Mammes of Caesarea"
+wikipediaTitle: Saint Mammes of Caesarea
 license: original
 reposeYear: 275
-reposeLabel: "†c. 275"
+reposeLabel: †c. 275
+iconUrl: https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/%28Venice%29_La_Morte_di_Mamante_-_Francesco_dei_Franceschi_-_Museo_Correr.jpg/960px-%28Venice%29_La_Morte_di_Mamante_-_Francesco_dei_Franceschi_-_Museo_Correr.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail
+iconAttribution: Didier Descouens · Wikimedia Commons · Public domain
 ---
 
 Ὁ Ἅγιος Μάμας γεννήθηκε στὴν Παφλαγονία τῆς Μικρᾶς Ἀσίας περὶ τὸ 260, παιδὶ τῶν εὐγενῶν χριστιανῶν Θεοδότου καὶ Ρουφίνης, οἱ ὁποῖοι ἐφυλακίσθηκαν στὴν Καισάρεια τῆς Καππαδοκίας ἐξαιτίας τῆς πίστεώς τους. Ὁ Θεόδοτος ἐτελειώθη ἐν τῇ φυλακῇ καὶ ἡ Ρουφίνα γέννησε τὸν Μάμα ἐκεῖ, τὸν παρέδωσε στὸ Θεὸ καὶ ἐκοιμήθη ἀμέσως μετά. Τὸ νεογνὸ εὑρέθηκε καὶ ἀνατράφηκε ἀπὸ τὴν εὐσεβῆ μάτρωνα Ἀμμία ἢ Μάμμη — ἀπὸ τὴ λέξη ποὺ πρῶτα προφέρει ὁ μικρός, «μάμα», πῆρε καὶ τὸ ὄνομά του.

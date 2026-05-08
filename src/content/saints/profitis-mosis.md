@@ -1,13 +1,16 @@
 ---
-name: "Προφήτης καὶ Θεόπτης Μωυσῆς"
-feastDay: "09-04"
+name: Προφήτης καὶ Θεόπτης Μωυσῆς
+feastDay: 09-04
 category: prophet
-life: "Ὁ ἀρχηγὸς τῆς Ἐξόδου, παραλήπτης τοῦ Νόμου στὸ Σινά· ἕνας ἀπὸ τοὺς δύο προφῆτες ποὺ ἐμφανίστηκαν στὴ Μεταμόρφωση τοῦ Κυρίου."
+life: Ὁ ἀρχηγὸς τῆς Ἐξόδου, παραλήπτης τοῦ Νόμου στὸ Σινά· ἕνας ἀπὸ τοὺς δύο προφῆτες ποὺ ἐμφανίστηκαν
+  στὴ Μεταμόρφωση τοῦ Κυρίου.
 language: el
-wikipediaTitle: "Moses"
+wikipediaTitle: Moses
 license: original
 reposeYear: -1250
-reposeLabel: "13ος αἰὼν π.Χ."
+reposeLabel: 13ος αἰὼν π.Χ.
+iconUrl: https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Philippe_de_Champaigne_-_Moses_Presenting_the_Tablets_of_the_Law_-_c._1648.jpg/960px-Philippe_de_Champaigne_-_Moses_Presenting_the_Tablets_of_the_Law_-_c._1648.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail
+iconAttribution: Philippe de Champaigne · Wikimedia Commons · Public domain
 ---
 
 Ὁ Μωυσῆς εἶναι ἡ καθοριστικὴ μορφὴ τῆς Παλαιᾶς Διαθήκης — νομοθέτης, προφήτης, ποιμένας τοῦ ἐκλεκτοῦ λαοῦ. Γεννήθηκε στὴν Αἴγυπτο τὸν 13ο αἰώνα π.Χ. ἀπὸ Ἑβραίους γονεῖς ὅταν ὁ Φαραὼ εἶχε διατάξει νὰ θανατώνονται ὅλα τὰ ἀρσενικὰ νεογνὰ τῶν Ἑβραίων. Ἡ μητέρα του τὸν ἔκρυψε σὲ καλάθι στὸν Νεῖλο, ὅπου τὸν βρῆκε ἡ θυγατέρα τοῦ Φαραὼ καὶ τὸν μεγάλωσε ὡς πρίγκιπα τῆς Αἰγύπτου.

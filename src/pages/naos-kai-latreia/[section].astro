@@ -49,11 +49,6 @@ const localeTag = lang === 'el' ? 'el-GR' : 'en-GB';
           <h3>
             <a href={getLocalizedPath(`/articles/${a.id}`, lang)} lang={a.data.language}>{a.data.title}</a>
           </h3>
-          <p class="metadata">
-            <time datetime={a.data.pubDate.toISOString()}>
-              {a.data.pubDate.toLocaleDateString(localeTag, { year: 'numeric', month: 'long' })}
-            </time>
-          </p>
           {a.data.description && a.data.description !== a.data.title && (
             <p class="muted">{a.data.description}</p>
           )}

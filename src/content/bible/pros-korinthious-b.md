@@ -1,6 +1,5 @@
 ---
 book: Πρὸς Κορινθίους Β'
-bookEnglish: 2 Corinthians
 order: 8
 division: paul
 chapters: 13

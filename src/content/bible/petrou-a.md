@@ -1,6 +1,5 @@
 ---
 book: Πέτρου Α'
-bookEnglish: 1 Peter
 order: 21
 division: general
 chapters: 5

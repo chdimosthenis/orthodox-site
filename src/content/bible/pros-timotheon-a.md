@@ -1,6 +1,5 @@
 ---
 book: Πρὸς Τιμόθεον Α'
-bookEnglish: 1 Timothy
 order: 15
 division: paul
 chapters: 6

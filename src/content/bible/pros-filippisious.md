@@ -1,6 +1,5 @@
 ---
 book: Πρὸς Φιλιππησίους
-bookEnglish: Philippians
 order: 11
 division: paul
 chapters: 4

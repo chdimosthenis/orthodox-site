@@ -1,6 +1,5 @@
 ---
 book: Πρὸς Τιμόθεον Β'
-bookEnglish: 2 Timothy
 order: 16
 division: paul
 chapters: 4

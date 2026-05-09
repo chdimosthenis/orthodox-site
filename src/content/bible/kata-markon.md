@@ -1,6 +1,5 @@
 ---
 book: Κατὰ Μᾶρκον
-bookEnglish: Gospel of Mark
 order: 2
 division: gospel
 chapters: 16

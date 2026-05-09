@@ -1,6 +1,5 @@
 ---
 book: Πράξεις τῶν Ἀποστόλων
-bookEnglish: Acts of the Apostles
 order: 5
 division: acts
 chapters: 27

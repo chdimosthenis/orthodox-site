@@ -1,6 +1,5 @@
 ---
 book: Κατὰ Λουκᾶν
-bookEnglish: Gospel of Luke
 order: 3
 division: gospel
 chapters: 24

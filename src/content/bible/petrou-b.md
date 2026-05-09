@@ -1,6 +1,5 @@
 ---
 book: Πέτρου Β'
-bookEnglish: 2 Peter
 order: 22
 division: general
 chapters: 3

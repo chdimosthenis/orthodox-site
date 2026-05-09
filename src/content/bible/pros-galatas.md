@@ -1,6 +1,5 @@
 ---
 book: Πρὸς Γαλάτας
-bookEnglish: Galatians
 order: 9
 division: paul
 chapters: 6

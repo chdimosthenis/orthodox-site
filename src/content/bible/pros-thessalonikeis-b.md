@@ -1,6 +1,5 @@
 ---
 book: Πρὸς Θεσσαλονικεῖς Β'
-bookEnglish: 2 Thessalonians
 order: 14
 division: paul
 chapters: 3

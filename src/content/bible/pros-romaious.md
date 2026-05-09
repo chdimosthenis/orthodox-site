@@ -1,6 +1,5 @@
 ---
 book: Πρὸς Ῥωμαίους
-bookEnglish: Romans
 order: 6
 division: paul
 chapters: 16

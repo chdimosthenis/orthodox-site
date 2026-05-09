@@ -1,6 +1,5 @@
 ---
 book: Πρὸς Ἑβραίους
-bookEnglish: Hebrews
 order: 19
 division: paul
 chapters: 13

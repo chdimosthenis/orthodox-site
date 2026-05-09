@@ -1,6 +1,5 @@
 ---
 book: Ἀποκάλυψις Ἰωάννου
-bookEnglish: Revelation
 order: 27
 division: revelation
 chapters: 22

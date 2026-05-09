@@ -1,6 +1,5 @@
 ---
 book: Ἰωάννου Γ'
-bookEnglish: 3 John
 order: 25
 division: general
 language: el

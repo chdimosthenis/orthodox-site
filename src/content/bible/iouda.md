@@ -1,6 +1,5 @@
 ---
 book: Ἰούδα
-bookEnglish: Jude
 order: 26
 division: general
 language: el

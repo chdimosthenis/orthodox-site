@@ -24,7 +24,6 @@ const jsonld = {
   '@context': 'https://schema.org',
   '@type': 'Book',
   name: entry.data.book,
-  alternateName: entry.data.bookEnglish,
   inLanguage: entry.data.language,
   bookFormat: 'EBook',
   isPartOf: { '@type': 'Book', name: 'Ἡ Καινὴ Διαθήκη' },
@@ -38,9 +37,6 @@ const jsonld = {
         <a href={getLocalizedPath('/bible', lang)}>← {t('bible.title')}</a>
       </p>
       <h1 lang={entry.data.language}>{entry.data.book}</h1>
-      {entry.data.bookEnglish && (
-        <p class="bible-subtitle muted">{entry.data.bookEnglish}</p>
-      )}
     </header>
 
     {tocChapters.length > 1 && (

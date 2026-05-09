@@ -1,6 +1,5 @@
 ---
 book: Πρὸς Ἐφεσίους
-bookEnglish: Ephesians
 order: 10
 division: paul
 chapters: 6

@@ -1,6 +1,5 @@
 ---
 book: Πρὸς Κορινθίους Α'
-bookEnglish: 1 Corinthians
 order: 7
 division: paul
 chapters: 16

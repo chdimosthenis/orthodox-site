@@ -1,6 +1,5 @@
 ---
 book: Ἰωάννου Α'
-bookEnglish: 1 John
 order: 23
 division: general
 chapters: 5

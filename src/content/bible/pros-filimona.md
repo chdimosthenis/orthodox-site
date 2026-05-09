@@ -1,6 +1,5 @@
 ---
 book: Πρὸς Φιλήμονα
-bookEnglish: Philemon
 order: 18
 division: paul
 language: el

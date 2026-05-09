@@ -1,6 +1,5 @@
 ---
 book: Πρὸς Θεσσαλονικεῖς Α'
-bookEnglish: 1 Thessalonians
 order: 13
 division: paul
 chapters: 5

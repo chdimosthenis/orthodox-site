@@ -1,6 +1,5 @@
 ---
 book: Κατὰ Ἰωάννην
-bookEnglish: Gospel of John
 order: 4
 division: gospel
 chapters: 21

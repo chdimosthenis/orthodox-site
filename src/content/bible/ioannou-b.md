@@ -1,6 +1,5 @@
 ---
 book: Ἰωάννου Β'
-bookEnglish: 2 John
 order: 24
 division: general
 language: el

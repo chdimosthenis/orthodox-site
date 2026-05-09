@@ -1,6 +1,5 @@
 ---
 book: Κατὰ Ματθαῖον
-bookEnglish: Gospel of Matthew
 order: 1
 division: gospel
 chapters: 27

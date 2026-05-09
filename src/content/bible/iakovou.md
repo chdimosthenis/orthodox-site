@@ -1,6 +1,5 @@
 ---
 book: Ἰακώβου
-bookEnglish: James
 order: 20
 division: general
 chapters: 5

@@ -1,6 +1,5 @@
 ---
 book: Πρὸς Τίτον
-bookEnglish: Titus
 order: 17
 division: paul
 chapters: 3

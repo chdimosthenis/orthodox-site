@@ -97,8 +97,6 @@ const bible = defineCollection({
   schema: z.object({
     /** Canonical Greek title — e.g. "Κατά Ματθαίον". */
     book: z.string(),
-    /** English title for the EN site — e.g. "Gospel of Matthew". */
-    bookEnglish: z.string().optional(),
     /** Position in NT canon (1=Matthew … 27=Revelation). */
     order: z.number().int().min(1).max(27),
     /** Subdivision of the NT for grouping in the index page. */

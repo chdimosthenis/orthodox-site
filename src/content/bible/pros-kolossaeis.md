@@ -1,6 +1,5 @@
 ---
 book: Πρὸς Κολοσσαεῖς
-bookEnglish: Colossians
 order: 12
 division: paul
 chapters: 4

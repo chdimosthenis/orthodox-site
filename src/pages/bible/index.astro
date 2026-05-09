@@ -18,7 +18,7 @@ const cards = [
 ].sort((a, b) => a.title.localeCompare(b.title, 'el-GR'));
 ---
 
-<BaseLayout title={t('bible.title')}>
+<BaseLayout title={t('bible.title')} description="Πλῆρες πολυτονικὸ κείμενο τῆς Καινῆς Διαθήκης (Πατριαρχικὸν 1904) μὲ ἑρμηνεῖες παραβολῶν καὶ θαυμάτων." breadcrumbs={[{ name: t('bible.title'), url: '/bible' }]}>
   <h1>{t('bible.title')}</h1>
   <p class="muted">{t('bible.intro')}</p>
 

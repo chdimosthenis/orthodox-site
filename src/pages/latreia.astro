@@ -15,7 +15,7 @@ const cards = [
 ].sort((a, b) => a.title.localeCompare(b.title, 'el-GR'));
 ---
 
-<BaseLayout title={t('latreia.title')}>
+<BaseLayout title={t('latreia.title')} description="Ἀκολουθίες, ὕμνοι, προσευχές, ναοί καὶ ἑορτολόγιον — τὸ λειτουργικὸ καὶ προσευχητικὸ σῶμα τῆς Ὀρθοδοξίας." breadcrumbs={[{ name: 'Λατρεία', url: '/latreia' }]}>
   <h1>{t('latreia.title')}</h1>
   <p class="muted">{t('latreia.intro')}</p>
 

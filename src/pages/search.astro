@@ -6,7 +6,7 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<BaseLayout title={t('search.title')} wide={true}>
+<BaseLayout title={t('search.title')} wide={true} noindex={true}>
   <h1>{t('search.title')}</h1>
   <p class="muted">{t('search.help')}</p>
   <div id="search"></div>

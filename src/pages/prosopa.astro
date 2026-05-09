@@ -10,7 +10,7 @@ const cards = [
 ].sort((a, b) => a.title.localeCompare(b.title, 'el-GR'));
 ---
 
-<BaseLayout title={t('prosopa.title')}>
+<BaseLayout title={t('prosopa.title')} description="Ἅγιοι καὶ Πατέρες τῆς Ἐκκλησίας — βίοι, διδασκαλία, σημασία, βυζαντινὲς εἰκόνες." breadcrumbs={[{ name: 'Πρόσωπα', url: '/prosopa' }]}>
   <h1>{t('prosopa.title')}</h1>
   <p class="muted">{t('prosopa.intro')}</p>
 

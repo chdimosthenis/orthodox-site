@@ -11,9 +11,18 @@ interface Props {
   wide?: boolean;
   /** Optional JSON-LD structured data for the page (Article, Person, etc.). */
   jsonld?: Record<string, unknown> | Record<string, unknown>[];
+  /** Tell crawlers not to index this page (used by /search results pages). */
+  noindex?: boolean;
+  /**
+   * Breadcrumb trail for this page, e.g.
+   *   [{ name: 'Λατρεία', url: '/latreia' }, { name: 'Μοναστήρια', url: '/monasteries' }]
+   * Auto-prefixed with the home page. Emits Schema.org BreadcrumbList JSON-LD
+   * for richer SERP snippets. Pass `undefined` (default) to skip.
+   */
+  breadcrumbs?: Array<{ name: string; url: string }>;
 }
 
-const { title, description, ogImage = '/og-default.png', wide = false, jsonld } = Astro.props;
+const { title, description, ogImage = '/og-default.png', wide = false, jsonld, noindex = false, breadcrumbs } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
@@ -43,6 +52,22 @@ const websiteSchema: Record<string, unknown> = {
 const pageJsonld: Record<string, unknown>[] = jsonld
   ? Array.isArray(jsonld) ? jsonld : [jsonld]
   : [];
+
+// BreadcrumbList JSON-LD — emitted when a page passes a `breadcrumbs` prop.
+// Always prefixed with the home page so the trail is anchored.
+if (breadcrumbs && breadcrumbs.length > 0) {
+  const trail = [{ name: siteTitle, url: '/' }, ...breadcrumbs];
+  pageJsonld.push({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: trail.map((b, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: b.name,
+      item: new URL(b.url, Astro.site).toString(),
+    })),
+  });
+}
 ---
 
 <!doctype html>
@@ -56,6 +81,7 @@ const pageJsonld: Record<string, unknown>[] = jsonld
     <meta name="generator" content={Astro.generator} />
     <title>{fullTitle}</title>
     <meta name="description" content={desc} />
+    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'} />
     <link rel="canonical" href={canonical.toString()} />
     <link rel="alternate" type="application/rss+xml" title={`${siteTitle} — RSS`} href="/rss.xml" />
     <meta property="og:title" content={fullTitle} />

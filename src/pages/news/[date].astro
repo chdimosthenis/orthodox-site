@@ -51,9 +51,28 @@ const formatLong = (iso: string) => {
 const generatedAt = new Date(data.generated_at).toLocaleString('el-GR', {
   dateStyle: 'medium', timeStyle: 'short',
 });
+
+const jsonld = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: `Νέα · ${formatLong(date!)}`,
+  description: `Στιγμιότυπο τῶν εἰδήσεων τῆς Ὀρθοδοξίας γιὰ ${formatLong(date!)}.`,
+  inLanguage: 'el',
+  dateModified: data.generated_at,
+  mainEntity: {
+    '@type': 'ItemList',
+    numberOfItems: items.length,
+    itemListElement: items.map((item, idx) => ({
+      '@type': 'ListItem',
+      position: idx + 1,
+      url: item.url,
+      name: item.title,
+    })),
+  },
+};
 ---
 
-<BaseLayout title={`Νέα · ${formatLong(date!)}`}>
+<BaseLayout title={`Νέα · ${formatLong(date!)}`} jsonld={jsonld}>
   <p class="back-link"><a href="/news/archive">← Ἀρχεῖο Νέων</a></p>
   <h1>Νέα τῆς {formatLong(date!)}</h1>
   <p class="metadata">Στιγμιότυπο: <time datetime={data.generated_at}>{generatedAt}</time></p>

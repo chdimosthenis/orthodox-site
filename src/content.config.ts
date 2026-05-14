@@ -9,6 +9,7 @@ const articles = defineCollection({
     title: z.string(),
     description: z.string(),
     pubDate: z.coerce.date(),
+    updatedDate: z.coerce.date().optional(),
     author: z.string(),
     language: z.enum(['el', 'en']),
     sourceUrl: z.string().url().optional(),
@@ -117,6 +118,7 @@ const erminies = defineCollection({
     title: z.string(),
     description: z.string(),
     pubDate: z.coerce.date(),
+    updatedDate: z.coerce.date().optional(),
     author: z.string(),
     /** Biblical reference, e.g. "Λουκᾶς 10, 25-37". */
     reference: z.string(),

@@ -25,9 +25,28 @@ const generatedAt = new Date(newsData.generated_at).toLocaleString(localeTag, {
   dateStyle: 'medium',
   timeStyle: 'short',
 });
+
+const jsonld = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: t('news.title'),
+  description: t('news.intro'),
+  inLanguage: lang === 'el' ? 'el' : 'en',
+  dateModified: newsData.generated_at,
+  mainEntity: {
+    '@type': 'ItemList',
+    numberOfItems: items.length,
+    itemListElement: items.map((item, idx) => ({
+      '@type': 'ListItem',
+      position: idx + 1,
+      url: item.url,
+      name: item.title,
+    })),
+  },
+};
 ---
 
-<BaseLayout title={t('news.title')}>
+<BaseLayout title={t('news.title')} jsonld={jsonld}>
   <h1>{t('news.title')}</h1>
   <p class="muted">{t('news.intro')}</p>
   <p class="metadata">

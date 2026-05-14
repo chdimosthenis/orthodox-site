@@ -16,15 +16,44 @@ const { entry } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const { Content } = await render(entry);
-const shareUrl = new URL(Astro.url.pathname, Astro.site).toString();
+const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+const shareUrl = canonical;
+const ogImageAbs = new URL('/og-default.png', Astro.site).toString();
+
+// Related articles: same language, not self, not draft. Score by shared-tag count,
+// fall back to most-recent peers when the current entry has no tags.
+const currentTags = new Set(entry.data.tags ?? []);
+const allArticles = await getCollection('articles');
+const related = allArticles
+  .filter(a => a.id !== entry.id && a.data.language === entry.data.language && !a.data.draft)
+  .map(a => {
+    const tags = a.data.tags ?? [];
+    const overlap = tags.filter(t => currentTags.has(t)).length;
+    return { entry: a, overlap };
+  })
+  .filter(x => currentTags.size === 0 || x.overlap > 0)
+  .sort((a, b) => {
+    if (b.overlap !== a.overlap) return b.overlap - a.overlap;
+    return b.entry.data.pubDate.valueOf() - a.entry.data.pubDate.valueOf();
+  })
+  .slice(0, 4)
+  .map(x => x.entry);
 
 const jsonld = {
   '@context': 'https://schema.org',
   '@type': 'Article',
   headline: entry.data.title,
   description: entry.data.description,
+  image: ogImageAbs,
   datePublished: entry.data.pubDate.toISOString(),
+  ...(entry.data.updatedDate && { dateModified: entry.data.updatedDate.toISOString() }),
   author: { '@type': 'Person', name: entry.data.author },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Ορθόδοξος Κόμβος',
+    url: Astro.site!.toString(),
+  },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
   inLanguage: entry.data.language,
   ...(entry.data.sourceUrl && { isBasedOn: entry.data.sourceUrl }),
   ...(entry.data.license && { license: entry.data.license }),
@@ -57,6 +86,20 @@ const jsonld = {
     )}
 
     <ShareButtons title={entry.data.title} url={shareUrl} />
+
+    {related.length > 0 && (
+      <aside class="related" aria-labelledby="related-heading">
+        <h2 id="related-heading">{lang === 'el' ? 'Σχετικά' : 'Related'}</h2>
+        <ul class="related-list">
+          {related.map(r => (
+            <li>
+              <a href={`/articles/${r.id}/`}>{r.data.title}</a>
+              {r.data.description && <p class="muted">{r.data.description}</p>}
+            </li>
+          ))}
+        </ul>
+      </aside>
+    )}
   </article>
 </BaseLayout>
 
@@ -68,5 +111,36 @@ const jsonld = {
   }
   .article-header h1 {
     margin-top: 0;
+  }
+  .related {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+  .related h2 {
+    font-size: 1.15rem;
+    margin: 0 0 1rem;
+  }
+  .related-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 1rem;
+  }
+  .related-list li {
+    padding-bottom: 0.8rem;
+    border-bottom: 1px dotted var(--color-border);
+  }
+  .related-list li:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  .related-list a {
+    font-weight: 600;
+  }
+  .related-list p {
+    margin: 0.25rem 0 0;
+    font-size: 0.9rem;
   }
 </style>

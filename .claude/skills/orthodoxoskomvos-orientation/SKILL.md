@@ -104,16 +104,24 @@ trigger the `subagent-permissions` skill.
 | "ἀπόψε push δὲν περνᾶ — bot conflict" | `recover-from-bot-push` |
 | "agents can't write" / "Write denied" | `subagent-permissions` |
 | "διπλὰ permission prompts ἐνοχλοῦν" | `fewer-permission-prompts` |
+| "deploy" / "hosting" / "SEO" / "Search Console" / "Bing" / "Cloudflare zone" / "robots" / "sitemap" | `deployment-and-seo` |
 
-## Domain + SEO state
+## Domain + SEO state (LIVE since 2026-05-14)
 
-The site is fully prepared for `orthodoxoskomvos.gr`. All hardcoded
-URLs (astro.config, robots.txt, JSON-LD, scripts, GH Actions) point
-to the production domain. SEO build-ins: Article + Person + Book
-JSON-LD, BreadcrumbList on hub pages, sitemap auto-generated, robots
-allows GPTBot/Google-Extended/ClaudeBot, og:image PNG (1200x630),
-canonical URLs everywhere. See `DEPLOY.md` and `SEO.md` for the
-post-launch checklist (Google Search Console, Bing Webmaster, etc.).
+The site is live at `https://orthodoxoskomvos.gr`. Hosted on Cloudflare
+Workers + Static Assets (fallback URL: `*.workers.dev`, NOT `*.pages.dev`).
+GSC + Bing both wired; sitemap (402 URLs) submitted to both. Article
+JSON-LD now includes image/publisher/mainEntityOfPage/dateModified
+(via optional `updatedDate` frontmatter). News pages emit CollectionPage
++ ItemList (correct aggregator schema — items link off-site). Every
+article page has a Σχετικά block ranking peers by tag-overlap then recency.
+
+**For deployment, SEO, Cloudflare-zone, or search-indexation work, read
+the `deployment-and-seo` skill — it captures the post-launch operational
+state.** DEPLOY.md and SEO.md describe the pre-launch architecture and
+are still accurate as architecture references, but the operational state
+(Cloudflare zone settings done, Bing import-from-GSC, robots.txt vs
+Cloudflare AI bot overrides, etc.) lives in the skill.
 
 ## Cost
 

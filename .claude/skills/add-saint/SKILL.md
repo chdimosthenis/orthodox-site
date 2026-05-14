@@ -52,13 +52,42 @@ Greek body text, 80–120 words, original prose. Use polytonic where
 quoting traditional texts; monotonic for modern Greek narrative.
 ```
 
-Then fetch the icon and ship:
+**MANDATORY** next step — fetch the icon (NEVER commit without this):
 
 ```bash
 cd scripts && ./venv/Scripts/python.exe fetch_icon.py --update-all
-cd .. && npm run build
-git add . && git commit -m "feat: add <name> (<feast>)" && git push
+cd ..
 ```
+
+The fetcher iterates every saint, looks up the Greek-Wikipedia infobox
+image via `wikipediaTitle`, persists `iconUrl` + `iconAttribution` back
+into the frontmatter. Entries without a Wikipedia match are skipped
+silently — that's fine, just flag them for later `fix-icon` follow-up.
+
+**Audit step** — after the fetcher runs, grep the new files to verify
+icons landed:
+
+```bash
+grep -L "iconUrl:" src/content/saints/<new-slug-1>.md src/content/saints/<new-slug-2>.md ...
+```
+
+Empty output = all icons resolved. Listed paths = those saints have no
+icon yet and either (a) need a tweaked `wikipediaTitle` and re-fetch, or
+(b) need manual `iconUrl` via `fix-icon` skill. Either way, do this audit
+BEFORE shipping.
+
+Then build + ship:
+
+```bash
+npm run build
+git add . && git commit -m "feat: add <name> (<feast>)"
+git pull --rebase origin main && git push
+```
+
+Why mandatory: saint listing cards and the today-widget rely on icons
+as the visual cue. Saints without `iconUrl` render as empty boxes,
+which makes the page look broken. The user explicitly flagged this on
+2026-05-14 after a batch shipped without icons.
 
 ## Path B — append to seeder (curated batch)
 
@@ -68,21 +97,53 @@ existing pattern (slug, frontmatter dict, body string). Then:
 ```bash
 cd scripts && ./venv/Scripts/python.exe calendar_seed.py --force
 ./venv/Scripts/python.exe fetch_icon.py --update-all
-cd .. && npm run build
-git add . && git commit -m "feat: seed N saints" && git push
+cd ..
+# audit: which new entries lack iconUrl
+grep -L "iconUrl:" src/content/saints/<list-of-new-slugs>
+npm run build
+git add . && git commit -m "feat: seed N saints"
+git pull --rebase origin main && git push
 ```
 
 ## English version
 
 If the user wants an English counterpart, see the `translate-entry` skill.
 
+## Movable feasts → use the `liturgical` collection instead
+
+Saints with feasts tied to the Paschal cycle (Νεομάρτυρες Χίου, Σαββατο
+τῆς Α' Ἑβδομάδος, Κυριακή τῶν Ἁγίων Πατέρων, etc.) cannot be added here
+— the schema enforces `feastDay: MM-DD` and Zod will reject anything
+else. Add them as `liturgical` entries with a written note about how
+the date is computed relative to Pascha.
+
+## Polytonic vs monotonic for the body
+
+The existing corpus is mixed. Match the entry's register:
+- **Hagiographies from Byzantine sources** → polytonic (Ἅγιος, Ὀρθόδοξος…).
+- **Modern Greek narrative** → monotonic (Άγιος, Ορθόδοξος…).
+
+The `name` frontmatter field is conventionally monotonic across the
+corpus. Use polytonic only when the source you're paraphrasing is
+itself polytonic.
+
+## Body length
+
+80–120 words for the body. Saint listing cards excerpt the first
+~150 chars; longer bodies are fine but the first paragraph carries
+most of the SEO and card weight.
+
 ## Don'ts
 
 - Don't make up Wikipedia titles that don't exist — verify or omit the
-  field (icons can be added later via `fetch_icon.py`).
+  field (icons can be added later via `fix-icon`).
 - Don't include copyrighted modern Greek translations of patristic texts.
 - Don't set `iconUrl` manually as the first attempt — let `fetch_icon.py`
   resolve it from `wikipediaTitle`. Use the `fix-icon` skill if a specific
   Commons file is wanted.
 - Don't commit without running `npm run build` first — schema validation
   errors only surface there.
+- Don't commit without running `fetch_icon.py --update-all` first —
+  the audit step above catches missing icons before they ship.
+- Don't write the body as a transcription of an external hagiography —
+  paraphrase in original Greek prose to avoid copyright issues.

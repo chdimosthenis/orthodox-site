@@ -7,7 +7,15 @@ description: Add a new article (essay, patristic text, theological piece, devoti
 
 Articles live in `src/content/articles/<slug>.md`, rendered at
 `/articles/<slug>/`. Schema requires: title, description, pubDate, author,
-language. Optional: sourceUrl, license, tags, draft.
+language. Optional: sourceUrl, license, tags, draft, **updatedDate**, **image**.
+
+- `updatedDate` (ISO date) — set when you genuinely revise an article. Emits
+  `dateModified` in the Article JSON-LD and `article:modified_time` in
+  Open Graph. A freshness signal for Google + a richer social-share preview.
+- `image` (root-relative path under `public/`, e.g. `/articles/hero-foo.jpg`) —
+  per-article hero image used as og:image. Falls back to the brand
+  `og-default.png` when absent. Adding this on your most-shared articles
+  makes each FB/LinkedIn/X preview visually unique → higher click-through.
 
 ## Two paths
 
@@ -27,24 +35,41 @@ Pick a slug (transliterated, hyphenated, lowercase). Write the file:
 title: "Title in the article's language"
 description: "1–2 sentence summary for cards and SEO meta description."
 pubDate: 2026-MM-DD
+# updatedDate: 2026-MM-DD       # optional — only when genuinely revised
 author: "Author name (or 'Σύνταξη' for editorial pieces)"
 language: el
 license: original
 tags: ["tag1", "tag2"]
+# image: /articles/hero-foo.jpg  # optional — per-article og:image override
 ---
 
 Body in Markdown. Use:
-- ## headings for sections
+- ## headings for sections (NEVER a second H1 — the slug page renders
+  the title as H1 itself).
 - > blockquotes (with `<blockquote lang="grc">` if quoting polytonic
   patristic Greek)
 - Inline citations for any external work referenced
 ```
 
+**SEO writing notes:**
+- Match the H1 to a real Greek search query the article answers. The
+  article slug page emits `entry.data.title` as H1 already; keep it
+  semantic (question form like "Πῶς…", "Τί εἶναι…", "Γιατί…" outperforms
+  generic noun titles for long-tail search intent).
+- Aim for 400–800 words. Shorter pieces don't rank; longer ones get
+  scroll-fatigue from mobile readers.
+- Use 4–6 H2 sections. Greek SERPs favor structured content with TOC-like
+  skim affordances.
+- Tags drive the on-site Σχετικά (related articles) block via shared-tag
+  overlap. Pick 3–4 tags that cluster with peer articles, not abstract
+  metadata.
+
 Ship:
 
 ```bash
 npm run build
-git add . && git commit -m "feat: add article <title>" && git push
+git add . && git commit -m "feat: add article <title>"
+git pull --rebase origin main && git push
 ```
 
 ## Path B — fetched

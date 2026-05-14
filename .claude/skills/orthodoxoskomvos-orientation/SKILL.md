@@ -11,11 +11,11 @@ description: Master orientation for the Ὀρθόδοξος Κόμβος site (o
 C:\Users\dimos\Documents\orthodox-site
 ```
 
-Production: `https://orthodoxoskomvos.gr` (Cloudflare Pages,
-auto-deploys from `main`). Pre-domain testbed:
-`https://orthodox-site.pages.dev`.
+Production: `https://orthodoxoskomvos.gr` (Cloudflare Workers + Static
+Assets, auto-deploys from `main`). Worker fallback URL:
+`https://orthodoxoskomvos.dimos-chatzinikolaou.workers.dev`.
 
-GitHub: `chdimosthenis/orthodox-site` (private? — check).
+GitHub: `chdimosthenis/orthodoxoskomvos` (private? — check).
 
 ## Stack
 

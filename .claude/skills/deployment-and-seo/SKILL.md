@@ -9,7 +9,7 @@ description: Post-launch operational state of orthodoxoskomvos.gr — what's act
 
 - Production URL: `https://orthodoxoskomvos.gr`
 - Worker fallback URL: `https://orthodoxoskomvos.dimos-chatzinikolaou.workers.dev`
-- GitHub repo: `chdimosthenis/orthodox-site`, branch `main`
+- GitHub repo: `chdimosthenis/orthodoxoskomvos`, branch `main`
 - Hosting: Cloudflare **Workers + Static Assets** (the unified Pages/Workers path; that's why the fallback is `*.workers.dev`, not `*.pages.dev`)
 - Auto-deploy: every push to `main` rebuilds in ~1-2 min
 - Build command: `astro build && pagefind --site dist/client` (the `dist/client` path is mandatory — see "Pagefind path gotcha" below)
@@ -23,7 +23,7 @@ The domain was on **Papaki** (Greek registrar), not on Cloudflare, at the start 
 1. Cloudflare dashboard → **Add a site** → enter `orthodoxoskomvos.gr` → Free plan
 2. Cloudflare returns 2 nameservers (e.g. `xxx.ns.cloudflare.com`)
 3. Papaki dashboard (`my.papaki.gr` → Τα Domain μου → Διαχείριση) → change nameservers to the Cloudflare ones
-4. Wait for zone status to become **Active** (≤ 24h for .gr, typically much faster), then attach the custom domain to the Worker in dashboard → Workers & Pages → orthodox-site → Custom Domains
+4. Wait for zone status to become **Active** (≤ 24h for .gr, typically much faster), then attach the custom domain to the Worker in dashboard → Workers & Pages → orthodoxoskomvos → Custom Domains
 
 If Cloudflare's UI says *"Only domains active on your Cloudflare account can be added"* when attaching a custom domain, the zone is not Active yet — wait, then retry.
 

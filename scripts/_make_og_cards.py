@@ -231,8 +231,14 @@ def make_card(slug: str, name: str, feast_day: str, icon_url: str) -> bool:
     # Text area on the right
     tx = 490
     text_w = W - tx - 70  # ~640px
-    fonts_serif_b = ["georgiab.ttf", "georgia.ttf", "DejaVuSerif-Bold.ttf"]
-    fonts_serif = ["georgia.ttf", "DejaVuSerif.ttf"]
+    # Polytonic Greek (Ἅ, Ἰ, ὁ, Ἀ) is in the Greek Extended Unicode block.
+    # Georgia covers only basic Greek (Α–Ω, α–ω) — saint names with
+    # breathing marks render as tofu. Palatino Linotype / Cambria / Times
+    # all carry Greek Extended on Windows and are tried first.
+    fonts_serif_b = ["palab.ttf", "cambriab.ttf", "timesbd.ttf",
+                     "georgiab.ttf", "DejaVuSerif-Bold.ttf"]
+    fonts_serif = ["pala.ttf", "cambria.ttc", "times.ttf",
+                   "georgia.ttf", "DejaVuSerif.ttf"]
 
     # Saint name — shrink to fit 3 lines max
     title_lines, title_sz = shrink_to_fit(

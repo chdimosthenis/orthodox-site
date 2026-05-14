@@ -2,7 +2,7 @@
 
 Bilingual (Greek/English) Orthodox Christian content site. Live at
 <https://orthodoxoskomvos.gr>. Repo at
-<https://github.com/chdimosthenis/orthodox-site>.
+<https://github.com/chdimosthenis/orthodoxoskomvos>.
 
 ## Stack
 
@@ -179,7 +179,7 @@ Drafts go to a PR, NOT directly to `main` — review removes `draft: true`
 and merges when the article is editorially ready.
 
 Manual trigger any workflow:
-<https://github.com/chdimosthenis/orthodox-site/actions>
+<https://github.com/chdimosthenis/orthodoxoskomvos/actions>
 
 ## Sources used
 

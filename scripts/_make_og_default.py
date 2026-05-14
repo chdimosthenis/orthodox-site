@@ -7,6 +7,7 @@ public/og-default.svg using Pillow. Run once, or after brand changes.
     python scripts/_make_og_default.py
 """
 from __future__ import annotations
+import math
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 
@@ -59,6 +60,45 @@ def find_font(candidates: list[str], size: int) -> ImageFont.FreeTypeFont | Imag
     return ImageFont.load_default()
 
 
+def draw_orthodox_cross(drw: ImageDraw.ImageDraw, cx: float, cy: float,
+                        scale: float = 6.5, color: tuple[int, int, int] = BURGUNDY) -> None:
+    """Draw the brand 8-pointed Orthodox cross centered at (cx, cy).
+
+    Geometry mirrors public/favicon.svg (32x32 viewBox) — vertical post,
+    titulus (top crossbar), main crossbar, slanted suppedaneum. Drawn as
+    PIL primitives so we don't depend on any font having ☧ (most don't —
+    Georgia renders it as tofu, which is what shipped on og-default.png
+    pre-2026-05-15).
+    """
+    def to_canvas(x: float, y: float) -> tuple[float, float]:
+        # (16, 16) in the viewBox maps to (cx, cy) on the canvas
+        return (cx + (x - 16) * scale, cy + (y - 16) * scale)
+
+    def filled_rect(x: float, y: float, w: float, h: float) -> None:
+        x1, y1 = to_canvas(x, y)
+        x2, y2 = to_canvas(x + w, y + h)
+        drw.rectangle([x1, y1, x2, y2], fill=color)
+
+    # Vertical post
+    filled_rect(14.6, 2.5, 2.8, 27)
+    # Top crossbar (titulus)
+    filled_rect(11.2, 6.5, 9.6, 1.8)
+    # Main crossbar
+    filled_rect(7.6, 11, 16.8, 2.6)
+    # Slanted suppedaneum — rotate -15° around (16, 21.3)
+    angle = math.radians(-15)
+    cos_a, sin_a = math.cos(angle), math.sin(angle)
+    rx, ry = 16, 21.3
+    corners_vb = [(9.6, 20.4), (22.4, 20.4), (22.4, 22.2), (9.6, 22.2)]
+    rotated_canvas: list[tuple[float, float]] = []
+    for x, y in corners_vb:
+        dx, dy = x - rx, y - ry
+        nx = rx + dx * cos_a - dy * sin_a
+        ny = ry + dx * sin_a + dy * cos_a
+        rotated_canvas.append(to_canvas(nx, ny))
+    drw.polygon(rotated_canvas, fill=color)
+
+
 def main() -> None:
     img = gradient_fill()
     drw = ImageDraw.Draw(img)
@@ -66,17 +106,20 @@ def main() -> None:
     # Inner ornamental border
     drw.rectangle([40, 40, W - 40, H - 40], outline=GOLD, width=2)
 
-    # Use Georgia / DejaVu for Greek glyph coverage
-    font_symbol = find_font(["georgia.ttf", "georgiab.ttf", "DejaVuSerif.ttf"], 130)
-    font_title = find_font(["georgiab.ttf", "georgia.ttf", "DejaVuSerif-Bold.ttf"], 84)
-    font_tagline = find_font(["georgia.ttf", "DejaVuSerif.ttf"], 32)
+    # Prefer Palatino Linotype / Cambria / Times — all carry the
+    # Greek Extended (polytonic) block, in case the brand title or
+    # tagline ever uses breathing marks. Georgia is monotonic-only.
+    font_title = find_font(
+        ["palab.ttf", "cambriab.ttf", "timesbd.ttf",
+         "georgiab.ttf", "DejaVuSerif-Bold.ttf"], 84,
+    )
+    font_tagline = find_font(
+        ["pala.ttf", "cambria.ttc", "times.ttf",
+         "georgia.ttf", "DejaVuSerif.ttf"], 32,
+    )
 
-    # Christogram (Chi-Rho)
-    symbol = "☧"
-    bbox = drw.textbbox((0, 0), symbol, font=font_symbol)
-    sw = bbox[2] - bbox[0]
-    sh = bbox[3] - bbox[1]
-    drw.text(((W - sw) / 2 - bbox[0], 200 - sh / 2 - bbox[1]), symbol, fill=BURGUNDY, font=font_symbol)
+    # Eight-pointed Orthodox cross — drawn (not glyph) so it always renders.
+    draw_orthodox_cross(drw, cx=W / 2, cy=200, scale=6.5, color=BURGUNDY)
 
     # Brand title — Greek
     title = "Ορθόδοξος Κόμβος"

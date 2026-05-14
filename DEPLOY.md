@@ -21,7 +21,7 @@ and Open Graph metadata all use `https://orthodoxoskomvos.gr`.
 Open the Pages dashboard:
 
 ```
-https://dash.cloudflare.com → Workers & Pages → orthodox-site → Custom domains
+https://dash.cloudflare.com → Workers & Pages → orthodoxoskomvos → Custom domains
 ```
 
 Click **Set up a custom domain**, type `orthodoxoskomvos.gr`, then click
@@ -42,15 +42,15 @@ At your registrar's DNS panel, add two CNAME records:
 
 ```
 Name           Type    Value
-@              CNAME   orthodox-site.pages.dev   (apex)
-www            CNAME   orthodox-site.pages.dev
+@              CNAME   orthodoxoskomvos.pages.dev   (apex)
+www            CNAME   orthodoxoskomvos.pages.dev
 ```
 
 Some Greek registrars block CNAME at the apex (`@`). If so, use:
 
 ```
-@              ALIAS   orthodox-site.pages.dev   (or A 192.0.2.1, will be replaced)
-www            CNAME   orthodox-site.pages.dev
+@              ALIAS   orthodoxoskomvos.pages.dev   (or A 192.0.2.1, will be replaced)
+www            CNAME   orthodoxoskomvos.pages.dev
 ```
 
 #### Path B — transfer DNS to Cloudflare (recommended, free)
@@ -76,7 +76,7 @@ Once propagation completes:
 ```
 https://orthodoxoskomvos.gr      → site loads, valid SSL
 https://www.orthodoxoskomvos.gr  → redirects to apex (or vice versa)
-https://orthodox-site.pages.dev  → still works (Cloudflare keeps both)
+https://orthodoxoskomvos.pages.dev  → still works (Cloudflare keeps both)
 ```
 
 The pages.dev URL stays live. Cloudflare doesn't auto-redirect from

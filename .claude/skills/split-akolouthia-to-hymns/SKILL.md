@@ -22,7 +22,7 @@ candidates = [
     # add likely variants
 ]
 for url in candidates:
-    r = requests.head(url, timeout=10, headers={'User-Agent':'orthodox-site/1.0'})
+    r = requests.head(url, timeout=10, headers={'User-Agent':'orthodoxoskomvos/1.0'})
     print(r.status_code, url)
 ```
 

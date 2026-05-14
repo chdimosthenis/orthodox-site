@@ -26,7 +26,7 @@ import requests
 ROOT = Path(__file__).resolve().parent.parent
 SAINTS_DIR = ROOT / "src" / "content" / "saints"
 HEADERS = {
-    "User-Agent": "OrthodoxLogos/1.0 (icon-validator; +https://orthodox-site.pages.dev)",
+    "User-Agent": "OrthodoxLogos/1.0 (icon-validator; +https://orthodoxoskomvos.gr)",
     "Accept": "image/*,*/*;q=0.5",
 }
 TIMEOUT = 15

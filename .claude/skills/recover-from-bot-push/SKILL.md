@@ -1,6 +1,6 @@
 ---
 name: recover-from-bot-push
-description: Resolve a `git push` rejection caused by the daily-saints or news-aggregator GitHub Actions bot pushing first. Trigger on "push rejected", "fetch first", "remote contains work that you do not have locally", "[rejected] main -> main", or any failed push from the orthodox-site repo while bots are scheduled.
+description: Resolve a `git push` rejection caused by the daily-saints or news-aggregator GitHub Actions bot pushing first. Trigger on "push rejected", "fetch first", "remote contains work that you do not have locally", "[rejected] main -> main", or any failed push from the orthodoxoskomvos repo while bots are scheduled.
 ---
 
 # Recover from a bot push collision

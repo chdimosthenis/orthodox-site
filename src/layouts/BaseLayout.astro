@@ -42,7 +42,15 @@ const siteTitle = t('site.title');
 const fullTitle = title === siteTitle ? title : `${title} — ${siteTitle}`;
 const desc = description ?? t('site.tagline');
 const canonical = new URL(Astro.url.pathname, Astro.site);
-const ogUrl = new URL(ogImage, Astro.site);
+// Cachebust the brand-default og:image so FB/LinkedIn don't keep serving
+// stale bytes (e.g. the prior "Ὀρθόδοξος Λόγος" branding). Bump this token
+// whenever the og-default.png file content changes. Per-article images are
+// left unversioned since their URL changes per entry already.
+const OG_DEFAULT_CACHEBUSTER = '2026-05-14';
+const ogImageResolved = ogImage === '/og-default.png'
+  ? `/og-default.png?v=${OG_DEFAULT_CACHEBUSTER}`
+  : ogImage;
+const ogUrl = new URL(ogImageResolved, Astro.site);
 
 // Always include WebSite schema with SearchAction
 const websiteSchema: Record<string, unknown> = {

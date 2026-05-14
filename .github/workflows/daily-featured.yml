@@ -1,0 +1,51 @@
+name: Daily featured-pick rebuild
+
+# Bumps src/data/featured-bump.txt with today's Athens date so Cloudflare
+# re-builds the home page, materializing the new "Προτεινόμενο Ἀνάγνωσμα
+# τῆς Ἡμέρας" pick at ~06:00 Athens local time year-round.
+#
+# Two cron lines cover Athens DST without per-March/October maintenance:
+#   - 03:05 UTC = 06:05 Athens (EEST, last Sun of Mar - last Sun of Oct)
+#   - 04:05 UTC = 06:05 Athens (EET, last Sun of Oct - last Sun of Mar)
+# The "wrong" run for the active DST is a clean no-op because the bump file
+# already contains today's Athens date by then.
+
+on:
+  schedule:
+    - cron: '5 3 * * *'
+    - cron: '5 4 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-featured
+  cancel-in-progress: false
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Bump featured-bump.txt and push if changed
+        run: |
+          athens_date=$(TZ=Europe/Athens date +%Y-%m-%d)
+          mkdir -p src/data
+          echo "${athens_date}" > src/data/featured-bump.txt
+          if git diff --quiet src/data/featured-bump.txt; then
+            echo "No-op (already bumped today: ${athens_date})."
+            echo "- No-op (already bumped today: ${athens_date})" >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          git config user.name "orthodox-featured-bot"
+          git config user.email "noreply@orthodoxoskomvos.gr"
+          git add src/data/featured-bump.txt
+          git commit -m "chore(featured): bump for ${athens_date}"
+          # Tolerate concurrent pushes from human/news work — rebase + retry once.
+          git pull --rebase origin main || true
+          git push
+          echo "- Bumped featured-bump.txt to ${athens_date}" >> "$GITHUB_STEP_SUMMARY"

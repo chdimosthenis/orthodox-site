@@ -13,10 +13,26 @@ const t = useTranslations(lang);
 const isNaosEntry = (tags?: readonly string[]) =>
   !!tags && tags.some(t => t.startsWith('naos-'));
 
-const now = new Date();
+// Effective "featured day" in Europe/Athens with rollover at 06:00 local.
+// Before 06:00 Athens we still show the previous day's pick; at 06:00 it advances.
+const athensParts = new Intl.DateTimeFormat('en-CA', {
+  timeZone: 'Europe/Athens',
+  year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit',
+  hour12: false,
+}).formatToParts(new Date());
+let effY = Number(athensParts.find(p => p.type === 'year')!.value);
+let effM = Number(athensParts.find(p => p.type === 'month')!.value);
+let effD = Number(athensParts.find(p => p.type === 'day')!.value);
+const effH = Number(athensParts.find(p => p.type === 'hour')!.value);
+if (effH < 6) {
+  const prev = new Date(Date.UTC(effY, effM - 1, effD) - 86_400_000);
+  effY = prev.getUTCFullYear();
+  effM = prev.getUTCMonth() + 1;
+  effD = prev.getUTCDate();
+}
 const todayKey =
-  String(now.getMonth() + 1).padStart(2, '0') + '-' +
-  String(now.getDate()).padStart(2, '0');
+  String(effM).padStart(2, '0') + '-' +
+  String(effD).padStart(2, '0');
 
 type FeaturedItem = {
   href: string;
@@ -67,9 +83,10 @@ const pool: FeaturedItem[] = [
     })),
 ];
 
-// Deterministic daily pick: rotates once per calendar day, same on every
-// build that ships within a single UTC day.
-const seed = now.getUTCFullYear() * 10000 + (now.getUTCMonth() + 1) * 100 + now.getUTCDate();
+// Deterministic daily pick keyed to the Athens "featured day" computed above:
+// rotates once per Athens day with rollover at 06:00 local; same pick on every
+// build that ships between two rollovers.
+const seed = effY * 10000 + effM * 100 + effD;
 const featured = pool.length > 0 ? pool[seed % pool.length] : null;
 ---
 

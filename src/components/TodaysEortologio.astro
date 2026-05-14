@@ -1,0 +1,65 @@
+---
+import { getLangFromUrl } from '../i18n/utils';
+import synaxariData from '../data/synaxari.json';
+
+// Daily Synaxari from Ἀποστολική Διακονία τῆς Ἐκκλησίας τῆς Ἑλλάδος.
+// Greek-only widget. Guarantees the home page always carries a daily
+// commemoration list, because the source covers all 366 days of the year.
+
+const lang = getLangFromUrl(Astro.url);
+
+const today = new Date();
+const todayKey =
+  String(today.getMonth() + 1).padStart(2, '0') + '-' +
+  String(today.getDate()).padStart(2, '0');
+
+type SynaxariEntry = { names: string; url: string };
+const entries = (synaxariData as { entries: Record<string, SynaxariEntry> }).entries;
+const entry = lang === 'el' ? entries[todayKey] ?? null : null;
+const sourceName = (synaxariData as { sourceName: string }).sourceName;
+---
+
+{entry && (
+<section class="eortologio">
+  <h2>Ἑορτολόγιο τῆς ἡμέρας</h2>
+  <p class="eortologio-names" lang="el">{entry.names}</p>
+  <p class="eortologio-source">
+    <a href={entry.url} target="_blank" rel="noopener" lang="el">
+      Πηγή: {sourceName} →
+    </a>
+  </p>
+</section>
+)}
+
+<style>
+  .eortologio {
+    margin-top: 2rem;
+    padding: 1.5rem 1.75rem;
+    border: 1px solid var(--color-border);
+    border-left: 3px solid var(--color-accent);
+    border-radius: 0 4px 4px 0;
+    background: var(--color-attribution-bg);
+  }
+  .eortologio h2 {
+    margin-top: 0;
+    font-size: 1.4rem;
+  }
+  .eortologio-names {
+    margin: 0;
+    line-height: 1.6;
+    color: var(--color-text);
+  }
+  .eortologio-source {
+    margin: 0.85rem 0 0;
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    color: var(--color-muted);
+  }
+  .eortologio-source a {
+    color: var(--color-muted);
+    border-bottom-color: var(--color-border);
+  }
+  .eortologio-source a:hover {
+    color: var(--color-accent);
+  }
+</style>

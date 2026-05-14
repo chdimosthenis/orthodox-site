@@ -40,7 +40,7 @@ GitHub: `chdimosthenis/orthodox-site` (private? — check).
 ## Routing
 
 ```
-/                                home (TodaysSaint widget + NewsWidget + recent articles)
+/                                home (TodaysEortologio widget + NewsWidget + recent articles)
 /news                            latest news snapshot (auto-archived per day)
 /news/archive                    list of all dated news archives
 /news/<YYYY-MM-DD>               specific day's snapshot

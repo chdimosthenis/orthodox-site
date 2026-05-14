@@ -67,8 +67,8 @@ src/
     articles/  fathers/  saints/  liturgical/  bible/
   data/news.json                   live news feed (overwritten by cron)
   layouts/BaseLayout.astro         <head> SEO, JSON-LD, hreflang, RSS link, pagefind body
-  components/                      Header, Footer, ArticleCard, SaintCard, TodaysSaint,
-                                   ShareButtons, NewsWidget
+  components/                      Header, Footer, ArticleCard, SaintCard,
+                                   TodaysEortologio, ShareButtons, NewsWidget
   pages/                           Greek (default locale, no URL prefix)
   pages/en/                        English (with /en/ prefix)
   content.config.ts                Zod schemas for 5 collections
@@ -101,7 +101,7 @@ Enums:
 ## Top-level routes
 
 ```
-/             home (TodaysSaint, NewsWidget, latest articles)
+/             home (TodaysEortologio, NewsWidget, latest articles)
 /news         live aggregated news (30 items, refreshed every 6h)
 /bible        New Testament index (5 sections, 27 books)
 /bible/[slug] per-book with chapter TOC
@@ -127,8 +127,8 @@ Each Greek route has an `/en/` mirror.
 - **Polytonic Greek**: GOA pages use extended Greek block (U+1F77 etc.);
   regex matching needs `unicodedata.normalize("NFC", ...)`. See
   `cleanup_akolouthies.py`.
-- **Auto-seeded entries** carry `draft: true` — hidden from listings,
-  TodaysSaint widget, and RSS feeds until human review
+- **Auto-seeded entries** carry `draft: true` — hidden from listings and
+  RSS feeds until human review
 - **Commit messages**: present-tense imperative; `chore(bot):` prefix for
   bot commits (orthodox-bot for saints, orthodox-news-bot for news)
 - **Co-Authored-By**: include the Claude attribution line in commits

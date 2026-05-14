@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import TodaysSaint from '../components/TodaysSaint.astro';
+import TodaysEortologio from '../components/TodaysEortologio.astro';
 import NewsWidget from '../components/NewsWidget.astro';
 import { getCollection } from 'astro:content';
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
@@ -79,7 +79,7 @@ const featured = pool.length > 0 ? pool[seed % pool.length] : null;
     <p class="tagline">{t('site.tagline')}</p>
   </section>
 
-  <TodaysSaint />
+  <TodaysEortologio />
 
   <NewsWidget limit={5} />
 

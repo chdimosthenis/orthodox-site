@@ -60,7 +60,15 @@ const jsonld = {
 };
 ---
 
-<BaseLayout title={entry.data.title} description={entry.data.description} jsonld={jsonld}>
+<BaseLayout
+  title={entry.data.title}
+  description={entry.data.description}
+  jsonld={jsonld}
+  ogType="article"
+  articlePublished={entry.data.pubDate.toISOString()}
+  articleModified={entry.data.updatedDate?.toISOString()}
+  articleAuthor={entry.data.author}
+>
   <article>
     <header class="article-header">
       <h1 lang={entry.data.language}>{entry.data.title}</h1>

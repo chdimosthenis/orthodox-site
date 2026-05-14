@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ArticleCard from '../components/ArticleCard.astro';
 import TodaysSaint from '../components/TodaysSaint.astro';
 import NewsWidget from '../components/NewsWidget.astro';
 import { getCollection } from 'astro:content';
@@ -10,15 +9,68 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 // Naos-* tagged articles are subsection entries (vestments, orders,
-// architecture), not standalone articles — exclude from "recent articles".
+// architecture), not standalone articles — exclude from rotation.
 const isNaosEntry = (tags?: readonly string[]) =>
   !!tags && tags.some(t => t.startsWith('naos-'));
 
-const articles = (await getCollection('articles'))
-  .filter(a => a.data.language === lang && !a.data.draft)
-  .filter(a => !isNaosEntry(a.data.tags))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 6);
+const now = new Date();
+const todayKey =
+  String(now.getMonth() + 1).padStart(2, '0') + '-' +
+  String(now.getDate()).padStart(2, '0');
+
+type FeaturedItem = {
+  href: string;
+  title: string;
+  description: string;
+  kindLabel: string;
+};
+
+const [articlesAll, erminiesAll, saintsAll, fathersAll] = await Promise.all([
+  getCollection('articles'),
+  getCollection('erminies'),
+  getCollection('saints'),
+  getCollection('fathers'),
+]);
+
+const pool: FeaturedItem[] = [
+  ...articlesAll
+    .filter(a => a.data.language === lang && !a.data.draft && !isNaosEntry(a.data.tags))
+    .map(a => ({
+      href: `/articles/${a.id}/`,
+      title: a.data.title,
+      description: a.data.description,
+      kindLabel: 'Ἄρθρο',
+    })),
+  ...erminiesAll
+    .filter(e => e.data.language === lang && !e.data.draft)
+    .map(e => ({
+      href: `/bible/erminies/${e.id}/`,
+      title: e.data.title,
+      description: e.data.description,
+      kindLabel: 'Ἑρμηνεία',
+    })),
+  ...saintsAll
+    .filter(s => s.data.language === lang && !s.data.draft && s.data.feastDay !== todayKey)
+    .map(s => ({
+      href: `/saints/${s.id}/`,
+      title: s.data.name,
+      description: s.data.life,
+      kindLabel: 'Βίος Ἁγίου',
+    })),
+  ...fathersAll
+    .filter(f => f.data.language === lang && !f.data.draft)
+    .map(f => ({
+      href: `/fathers/${f.id}/`,
+      title: f.data.fullName,
+      description: f.data.summary,
+      kindLabel: 'Πατὴρ τῆς Ἐκκλησίας',
+    })),
+];
+
+// Deterministic daily pick: rotates once per calendar day, same on every
+// build that ships within a single UTC day.
+const seed = now.getUTCFullYear() * 10000 + (now.getUTCMonth() + 1) * 100 + now.getUTCDate();
+const featured = pool.length > 0 ? pool[seed % pool.length] : null;
 ---
 
 <BaseLayout title={t('site.title')}>
@@ -31,22 +83,66 @@ const articles = (await getCollection('articles'))
 
   <NewsWidget limit={5} />
 
-  <section class="section">
-    <h2>{t('latest.articles')}</h2>
-    <ul class="card-list">
-      {articles.length === 0 ? (
-        <li class="muted">{t('no.entries')}</li>
-      ) : articles.map(a => (
-        <li>
-          <ArticleCard
-            slug={a.id}
-            title={a.data.title}
-            description={a.data.description}
-            pubDate={a.data.pubDate}
-            language={a.data.language}
-          />
-        </li>
-      ))}
-    </ul>
-  </section>
+  {featured && (
+    <section class="featured">
+      <h2>Προτεινόμενο Ἀνάγνωσμα τῆς Ἡμέρας</h2>
+      <a class="featured-card" href={featured.href}>
+        <span class="featured-kind">{featured.kindLabel}</span>
+        <h3>{featured.title}</h3>
+        {featured.description && <p class="muted">{featured.description}</p>}
+        <span class="featured-cta">Διαβάστε περισσότερα →</span>
+      </a>
+    </section>
+  )}
 </BaseLayout>
+
+<style>
+  .featured {
+    margin-top: 2.5rem;
+  }
+  .featured h2 {
+    margin: 0 0 1rem;
+    font-size: 1.4rem;
+  }
+  .featured-card {
+    display: block;
+    padding: 1.5rem 1.75rem;
+    border: 1px solid var(--color-border);
+    border-left: 3px solid var(--color-accent);
+    border-radius: 0 4px 4px 0;
+    background: var(--color-surface, #faf7f1);
+    color: inherit;
+    text-decoration: none;
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+  .featured-card:hover,
+  .featured-card:focus-visible {
+    border-color: var(--color-accent);
+    outline: none;
+  }
+  .featured-kind {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-muted);
+    margin-bottom: 0.5rem;
+  }
+  .featured-card h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.3rem;
+    color: var(--color-text);
+  }
+  .featured-card p {
+    margin: 0 0 0.85rem;
+    line-height: 1.55;
+  }
+  .featured-cta {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+</style>

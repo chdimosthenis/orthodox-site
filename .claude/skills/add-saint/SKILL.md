@@ -52,12 +52,21 @@ Greek body text, 80–120 words, original prose. Use polytonic where
 quoting traditional texts; monotonic for modern Greek narrative.
 ```
 
-**MANDATORY** next step — fetch the icon (NEVER commit without this):
+**MANDATORY** next step — fetch the icon **and** generate the OG share card
+(NEVER commit without both):
 
 ```bash
 cd scripts && ./venv/Scripts/python.exe fetch_icon.py --update-all
+./venv/Scripts/python.exe _make_og_cards.py
 cd ..
 ```
+
+`_make_og_cards.py` reads every saint's `iconUrl` and composes a 1200×630
+JPEG card to `public/og/saints/<slug>.jpg` — embedded into a parchment
+canvas with the saint name + feast date. Without it, Facebook/LinkedIn
+shrink the portrait Wikimedia icon into a brutally-cropped landscape thumb.
+The script is incremental (only generates missing files); add `--force` to
+re-render an existing card after you edit the saint's frontmatter.
 
 The fetcher iterates every saint, looks up the Greek-Wikipedia infobox
 image via `wikipediaTitle`, persists `iconUrl` + `iconAttribution` back
@@ -75,6 +84,15 @@ Empty output = all icons resolved. Listed paths = those saints have no
 icon yet and either (a) need a tweaked `wikipediaTitle` and re-fetch, or
 (b) need manual `iconUrl` via `fix-icon` skill. Either way, do this audit
 BEFORE shipping.
+
+Then verify the OG card landed too:
+
+```bash
+ls public/og/saints/<new-slug>.jpg
+```
+
+Missing = card generation skipped (icon URL probably 404'd at fetch time).
+Re-run `_make_og_cards.py --slug <slug> --force` after fixing the icon URL.
 
 Then build + ship:
 
@@ -97,9 +115,11 @@ existing pattern (slug, frontmatter dict, body string). Then:
 ```bash
 cd scripts && ./venv/Scripts/python.exe calendar_seed.py --force
 ./venv/Scripts/python.exe fetch_icon.py --update-all
+./venv/Scripts/python.exe _make_og_cards.py
 cd ..
-# audit: which new entries lack iconUrl
+# audits: every new entry has icon + og card
 grep -L "iconUrl:" src/content/saints/<list-of-new-slugs>
+ls public/og/saints/<new-slug>.jpg
 npm run build
 git add . && git commit -m "feat: seed N saints"
 git pull --rebase origin main && git push
@@ -145,5 +165,8 @@ most of the SEO and card weight.
   errors only surface there.
 - Don't commit without running `fetch_icon.py --update-all` first —
   the audit step above catches missing icons before they ship.
+- Don't commit without running `_make_og_cards.py` first — saints without
+  an OG card get badly cropped on Facebook/LinkedIn shares (the raw
+  Wikimedia icon is portrait, the FB/LI card slot is 1.91:1 landscape).
 - Don't write the body as a transcription of an external hagiography —
   paraphrase in original Greek prose to avoid copyright issues.

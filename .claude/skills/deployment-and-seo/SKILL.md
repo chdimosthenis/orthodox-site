@@ -96,6 +96,17 @@ Added optional `updatedDate: z.coerce.date().optional()` to both `articles` and 
 - Plumbing: `src/pages/articles/[...slug].astro` and `src/pages/bible/erminies/[slug].astro` pass `ogImage={entry.data.image ?? '/og-default.png'}` to `BaseLayout`.
 - Falls back to brand default automatically.
 - Adding `image: /path/to/hero.jpg` to an article frontmatter is now a no-code operation.
+- **Recommended dimensions**: 1200×630 (1.91:1). BaseLayout emits `og:image:width=1200, og:image:height=630` unconditionally — if the hero image has a very different aspect, FB/LinkedIn either crop or fall back to small thumbnail. Use this aspect or generate a composite card.
+
+### Per-saint OG composite card (1200×630 JPEG)
+- **Problem (2026-05-14)**: saint pages used to emit raw Wikimedia `iconUrl` as `og:image`. Those icons are portrait, FB/LinkedIn forced them into the 1.91:1 landscape card → ugly center-crop. Hardcoded `og:image:width=1200, height=630` meta in BaseLayout made it worse (Cloudfare-side scrapers trusted the lied dimensions).
+- **Fix**: `scripts/_make_og_cards.py` composes a per-saint 1200×630 JPEG: parchment-gradient canvas with the icon framed on the left + name + feast date on the right + `orthodoxoskomvos.gr` brand mark at bottom-center. Output → `public/og/saints/<slug>.jpg`.
+- **Plumbing**: `src/pages/saints/[...slug].astro` now derives `ogImagePath = entry.data.iconUrl ? /og/saints/<id>.jpg : /og-default.png`. The composite is always 1200×630 so the BaseLayout dimensions meta is honest.
+- **Idempotent**: re-run skips existing files. Add `--force` to rebuild all, or `--slug <slug> --force` to rebuild one (after editing frontmatter).
+- **Rate-limited**: Wikimedia 429s aggressively at >5 req/sec. The script ships with 0.5s inter-request delay + 2 workers + 429-aware retry — full 463-saint regen takes ~4–5 min.
+- **JPEG quality 85** keeps each card ~85 KB. Full 463-saint set = ~40 MB in repo, within Cloudflare Workers + Static Assets limits.
+- **Mandatory before every commit** that adds/edits saints — encoded in the `add-saint` skill as a hard gate alongside `fetch_icon.py`.
+- **Fonts**: prefers `georgia.ttf`/`georgiab.ttf` for polytonic Greek glyph coverage; falls back to DejaVu, then PIL default.
 
 ### Sitemap per-entry `lastmod`
 - `astro.config.mjs` builds a `Map<route, ISODate>` at config-load time by reading the `pubDate`/`updatedDate` fields from `articles/*` and `erminies/*` frontmatter (regex-extracted, no YAML lib needed).
@@ -124,6 +135,8 @@ Added optional `updatedDate: z.coerce.date().optional()` to both `articles` and 
 | "FB share button shows 'User opted out of platform'" | **Personal FB account setting** — not a site issue. Sharer.php refuses to act for accounts that disabled platform integrations. | User goes to https://accountscenter.facebook.com → Connections → Apps and websites → toggle ON. Verify by opening sharer URL in a private window. |
 | "FB preview shows old brand/old image even after Scrape Again" | FB image cache keyed on og:image URL. HTML refreshed but image bytes are stale. | Bump `OG_DEFAULT_CACHEBUSTER` in BaseLayout, redeploy, scrape again. |
 | "LinkedIn share has no preview image" | LinkedIn image cache; same mechanism as FB. | Same cachebuster fix. Then https://www.linkedin.com/post-inspector/ → Inspect to force re-fetch. |
+| "LinkedIn share for a saint shows the icon but cropped/squished" | Old wiring: saint page emitted raw portrait Wikimedia URL as og:image. Pre-2026-05-15 fix. | Run `_make_og_cards.py` (now emits 1200×630 composite). Then Post Inspector for that saint URL. |
+| "LinkedIn share for an article without `image:` set shows tiny brand thumbnail" | LinkedIn cached the page when og:image was missing/different; their cache outlives our cachebuster sometimes. | LinkedIn Post Inspector → Inspect URL → "Refresh". One-shot per URL. |
 | "FB preview shows literal 'null' in title or description" | Either og:title is empty (verify with curl + facebookexternalhit UA) OR FB cached a pre-OG-tags scrape. | Check curl output; if tags exist, just Scrape Again on FB Debugger. |
 | "Share opens FB but title/description are blank" | Mobile FB app behavior — sometimes pre-population fails on iOS/Android even when og tags are correct. | Limited fix; FB controls the in-app composer. og:site_name + og:type=article help. |
 
@@ -199,7 +212,8 @@ https://orthodoxoskomvos.gr/sitemap-0.xml        # 402 URL entries
 | Collection schemas (incl. `updatedDate`) | `src/content.config.ts` |
 | Node version pin | `.nvmrc` (22.12.0) |
 | robots.txt (repo copy) | `public/robots.txt` |
-| OG image generator | `scripts/_make_og_default.py` |
+| Brand OG image generator | `scripts/_make_og_default.py` |
+| Per-saint OG card generator | `scripts/_make_og_cards.py` → `public/og/saints/<slug>.jpg` |
 
 ## Cost (post-launch)
 

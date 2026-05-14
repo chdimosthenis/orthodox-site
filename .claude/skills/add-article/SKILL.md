@@ -16,6 +16,10 @@ language. Optional: sourceUrl, license, tags, draft, **updatedDate**, **image**.
   per-article hero image used as og:image. Falls back to the brand
   `og-default.png` when absent. Adding this on your most-shared articles
   makes each FB/LinkedIn/X preview visually unique → higher click-through.
+  **Size it to 1200×630 (1.91:1)** — BaseLayout emits `og:image:width=1200,
+  og:image:height=630` regardless of the actual file dimensions. A wildly
+  different aspect (e.g. portrait, square) makes FB/LinkedIn crop badly or
+  fall back to a small thumbnail card.
 
 ## Two paths
 

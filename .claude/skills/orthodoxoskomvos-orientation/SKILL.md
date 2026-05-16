@@ -100,6 +100,7 @@ trigger the `subagent-permissions` skill.
 | "γράψε ἄρθρο γιὰ τὴ νοερὰ προσευχή..." | `add-article` |
 | "ἐπιμελητικὸ πέρασμα στοὺς Πατέρες" | `editorial-pass` |
 | "διόρθωσε τὶς εἰκόνες ποὺ δὲν φορτώνουν" | `fix-icon` |
+| "ξαναφτιάξε τὶς κάρτες κοινωνικῆς δικτύωσης" / "regenerate og cards" / "rebuild saint cards" | `regenerate-og-cards` (also fires automatically after every `add-saint` / `fix-icon` / `bulk-seed-and-publish`) |
 | "πάρε νέες προσευχὲς ἀπὸ glt.goarch.org" | `fetch-akolouthia` |
 | "ἀπόψε push δὲν περνᾶ — bot conflict" | `recover-from-bot-push` |
 | "agents can't write" / "Write denied" | `subagent-permissions` |

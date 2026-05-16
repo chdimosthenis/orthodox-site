@@ -61,12 +61,14 @@ cd scripts && ./venv/Scripts/python.exe fetch_icon.py --update-all
 cd ..
 ```
 
-`_make_og_cards.py` reads every saint's `iconUrl` and composes a 1200×630
-JPEG card to `public/og/saints/<slug>.jpg` — embedded into a parchment
-canvas with the saint name + feast date. Without it, Facebook/LinkedIn
-shrink the portrait Wikimedia icon into a brutally-cropped landscape thumb.
-The script is incremental (only generates missing files); add `--force` to
-re-render an existing card after you edit the saint's frontmatter.
+The second command is owned by the `regenerate-og-cards` skill — invoke
+it (or run the script directly as above) every time a saint is added or
+modified. It reads every saint's `iconUrl` and composes a 1200×630 JPEG
+card to `public/og/saints/<slug>.jpg` — embedded into a parchment canvas
+with the saint name + feast date. Without it, Facebook/LinkedIn shrink the
+portrait Wikimedia icon into a brutally-cropped landscape thumb. The
+script is incremental (only generates missing files); pass `--slug <slug>
+--force` to re-render a specific saint after a frontmatter edit.
 
 The fetcher iterates every saint, looks up the Greek-Wikipedia infobox
 image via `wikipediaTitle`, persists `iconUrl` + `iconAttribution` back

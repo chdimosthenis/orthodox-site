@@ -71,6 +71,30 @@ for entries that lack `iconUrl`. Each lookup hits Wikipedia langlinks →
 Commons; many obscure pre-Schism Western saints have no Wikipedia image
 and stay icon-less.
 
+## Step 4b — generate the OG share cards (MANDATORY)
+
+After every batch icon-fetch, invoke `regenerate-og-cards` (or run the
+script directly):
+
+```bash
+PYTHONIOENCODING=utf-8 ./venv/Scripts/python.exe _make_og_cards.py
+```
+
+Incremental — only generates cards for newly-icon-bearing saints
+(existing JPGs are skipped). Takes ~4-5 min on a 300-400-saint batch due
+to the 0.5s Wikimedia rate limiter. Confirm output count:
+
+```bash
+ls public/og/saints/ | wc -l    # should grow by the count of newly-iconed saints
+```
+
+Saints without `iconUrl` are skipped silently — they fall back to the
+brand `og-default.png` on shares. That's intentional, not a bug.
+
+Skipping this step ships ~300 saints whose Facebook/LinkedIn shares
+render the raw portrait Wikimedia icon force-cropped into the 1.91:1
+landscape card. Every visible share looks broken until you re-run.
+
 ## Step 5 — commit + push
 
 The bots may have pushed during your run. Always rebase first:

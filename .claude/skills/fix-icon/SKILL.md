@@ -10,6 +10,23 @@ Each saint has optional `iconUrl` and `iconAttribution` fields populated by
 isn't ideal — a 19th-century Western painting instead of a Byzantine icon,
 a low-resolution or poorly cropped file, or no match at all.
 
+## MANDATORY post-step — regenerate the OG share card
+
+Any change to `iconUrl` (Options 1, 2, or any future option) MUST be
+followed by re-rendering the saint's 1200×630 OG composite. The existing
+`public/og/saints/<slug>.jpg` was built from the OLD icon and will keep
+appearing on Facebook/LinkedIn shares until you overwrite it. Invoke the
+`regenerate-og-cards` skill — or run the script directly:
+
+```bash
+cd scripts && ./venv/Scripts/python.exe _make_og_cards.py --slug <slug> --force
+cd ..
+```
+
+`--force` is required (the JPG already exists from the previous icon, so
+incremental mode would skip it). See `regenerate-og-cards` skill for the
+full reasoning.
+
 ## Option 1 — try a different Wikipedia title
 
 Edit the saint's `wikipediaTitle` field, then re-fetch:

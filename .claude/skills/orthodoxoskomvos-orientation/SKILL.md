@@ -65,6 +65,37 @@ GitHub: `chdimosthenis/orthodoxoskomvos` (private? — check).
 /about                           about page with AI-disclaimer + non-profit mission
 ```
 
+## Daily reading pool (homepage "Προτεινόμενο Ἀνάγνωσμα τῆς Ἡμέρας")
+
+The home page card on `/` rotates one entry per Athens day (rollover at
+06:00 local). Selection is `pool[seed % pool.length]` where `seed` is the
+Athens featured-day integer — same deterministic pick on every build
+between rollovers. Pool composition lives in `src/pages/index.astro` and
+must include all 7 of the following feeds — one per user-facing section
+the card can deep-link into:
+
+| Section (URL) | Source collection / filter | `kindLabel` |
+|---|---|---|
+| `/didaskalia/` (→ /articles/) | `articles` excluding `naos-*` tagged | `Ἄρθρο` |
+| `/naos-kai-latreia/` | `articles` with `naos-*` tagged | `Ναὸς & Λατρεία` |
+| `/bible/erminies/` | `erminies` | `Ἑρμηνεία` |
+| `/prosopa/` (→ /saints/) | `saints`, excluding today's feast day | `Βίος Ἁγίου` |
+| `/prosopa/` (→ /fathers/) | `fathers` | `Πατὴρ τῆς Ἐκκλησίας` |
+| `/proseuxitari/` | `liturgical` with `type === 'prayer'` | `Προσευχή` |
+| `/ymnoi/` | `liturgical` with `type ∈ {hymn, tropar, kontak, ode}` | `Ὕμνος` |
+
+Other liturgical types (`apodeipno`, `paraklesis`, `chairetismoi`,
+`akathistos`, `theia-metalipsi`, `akolouthia`) live under `/akolouthies/`
+and are deliberately NOT in the rotation — the akolouthia pages are long
+liturgical orders, not bite-sized daily reading.
+
+Any new section that creates its own URL path must be added to this
+pool — and conversely, removing a section means dropping its feed here.
+The HYMN_TYPES / PRAYER_TYPES constants in `index.astro` MUST stay in
+lockstep with the filters in `src/pages/ymnoi/index.astro` and
+`src/pages/proseuxitari/index.astro` respectively. If those listing
+pages add or drop a type, mirror the change in `index.astro`.
+
 ## Build + commit cadence
 
 ```
@@ -100,7 +131,7 @@ trigger the `subagent-permissions` skill.
 | "γράψε ἄρθρο γιὰ τὴ νοερὰ προσευχή..." | `add-article` |
 | "ἐπιμελητικὸ πέρασμα στοὺς Πατέρες" | `editorial-pass` |
 | "διόρθωσε τὶς εἰκόνες ποὺ δὲν φορτώνουν" | `fix-icon` |
-| "ξαναφτιάξε τὶς κάρτες κοινωνικῆς δικτύωσης" / "regenerate og cards" / "rebuild saint cards" | `regenerate-og-cards` (also fires automatically after every `add-saint` / `fix-icon` / `bulk-seed-and-publish`) |
+| "ξαναφτιάξε τὶς κάρτες κοινωνικῆς δικτύωσης" / "regenerate og cards" / "rebuild saint cards" | `regenerate-og-cards` (also auto-fires after every `add-saint` / `fix-icon` / `bulk-seed-and-publish`; AND deterministically via the `.claude/hooks/regen-saint-og-card.py` PostToolUse hook on any Claude-edit to a saint .md that touches `iconUrl:` / `feastDay:` / `name:`) |
 | "πάρε νέες προσευχὲς ἀπὸ glt.goarch.org" | `fetch-akolouthia` |
 | "ἀπόψε push δὲν περνᾶ — bot conflict" | `recover-from-bot-push` |
 | "agents can't write" / "Write denied" | `subagent-permissions` |

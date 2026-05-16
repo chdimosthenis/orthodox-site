@@ -70,6 +70,17 @@ portrait Wikimedia icon into a brutally-cropped landscape thumb. The
 script is incremental (only generates missing files); pass `--slug <slug>
 --force` to re-render a specific saint after a frontmatter edit.
 
+**Deterministic auto-fire (hook):** when Claude itself writes the .md
+file in Path A with `iconUrl:` already in the frontmatter, the
+`PostToolUse` hook at `.claude/hooks/regen-saint-og-card.py` fires
+automatically and runs the regen for that one slug. You will see
+`[regen-og-card] ...` lines in the transcript. The hook is the
+deterministic safety net; the explicit `_make_og_cards.py` step above
+still runs as part of the workflow because (a) `fetch_icon.py` writes
+the iconUrl AFTER Claude's Write of the .md file and the hook can't
+observe that filesystem-write, and (b) the bulk path needs an
+incremental sweep across whatever fetch_icon.py just iconed.
+
 The fetcher iterates every saint, looks up the Greek-Wikipedia infobox
 image via `wikipediaTitle`, persists `iconUrl` + `iconAttribution` back
 into the frontmatter. Entries without a Wikipedia match are skipped

@@ -27,6 +27,15 @@ cd ..
 incremental mode would skip it). See `regenerate-og-cards` skill for the
 full reasoning.
 
+**Deterministic auto-fire (hook):** Option 2 ("edit the saint markdown
+directly") is performed via Claude's Edit tool, which triggers the
+`PostToolUse` hook at `.claude/hooks/regen-saint-og-card.py`. The hook
+detects `iconUrl:` in the diff and runs the regen automatically with
+`--force` — no extra step required. You will see `[regen-og-card] ...`
+in the transcript. Option 1 (re-running `fetch_icon.py --update-all`)
+writes via Python directly to the filesystem, so the hook can NOT
+observe it — the manual regen step above is mandatory in that case.
+
 ## Option 1 — try a different Wikipedia title
 
 Edit the saint's `wikipediaTitle` field, then re-fetch:

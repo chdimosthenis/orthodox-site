@@ -24,5 +24,18 @@
     "additionalDirectories": [
       "C:/Users/dimos/Documents/orthodox-site"
     ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "scripts/venv/Scripts/python.exe .claude/hooks/regen-saint-og-card.py"
+          }
+        ]
+      }
+    ]
   }
 }

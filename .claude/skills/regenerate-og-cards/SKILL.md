@@ -1,9 +1,37 @@
 ---
 name: regenerate-og-cards
-description: Regenerate the 1200×630 OG share-card composite for one or more saints by invoking `scripts/_make_og_cards.py`. **Trigger automatically (proactively) whenever a saint entry is added or modified** — i.e. on every `add-saint`, every `fix-icon`, every batch run of `fetch_icon.py`, every edit to a saint's `name` / `feastDay` / `iconUrl` frontmatter, and every `seed-batch` / `bulk-seed-and-publish` close. ALSO fires on explicit phrases — "regenerate og cards", "rebuild saint cards", "refresh linkedin thumbnails", "ξαναφτιάξε τις κάρτες", "ξανατρέξε τα og", "καθε φορα που ανεβαινει αγιος", "κάθε φορά που μπαίνει φωτογραφία". Encodes per-slug targeting (avoid re-rendering all 463 cards when one changes), the `--force` flag (needed when re-rendering existing slugs after frontmatter edits), and the audit step (`ls public/og/saints/<slug>.jpg`) that confirms the file landed.
+description: Regenerate the 1200×630 OG share-card composite for one or more saints by invoking `scripts/_make_og_cards.py`. **Trigger automatically (proactively) whenever a saint entry is added or modified** — i.e. on every `add-saint`, every `fix-icon`, every batch run of `fetch_icon.py`, every edit to a saint's `name` / `feastDay` / `iconUrl` frontmatter, and every `seed-batch` / `bulk-seed-and-publish` close. ALSO fires on explicit phrases — "regenerate og cards", "rebuild saint cards", "refresh linkedin thumbnails", "ξαναφτιάξε τις κάρτες", "ξανατρέξε τα og", "καθε φορα που ανεβαινει αγιος", "κάθε φορά που μπαίνει φωτογραφία". Encodes per-slug targeting (avoid re-rendering all 463 cards when one changes), the `--force` flag (needed when re-rendering existing slugs after frontmatter edits), and the audit step (`ls public/og/saints/<slug>.jpg`) that confirms the file landed. Note: a deterministic `PostToolUse` hook at `.claude/hooks/regen-saint-og-card.py` ALSO fires on every Claude-driven Edit/Write to `src/content/saints/*.md` that touches `iconUrl` / `feastDay` / `name:` — this skill stays canonical for batch flows where the hook can't observe the change (Python seeders writing files directly).
 ---
 
 # Regenerate per-saint OG share cards
+
+## Two trigger paths — deterministic (hook) + heuristic (this skill)
+
+1. **Hook** (`.claude/hooks/regen-saint-og-card.py`, wired in
+   `.claude/settings.json` as a `PostToolUse` hook on
+   `Edit|Write|MultiEdit`): fires automatically whenever Claude itself
+   edits a saint .md file AND the diff touches `iconUrl:`, `feastDay:`,
+   or `name:`. No skill invocation required — runs synchronously after
+   the tool returns, takes 3-4 s, output goes to stderr (visible in
+   transcript). Skips pure body-text edits to avoid wasted regen on
+   prose tweaks. **Cannot observe changes made by Python scripts that
+   write directly to the filesystem** (`fetch_icon.py`, `daily_seed.py`,
+   `calendar_seed.py`, `_triage_drafts.py`) — those bypass Claude's
+   tools entirely.
+
+2. **This skill** — fires when Claude reads the description and chooses
+   to invoke. Covers the cases the hook can't observe:
+   - Batch runs (Python seeders / `fetch_icon.py --update-all` writing
+     files directly).
+   - Manual user request ("ξαναφτιάξε τις κάρτες", "regenerate og cards").
+   - Brand-design changes to the `_make_og_cards.py` template that
+     require a full `--force` sweep.
+
+Both paths converge on the same script with the same flags. If the
+hook already ran for a Claude-edit, an explicit skill invocation later
+is cheap — incremental mode skips existing files unless `--force`.
+
+## The mechanical step
 
 The composite cards live under `public/og/saints/<slug>.jpg`. They are
 emitted by `scripts/_make_og_cards.py` from each saint's frontmatter:

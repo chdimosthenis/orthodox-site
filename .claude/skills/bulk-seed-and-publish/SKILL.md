@@ -73,6 +73,12 @@ and stay icon-less.
 
 ## Step 4b — generate the OG share cards (MANDATORY)
 
+The `daily_seed.py` and `fetch_icon.py` scripts write directly to the
+filesystem, so the `.claude/hooks/regen-saint-og-card.py` PostToolUse
+hook can NOT observe them and the manual step below is required. (The
+hook only fires when Claude's own Edit/Write tools touch a saint .md
+file — which doesn't happen in a Python-driven bulk seed.)
+
 After every batch icon-fetch, invoke `regenerate-og-cards` (or run the
 script directly):
 
